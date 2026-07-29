@@ -48,9 +48,13 @@ export function PostListItem({
           ) : (
             <span />
           )}
-          <span className="blog-read-link" aria-hidden="true">
-            Read article
-          </span>
+          <Link
+  href={post.href}
+  className="blog-read-link"
+  aria-label={`Read article: ${post.title}`}
+>
+  Read article
+</Link>
         </div>
       </div>
     </article>
