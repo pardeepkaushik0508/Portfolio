@@ -1,0 +1,263 @@
+---
+title: "Complete Website Launch Checklist"
+slug: "website-launch-checklist"
+description: "A complete website launch checklist covering content, design QA, technical SEO, forms, analytics, redirects, DNS, security, and post-launch monitoring for business sites."
+excerpt: "Use this website launch checklist to catch content, SEO, forms, DNS, and QA issues before you go live."
+publishedAt: "2026-03-25"
+updatedAt: null
+category: "website-growth"
+tags:
+  - website launch
+  - go-live checklist
+  - QA
+  - web project
+primaryKeyword: "website launch checklist"
+secondaryKeywords:
+  - website go live checklist
+  - launch a business website
+  - pre-launch website QA
+  - website deployment checklist
+author: "Pardeep Kaushik"
+featured: false
+draft: false
+faqs:
+  - question: "When should I start the launch checklist?"
+    answer: "Begin a lightweight version during late development, then run a full pass on staging before DNS cutover. Do not leave the entire list for the evening you point the domain."
+  - question: "Do I need staging to launch properly?"
+    answer: "For anything beyond a tiny static page, yes. Staging lets you test forms, redirects, and content without breaking the live brand domain prematurely."
+  - question: "What is the most commonly skipped launch item?"
+    answer: "Working form notifications and redirect maps. Teams admire the design, switch DNS, then discover enquiries go nowhere or old URLs 404."
+  - question: "Should the site be indexed immediately?"
+    answer: "If it is ready for the public, allow indexing and submit the sitemap. Keep noindex on staging forever, and remove accidental noindex on production."
+  - question: "How long should we monitor after launch?"
+    answer: "Watch closely for the first 48–72 hours, then review Search Console and analytics over the following weeks—especially after migrations."
+---
+
+A website launch is a coordinated cutover, not a moment of courage. Domains, SSL, content, forms, analytics, and redirects all have to agree on the same morning. When teams skip a checklist, they usually discover the miss through a customer message.
+
+This is a practical launch checklist for business marketing sites and content-driven builds. Adjust depth for ecommerce or app launches, but keep the structure.
+
+## 1. Scope freeze and roles
+
+Before QA:
+
+- Freeze features for v1
+- Name who approves content
+- Name who can change DNS
+- Name who verifies forms
+- Agree on a rollback path if DNS goes wrong
+
+If ownership is unclear, pause and use [questions to ask before hiring a web developer](/blog/questions-before-hiring-web-developer) as a repair conversation—even mid-project.
+
+## 2. Content and legal gate
+
+Check every indexable page for:
+
+- Final copy (no lorem, no “TBD”)
+- Correct phone, email, WhatsApp, and addresses
+- Working internal links
+- Privacy policy and terms if you collect data
+- Accurate service descriptions vs what you sell today
+
+Service-site completeness maps to [essential website features for service businesses](/blog/essential-website-features-service-businesses).
+
+## 3. Design and UX QA
+
+### Desktop and mobile
+
+- Hierarchy and CTA clarity on key templates
+- No overlapping elements at common breakpoints
+- Tap targets usable on phones
+- No horizontal scroll on primary pages
+
+Mobile is a growth issue—see [mobile-responsive design for business growth](/blog/mobile-responsive-design-business-growth).
+
+### Conversion paths
+
+For landing templates, confirm one primary action and proof placement using ideas from [high-converting landing page](/blog/high-converting-landing-page).
+
+## 4. Technical SEO pre-flight
+
+On production settings (or production-like staging):
+
+- Unique titles and meta descriptions
+- Correct canonicals
+- XML sitemap generated
+- `robots.txt` allows important paths
+- No accidental `noindex` on production
+- Heading structure sane
+- Image alt text where meaningful
+
+Work the [technical SEO checklist](/blog/technical-seo-checklist-modern-websites). Next.js projects should also skim the [Next.js SEO guide](/blog/nextjs-seo-guide).
+
+## 5. Redirects and URL mapping
+
+If replacing an existing site:
+
+- Export old URLs
+- Map to new destinations
+- Implement redirects before or at cutover
+- Spot-check top traffic and campaign URLs
+- Decide what happens to unmatched paths
+
+Missing redirects are a silent tax on brand searches and old ads.
+
+## 6. Forms, CRM, and notifications
+
+Test with real submissions:
+
+- Success state visible to the user
+- Notification email arrives (and is not spam-foldered)
+- CRM or sheet receives the lead if integrated
+- Spam protection does not block normal users
+- File uploads work if offered
+
+Then test on mobile data, not only office Wi-Fi.
+
+## 7. Analytics and tag verification
+
+- Analytics base tag fires
+- Conversion events for submit/click-to-call if needed
+- Ads pixels only where intended
+- Cookie/consent behaviour matches policy
+- Search Console property ready for the final domain
+
+Remove duplicate legacy tags that double-count.
+
+## 8. Performance and media
+
+- Compress hero media
+- Confirm lazy-loading does not hide LCP incorrectly
+- Check third-party script weight
+- Run a quick pass on key landing URLs
+
+WordPress launches benefit from the [WordPress speed optimization checklist](/blog/wordpress-speed-optimization-checklist).
+
+## 9. Security and access
+
+- Admin users reviewed; unused accounts removed
+- Strong passwords / SSO / 2FA where available
+- Backups enabled and restore owner named
+- TLS certificate ready for the live domain
+- Environment variables and API keys not exposed client-side
+
+> Launch day is a poor time to discover that only one person has the domain registrar password—and they are offline.
+
+## 10. DNS, hosting, and email
+
+Coordinate:
+
+- DNS TTL strategy if you can lower TTL ahead of time
+- Correct A/AAAA/CNAME records
+- WWW and apex behaviour
+- HTTPS redirects
+- Email (MX) untouched unless intentionally migrating
+- Hosting environment matched to production needs
+
+Document every change.
+
+## 11. Soft launch vs public launch
+
+Options:
+
+- Password-protect briefly while stakeholders review on the real domain
+- Launch quietly, then announce
+- Launch with ads only after form and analytics verification
+
+Choose intentionally. Do not run paid traffic into an unverified thank-you flow.
+
+## 12. First 72 hours monitoring
+
+Watch:
+
+- Uptime
+- Form inbox
+- Server error logs
+- Search Console coverage once data appears
+- Broken link reports on top pages
+
+Schedule the first maintenance window using the [website maintenance guide](/blog/website-maintenance-guide) and clarify support with [post-launch website support](/blog/post-launch-website-support).
+
+## 13. Handoff package
+
+Deliver or collect:
+
+- CMS training notes
+- Repo and hosting access list
+- Design source location
+- Redirect sheet
+- Changelog of launch decisions
+
+Ownership clarity prevents hostage situations later—whether you hired via freelance or company models ([freelance developer vs agency](/blog/freelance-developer-vs-agency)).
+
+## 14. Content freeze and last-mile edits
+
+Late copy changes are normal; unmanaged late copy changes break QA.
+
+Rules that help:
+
+- Freeze IA early
+- Allow text tweaks in a defined window
+- Re-test any page where a CTA URL or form ID changed
+- Ban “quick” plugin installs on launch morning
+
+If stakeholders keep expanding scope, park items into a post-launch backlog under [post-launch website support](/blog/post-launch-website-support) instead of slipping DNS.
+
+## 15. Ecommerce and booking extras
+
+If you take payments or bookings, add:
+
+- Test transactions in sandbox then a controlled live test
+- Email receipts and failure states
+- Tax/shipping rules spot-checks
+- Inventory or slot edge cases
+- Refund/cancellation path documented for support staff
+
+Do not discover payment failures through a customer screenshot on day one.
+
+## 16. Communication plan for launch day
+
+Write a short runbook:
+
+- Sequence of DNS changes
+- Who confirms SSL
+- Who tests forms
+- Who watches analytics real-time
+- Who can roll back
+- Where status updates are posted for stakeholders
+
+Shared calm beats heroic improvisation. Budget and vendor clarity from [professional website cost](/blog/professional-website-cost) and [questions to ask before hiring a web developer](/blog/questions-before-hiring-web-developer) should already have made roles obvious.
+
+## 17. After launch: connect marketing without breaking the build
+
+Once stable:
+
+- Submit sitemap
+- Update social profiles and Google Business links if relevant
+- Turn campaigns on only after conversion events verify
+- Schedule the first maintenance pass ([website maintenance guide](/blog/website-maintenance-guide))
+- Plan content or landing experiments using [high-converting landing page](/blog/high-converting-landing-page) and [essential website features for service businesses](/blog/essential-website-features-service-businesses)
+
+Technical follow-through: [technical SEO checklist](/blog/technical-seo-checklist-modern-websites), [Next.js SEO guide](/blog/nextjs-seo-guide), [WordPress speed optimization checklist](/blog/wordpress-speed-optimization-checklist). Local campaign builds: [landing page developer Chandigarh](/blog/landing-page-developer-chandigarh).
+
+## Common launch-day failure patterns
+
+Learn from patterns that repeat:
+
+- Staging still noindexed… and production copies the same flag
+- Old Google Ads point to URLs that were redesigned away
+- SMTP credentials work on staging host but not production
+- WWW redirects loop after a well-meant CDN change
+- Team celebrates while spam fills an unmonitored form inbox
+
+Assign owners for each risk before the cutover hour. Keep a simple go/no-go: if forms or SSL fail, delay public announcement. Compare delivery partners with [freelance vs web development company Chandigarh](/blog/freelance-vs-web-development-company-chandigarh) only after the runbook exists—process beats branding on launch day. For application launches with auth and APIs, involve the right skill set early ([when to hire a full-stack developer](/blog/when-hire-full-stack-developer)).
+
+Browse production references in [work](/#work), such as [AiVoxa Labs](/#case-aivoxa-labs), when you need a reminder that “live” means monitored, not merely DNS-complete.
+
+Print or share the checklist as a single page for the launch channel so nothing depends on memory at midnight. If an item is skipped, record why—future you will want that note when something odd appears in analytics the next morning.
+
+## Closing: launch is a quality gate
+
+A complete website launch checklist turns go-live into a controlled event. The goal is not perfection theatre; it is protecting enquiries, brand URLs, and trust on day one.
+
+If you want help running a pre-launch audit or shipping a build with a clear cutover plan, review [services](/#services) and [contact](/#contact). Bring staging access, the old URL list if migrating, and the pages that must work when DNS flips.

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navItems, personal } from "@/data/personal";
@@ -8,16 +10,33 @@ import { Button } from "@/components/ui/Button";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const SECTION_IDS = navItems.map((item) => item.href.replace("#", ""));
+const SECTION_IDS = navItems
+  .filter((item) => item.href.startsWith("#"))
+  .map((item) => item.href.replace("#", ""));
+
+function resolveHref(href: string, onHome: boolean) {
+  if (href.startsWith("http") || href.startsWith("/")) return href;
+  if (href.startsWith("#")) return onHome ? href : `/${href}`;
+  return href;
+}
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const onBlog = pathname?.startsWith("/blog") ?? false;
+  const [scrolled, setScrolled] = useState(!onHome);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [active, setActive] = useState(onBlog ? "/blog" : "#home");
   const menuId = useId();
-  const onHero = !scrolled;
+  const onHero = onHome && !scrolled;
 
   useEffect(() => {
+    if (!onHome) {
+      setScrolled(true);
+      setActive(onBlog ? "/blog" : "");
+      return;
+    }
+
     const sections = ["home", ...SECTION_IDS]
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -64,7 +83,7 @@ export function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [onHome, onBlog]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -83,6 +102,15 @@ export function Header() {
     setOpen(false);
   }
 
+  const items = [
+    ...navItems.map((item) => ({
+      label: item.label,
+      href: resolveHref(item.href, onHome),
+      key: item.href,
+    })),
+    { label: "Blog", href: "/blog", key: "/blog" },
+  ];
+
   return (
     <>
       <header
@@ -94,9 +122,9 @@ export function Header() {
         )}
       >
         <div className="container-shell flex h-16 items-center justify-between gap-4">
-          <a
-            href="#home"
-            onClick={() => handleNavClick("#home")}
+          <Link
+            href={onHome ? "#home" : "/"}
+            onClick={() => handleNavClick(onHome ? "#home" : "/")}
             className={cn(
               "font-display text-[1rem] font-bold tracking-[-0.03em] transition-colors md:text-[1.05rem]",
               onHero ? "text-white" : "text-foreground",
@@ -104,42 +132,48 @@ export function Header() {
           >
             {personal.firstName}
             <span className={onHero ? "text-accent" : "text-primary"}>.</span>
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => handleNavClick(item.href)}
-                aria-current={active === item.href ? "true" : undefined}
-                className={cn(
-                  "relative px-3 py-2 text-sm transition-colors",
-                  onHero
-                    ? active === item.href
-                      ? "text-white"
-                      : "text-white/75 hover:text-white"
-                    : active === item.href
-                      ? "text-primary"
-                      : "text-muted hover:text-foreground",
-                )}
-              >
-                {item.label}
-                {active === item.href ? (
-                  <span
-                    className={cn(
-                      "absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full",
-                      onHero ? "bg-accent" : "bg-primary",
-                    )}
-                  />
-                ) : null}
-              </a>
-            ))}
+            {items.map((item) => {
+              const isActive =
+                item.key === "/blog"
+                  ? onBlog
+                  : onHome && active === item.key;
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  onClick={() => handleNavClick(item.key)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "relative px-3 py-2 text-sm transition-colors",
+                    onHero
+                      ? isActive
+                        ? "text-white"
+                        : "text-white/75 hover:text-white"
+                      : isActive
+                        ? "text-primary"
+                        : "text-muted hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                  {isActive ? (
+                    <span
+                      className={cn(
+                        "absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full",
+                        onHero ? "bg-accent" : "bg-primary",
+                      )}
+                    />
+                  ) : null}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
             <Button
-              href="#contact"
+              href={onHome ? "#contact" : "/#contact"}
               size="sm"
               magnetic
               className="hidden sm:inline-flex"
@@ -184,27 +218,33 @@ export function Header() {
           >
             <div className="flex h-full flex-col px-6 pb-10 pt-24">
               <nav className="flex flex-1 flex-col gap-1" aria-label="Mobile">
-                {navItems.map((item, i) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => handleNavClick(item.href)}
-                    aria-current={active === item.href ? "true" : undefined}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.04 * i }}
-                    className={cn(
-                      "border-b border-border-dark py-4 font-display text-3xl tracking-tight",
-                      active === item.href ? "text-accent" : "text-white",
-                    )}
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
+                {items.map((item, i) => {
+                  const isActive =
+                    item.key === "/blog"
+                      ? onBlog
+                      : onHome && active === item.key;
+                  return (
+                    <motion.a
+                      key={item.key}
+                      href={item.href}
+                      onClick={() => handleNavClick(item.key)}
+                      aria-current={isActive ? "page" : undefined}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.04 * i }}
+                      className={cn(
+                        "border-b border-border-dark py-4 font-display text-3xl tracking-tight",
+                        isActive ? "text-accent" : "text-white",
+                      )}
+                    >
+                      {item.label}
+                    </motion.a>
+                  );
+                })}
               </nav>
 
               <Button
-                href="#contact"
+                href={onHome ? "#contact" : "/#contact"}
                 className="w-full"
                 onClick={() => {
                   handleNavClick("#contact");

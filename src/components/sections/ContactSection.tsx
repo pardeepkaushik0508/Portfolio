@@ -73,6 +73,7 @@ export function ContactSection() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       projectType: undefined,
       details: "",
       budget: "",
@@ -238,6 +239,24 @@ export function ContactSection() {
                         aria-invalid={errors.email ? true : undefined}
                         aria-describedby={errors.email ? "email-error" : undefined}
                         {...register("email")}
+                      />
+                    </Field>
+                    <Field
+                      label="Mobile Number"
+                      htmlFor="phone"
+                      optional
+                      error={errors.phone?.message}
+                    >
+                      <input
+                        id="phone"
+                        type="tel"
+                        className={inputClass}
+                        placeholder="+91 98765 43210"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        aria-invalid={errors.phone ? true : undefined}
+                        aria-describedby={errors.phone ? "phone-error" : undefined}
+                        {...register("phone")}
                       />
                     </Field>
                     <Field

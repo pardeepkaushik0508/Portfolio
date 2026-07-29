@@ -1,0 +1,216 @@
+---
+title: "Technical SEO Checklist for WordPress Websites"
+slug: "technical-seo-checklist-wordpress"
+description: "A technical SEO checklist for WordPress websites covering indexing, sitemaps, canonicals, speed, structured data, WooCommerce quirLs, and crawl hygiene for business sites."
+excerpt: "Technical SEO on WordPress is about clean indexing, fast templates, and fewer duplicate URLs. Work through this checklist before you pour budget into content alone."
+publishedAt: "2025-05-06"
+updatedAt: null
+category: wordpress-woocommerce
+tags:
+  - Technical SEO
+  - WordPress SEO
+  - Indexing
+  - Crawlability
+primaryKeyword: "technical SEO checklist WordPress"
+secondaryKeywords:
+  - WordPress technical SEO
+  - WordPress SEO checklist
+  - WooCommerce SEO technical
+  - WordPress indexing issues
+author: "Pardeep Kaushik"
+featured: false
+draft: false
+faqs:
+  - question: "Is a WordPress SEO plugin enough for technical SEO?"
+    answer: "Plugins help with titles, sitemaps, and schema hooks, but they cannot fix slow templates, duplicate parameter URLs, or poor information architecture. Use a plugin as a tool inside this checklist—not as the entire strategy."
+  - question: "How is WordPress technical SEO different from general technical SEO?"
+    answer: "The principles are the same—crawl, index, render, speed—but WordPress adds theme templates, plugin URL patterns, comment/reply endpoints, and often WooCommerce facets. This checklist focuses on those CMS-specific traps."
+  - question: "Should blog comments be indexed?"
+    answer: "Usually no for most business sites. Disable or noindex reply endpoints and paginated comment views if they create thin or duplicate crawl paths. Keep the conversation; skip the index bloat."
+  - question: "Do Core Web Vitals count as technical SEO?"
+    answer: "They are part of the modern technical picture because page experience affects users and can influence visibility. Fix vitals alongside crawl and indexation—see the Core Web Vitals WordPress guide."
+  - question: "What should I check after a redesign?"
+    answer: "Redirect map, canonical tags, sitemap freshness, robots rules, analytics, Search Console coverage, and template heading structure. Redesigns often break technical SEO silently."
+---
+
+## Technical SEO keeps WordPress discoverable
+
+Content quality matters. So does whether Google can crawl the right URLs, understand the page, and load it without frustration. WordPress makes publishing easy and accidental URL sprawl equally easy.
+
+This checklist is WordPress-specific. For cross-stack principles, use the [technical SEO checklist for modern websites](/blog/technical-seo-checklist-modern-websites). For performance detail, use the [speed checklist](/blog/wordpress-speed-optimization-checklist) and [Core Web Vitals guide](/blog/improve-core-web-vitals-wordpress).
+
+## 1. Indexing controls that match intent
+
+- Confirm Search Console property ownership  
+- Review `robots.txt`—do not block CSS/JS needed for rendering unless you have a rare reason  
+- Use a single SEO plugin’s noindex rules; conflicting plugins create chaos  
+- Noindex thank-you pages, internal search results, cart, checkout, and account areas  
+- Keep important service and product templates indexable  
+
+After migrations or staging mistakes, ensure production is not still noindexing everything. That failure mode is more common than people admit.
+
+## 2. XML sitemaps and URL discovery
+
+- Generate sitemaps for posts, pages, and relevant custom post types  
+- Exclude non-canonical or noindexed URLs from sitemaps  
+- Submit the sitemap index in Search Console  
+- For WooCommerce, include products and categories you want indexed; exclude filtered junk  
+
+Sitemaps do not force rankings. They help discovery when IA is large. Pair with internal links from real navigation and content—including cluster posts like [ACF custom WordPress sites](/blog/acf-custom-wordpress-websites) when you explain site structure to stakeholders.
+
+## 3. Canonicals and duplicates
+
+WordPress can produce duplicates via:
+
+- Trailing slash inconsistencies  
+- `?replytocom=` style comment URLs  
+- Print or attachment pages  
+- Tag archives that mirror categories  
+- WWW vs non-WWW if DNS is messy  
+
+Set preferred host and HTTPS redirects once. Use canonical tags that point to the main URL. Disable thin archives you do not need. Attachment pages rarely deserve indexation for business sites.
+
+> Every faceted filter that creates an indexable URL is a content strategy decision—not an accident of the theme. If you did not choose it, close it.
+
+## 4. Information architecture and headings
+
+- One clear H1 in the template (your theme may render title as H1—do not add another in the builder)  
+- Logical H2/H3 for sections  
+- Service pages that are not clones with three words swapped  
+- Breadcrumbs that reflect real hierarchy  
+
+Builder sites often ship multiple H1s. Custom templates and [ACF modules](/blog/acf-custom-wordpress-websites) make hierarchy easier to enforce—see also [Elementor vs custom](/blog/elementor-vs-custom-wordpress).
+
+## 5. Metadata and previews
+
+- Unique titles and meta descriptions for key templates  
+- Open Graph images that are intentional, not random  
+- No keyword stuffing in titles  
+
+Plugins write tags; humans still need a brief. Align descriptions with what the page actually offers—especially commercial pages tied to [services](/#services).
+
+## 6. Structured data with restraint
+
+- Article schema for blog posts when accurate  
+- Organization/LocalBusiness where appropriate  
+- Product and FAQ schema only when content matches  
+- Validate after theme updates  
+
+Fake review schema is not a growth strategy. Keep markup honest.
+
+## 7. Speed and rendering
+
+Crawl budget and user trust both suffer on slow templates.
+
+- Cache anonymous pages  
+- Optimize LCP images  
+- Reduce blocking scripts  
+
+Details live in the speed and vitals articles linked above. Hosting upgrades may require [VPS migration](/blog/migrate-wordpress-to-vps).
+
+## 8. WooCommerce technical SEO quirks
+
+- Decide category vs product keyword targets so they do not cannibalize  
+- Control faceted navigation indexing  
+- Ensure product variants do not explode duplicate URLs without a plan  
+- Keep cart/checkout out of the index  
+- Provide unique product copy where margins justify it  
+
+Conversion work ([cart and checkout](/blog/woocommerce-cart-checkout-conversion)) sits beside SEO—not instead of it. Cost planning: [WooCommerce website cost](/blog/woocommerce-website-cost). Examples: [Resource Portal Shop](https://shop.resourceportal.com/), [more projects](/#more-projects).
+
+Comparing platforms: [Shopify vs WooCommerce](/blog/shopify-vs-woocommerce).
+
+## 9. Security incidents and SEO
+
+Compromised WordPress sites inject spam URLs. Monitor coverage spikes, strange sitemaps, and unknown admins. Follow the [security checklist](/blog/wordpress-security-checklist), clean, then request removal of toxic URLs as needed.
+
+## 10. Redirects, redesigns, and migrations
+
+- Map old→new URLs before launch  
+- Prefer 301 for permanent moves  
+- Update internal links; do not rely only on redirects  
+- Re-test canonicals and sitemaps post-launch  
+
+If the site is structurally outdated, review [signs you need a redesign](/blog/signs-wordpress-needs-redesign) and [redesign services in Chandigarh](/blog/website-redesign-services-chandigarh). Maintenance cadence: [website maintenance guide](/blog/website-maintenance-guide). Local hiring: [hire WordPress developer Chandigarh](/blog/hire-wordpress-developer-chandigarh).
+
+## Copy-paste audit list
+
+1. Host, HTTPS, and canonical host consistent  
+2. robots.txt and noindex rules sane  
+3. Sitemaps clean and submitted  
+4. Thin archives disabled or noindexed  
+5. Heading hierarchy clean on key templates  
+6. Metadata unique on money pages  
+7. Schema accurate  
+8. Speed/vitals acceptable on mobile  
+9. WooCommerce facets under control  
+10. Redirect map ready for any relaunch  
+
+## Internal linking and orphan pages
+
+Technical SEO includes whether important URLs are reachable without the sitemap alone.
+
+- Link service pages from the primary navigation or a clear services hub  
+- Ensure new blog posts connect to relevant service or product pages naturally  
+- Find orphan pages with crawl tools and either link them or noindex/remove  
+- Avoid sidebar widgets that create endless date archives you do not want indexed  
+
+Internal links also help readers move through this cluster—from [speed](/blog/wordpress-speed-optimization-checklist) to [security](/blog/wordpress-security-checklist) to [ACF structure](/blog/acf-custom-wordpress-websites)—the same way they should move through your commercial site.
+
+## International and multi-location WordPress notes
+
+If you serve multiple cities or languages:
+
+- Decide on subdirectory vs subdomain strategies deliberately  
+- Do not auto-generate thin location pages with identical copy  
+- Use hreflang only when language/region variants are real and maintained  
+- Keep NAP consistency for local business pages off-CMS as well as on-site  
+
+Thin doorways hurt more than they help. Better one strong service page than fifty clones.
+
+## Quarterly technical SEO ritual
+
+1. Coverage report scan in Search Console  
+2. Sitemap spot-check for junk URLs  
+3. Spot-check canonicals on redesigned templates  
+4. Mobile vitals on top landing pages  
+5. Plugin/theme update review for SEO side effects  
+6. Backup of SEO plugin settings before major changes  
+
+Put the ritual on the same calendar as [maintenance](/blog/website-maintenance-guide).
+
+## Pagination, infinite scroll, and crawl paths
+
+Blog and catalogue pagination should be consistent. Infinite scroll without paginated URLs can hide content from crawlers if not implemented carefully. Prefer clear `page/2` patterns or ensure your infinite scroll still exposes crawlable links.
+
+For WooCommerce, avoid indexing every sort order (`?orderby=price`) unless you have a deliberate reason. Most stores should canonicalize sorts back to the main category URL.
+
+## Log-file thinking for WordPress
+
+When traffic is meaningful, sample access logs or server analytics for crawler hits to weird endpoints: old plugin paths, `/wp-json/` abuse, or theme demo URLs. Blocking or fixing those paths is technical SEO hygiene as much as security. Coordinate with the [security checklist](/blog/wordpress-security-checklist) when bots probe `xmlrpc.php` repeatedly.
+
+## Heading structure and content templates
+
+WordPress themes and builders often emit multiple H1 tags or skip heading levels. Fix templates so each page has one clear H1 that matches the primary topic, then use H2/H3 for scannable sections. Service pages should not bury the offer under decorative headings that say nothing searchable.
+
+For blogs, keep category archives useful or noindex them if they are thin. Tag archives frequently create crawl noise—disable them unless you actively curate tag landing pages. Author archives need the same decision: valuable hub or noindex.
+
+Internal linking deserves deliberate care. Link from high-authority posts to commercial service pages with descriptive anchors. Avoid identical “click here” patterns. Related posts should reinforce topical clusters rather than random popularity widgets.
+
+## Schema accuracy without spam
+
+Add JSON-LD only when the visible page supports it. LocalBusiness or Organization markup helps service businesses in Chandigarh when NAP details match the site footer and Google Business Profile. FAQ schema should mirror visible FAQs. Article schema needs real dates and author data.
+
+Do not paste every Schema type a plugin offers. Invalid or contradictory markup creates more noise than benefit. Validate with Rich Results testing after major theme or SEO plugin updates.
+
+## Logging, monitoring, and release hygiene
+
+Treat SEO as part of release management. Before deploying theme or plugin updates that touch headers, sitemaps, or permalinks, snapshot current indexing settings. After deploy, re-check robots.txt, XML sitemaps, canonical tags on homepage and a money page, and noindex on thank-you or cart routes.
+
+Set Search Console email alerts for coverage anomalies. Pair monthly SEO checks with [WordPress speed optimization](/blog/wordpress-speed-optimization-checklist) and [Core Web Vitals improvements](/blog/improve-core-web-vitals-wordpress)—slow templates silently leak rankings even when on-page copy is fine.
+
+If you need help turning this checklist into a recurring audit for a live WordPress site, [discuss your project](/#contact) with clear access notes for staging and Search Console.
+
+## Closing
+
+Technical SEO for WordPress is mostly hygiene: index what you mean to rank, hide what you do not, keep templates fast, and prevent plugin URL sprawl. Run this checklist quarterly and after every major theme, builder, or catalogue change—before you blame “the algorithm” for problems born in the CMS.

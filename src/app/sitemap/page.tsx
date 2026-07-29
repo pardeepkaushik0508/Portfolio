@@ -40,6 +40,16 @@ const sectionLinks = [
                 : "Start a project enquiry",
   })),
   {
+    href: "/blog",
+    label: "Blog",
+    blurb: "Web development articles and hiring guides",
+  },
+  {
+    href: "/feed.xml",
+    label: "RSS feed",
+    blurb: "Subscribe to new articles",
+  },
+  {
     href: "/#testimonials",
     label: "Testimonials",
     blurb: "Client feedback and outcomes",

@@ -36,6 +36,15 @@ export const contactFormSchema = z.object({
     .trim()
     .email("Please enter a valid email address")
     .max(200, "Email is too long"),
+  phone: z
+    .string()
+    .trim()
+    .max(30, "Phone number is too long")
+    .refine(
+      (value) => value === "" || /^[+]?[\d\s()-]{7,20}$/.test(value),
+      "Please enter a valid mobile number",
+    )
+    .optional(),
   projectType: z.enum(contactProjectTypeOptions, {
     message: "Please select a project type",
   }),

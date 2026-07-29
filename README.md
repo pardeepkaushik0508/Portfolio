@@ -29,12 +29,12 @@ Copy `.env.example` to `.env.local` and fill in:
 
 | Variable | Required | Description |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Recommended for production | Canonical site URL (no trailing slash), e.g. `https://yourdomain.com` |
+| `NEXT_PUBLIC_SITE_URL` | Recommended for production | `https://pardeepkaushik.info` |
 | `RESEND_API_KEY` | Required for contact form delivery | Server-only Resend API key |
-| `CONTACT_FROM_EMAIL` | Required for contact form delivery | Verified sender, e.g. `Portfolio <onboarding@resend.dev>` |
+| `CONTACT_FROM_EMAIL` | Required for contact form delivery | `Pardeep <hello@pardeepkaushik.info>` (verified domain) |
 | `CONTACT_TO_EMAIL` | Optional | Defaults to `pardeepkaushik0508@gmail.com` |
 
-The contact API will return a clear error if Resend is unconfigured. It never reports a fake success.
+Resend domain **pardeepkaushik.info** must stay verified. Do not use Gmail as `CONTACT_FROM_EMAIL`.
 
 ## Scripts
 

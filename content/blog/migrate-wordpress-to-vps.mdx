@@ -1,0 +1,205 @@
+---
+title: "How to Migrate a WordPress Website to a VPS"
+slug: "migrate-wordpress-to-vps"
+description: "How to migrate a WordPress website to a VPS—planning, DNS, files, database, SSL, caching, email pitfalls, WooCommerce notes, and a cutover checklist that reduces downtime."
+excerpt: "Moving WordPress to a VPS can improve control and performance when done with a clear cutover plan. Follow this migration guide covering files, database, DNS, and post-move hardening."
+publishedAt: "2025-08-14"
+updatedAt: null
+category: wordpress-woocommerce
+tags:
+  - VPS
+  - WordPress migration
+  - Hosting
+  - Deployment
+primaryKeyword: "migrate WordPress to VPS"
+secondaryKeywords:
+  - WordPress VPS migration
+  - move WordPress to VPS
+  - WordPress server migration
+  - WooCommerce VPS hosting
+author: "Pardeep Kaushik"
+featured: false
+draft: false
+faqs:
+  - question: "When should a WordPress site move from shared hosting to a VPS?"
+    answer: "Consider a VPS when you need consistent resources, better caching control, staging flexibility, or when shared neighbors cause slowdowns. Growing WooCommerce stores often outgrow basic shared plans first."
+  - question: "Will migrating to a VPS automatically make WordPress faster?"
+    answer: "It can improve TTFB and stability, but a heavy theme, huge images, and excess plugins will still hurt. Combine the move with a speed pass—see the WordPress speed optimization checklist."
+  - question: "How much downtime should I expect?"
+    answer: "With DNS TTL lowered in advance and a tested staging cutover, downtime can be brief. Unplanned migrations without dry runs risk longer outages. Always test on the new server before switching DNS."
+  - question: "What about email hosted on the same shared account?"
+    answer: "Email is a common migration trap. If mailboxes live on the old host, move or repoint email deliberately. Do not assume the VPS magically inherits mail. Document MX records before changing anything."
+  - question: "Can I migrate WooCommerce without losing orders?"
+    answer: "Yes, with a maintenance window or sync strategy. Put the store in maintenance mode near cutover, migrate the latest database, and verify orders, stock, and payments before reopening."
+---
+
+## Why teams move WordPress to a VPS
+
+Shared hosting is fine until it is not. Traffic spikes, noisy neighbors, limited PHP workers, or the need for Redis and proper staging push businesses toward a virtual private server. A VPS is not magic—it is a box you (or your developer) must operate—but it gives WordPress room to breathe.
+
+This guide walks through a practical migration: prepare, copy, test, cut over, harden. Pair it with [WordPress security](/blog/wordpress-security-checklist) and [speed optimization](/blog/wordpress-speed-optimization-checklist). If you are still choosing platforms for ecommerce, see [Shopify vs WooCommerce](/blog/shopify-vs-woocommerce).
+
+## Decide what “VPS success” means
+
+Before buying a plan, define outcomes:
+
+- Target PHP version and memory  
+- Whether you need Redis/object cache  
+- Nginx or Apache preference (or a managed stack)  
+- Staging subdomain strategy  
+- Who handles OS updates and firewall rules  
+- Backup destination off the VPS  
+
+Managed WordPress VPS panels reduce ops burden. Raw Ubuntu images cost less and demand more skill. Hire accordingly—[WordPress developer hiring in Chandigarh](/blog/hire-wordpress-developer-chandigarh) covers evaluating ops comfort.
+
+## Pre-migration checklist
+
+1. Inventory plugins, theme, custom code, cron jobs, and cron at host level  
+2. Export a full backup (files + database) from the current host  
+3. Lower DNS TTL 24–48 hours ahead so cutover propagates faster  
+4. List all domains and subdomains pointed at the site  
+5. Document email (MX) and third-party DNS records (SPF, DKIM)  
+6. Schedule a maintenance window for WooCommerce or high-change sites  
+7. Confirm license keys that bind to domains or IPs  
+
+Also note page-builder or [ACF](/blog/acf-custom-wordpress-websites) dependent templates so you can smoke-test the right pages after the move.
+
+## Provision the VPS correctly the first time
+
+On the new server:
+
+- Create a non-root sudo user  
+- Configure firewall (allow 22/80/443 thoughtfully; restrict SSH if possible)  
+- Install web server, PHP-FPM, MySQL/MariaDB or managed DB  
+- Issue SSL after DNS is ready (or use temporary hosts file testing with a self-signed/staging cert approach)  
+- Set correct file ownership for WordPress  
+- Enable fail2ban or equivalent where appropriate  
+
+Do not expose phpMyAdmin publicly. Prefer SSH tunnels or host-provided secure DB tools.
+
+> Test the site on the VPS using a hosts-file override or staging hostname before you touch public DNS. Discovering a missing PHP extension after cutover is an expensive way to learn.
+
+## Migrate files and database
+
+### Files
+
+Copy `wp-content` (themes, plugins, uploads) and any custom root files. Prefer rsync or SFTP with checksum awareness for large upload directories. Media-heavy sites take time—plan for it.
+
+### Database
+
+Export from the old host, import to the new database. Then search-replace old URLs with new ones carefully if the domain changes or you use a temporary hostname. Use a serialization-safe tool; naive SQL replace can break serialized ACF and widget data.
+
+Update `wp-config.php` for new DB credentials, salts if rotating, and any Redis constants.
+
+### Cron and background jobs
+
+Recreate system cron or rely on WordPress cron deliberately. WooCommerce Action Scheduler needs a healthy loop after migration—verify pending actions.
+
+## Configure WordPress for the new environment
+
+- Permalinks: resave once to flush rewrite rules  
+- Caching: install/configure page cache compatible with your stack  
+- Object cache: enable Redis if that was a reason for moving  
+- Hardening: disable file editing, protect configs—see [security checklist](/blog/wordpress-security-checklist)  
+- Limits: align `upload_max_filesize` and memory with real needs  
+
+Performance after migration still depends on front-end weight. Continue with [Core Web Vitals on WordPress](/blog/improve-core-web-vitals-wordpress). Builder-heavy sites may need a template diet—[Elementor vs custom](/blog/elementor-vs-custom-wordpress).
+
+## WooCommerce cutover specifics
+
+- Enable maintenance mode near final DB pull  
+- Verify payment gateway callbacks still reach the correct domain  
+- Test a real small-value order per gateway when possible  
+- Confirm webhooks and shipping API keys  
+- Check stock counts and recent orders after import  
+
+Cart behavior should still follow good UX practice ([checkout conversion](/blog/woocommerce-cart-checkout-conversion)). Storefront references: [Resource Portal Shop](https://shop.resourceportal.com/) and [more projects](/#more-projects).
+
+## DNS cutover and verification
+
+1. Final content/DB sync  
+2. Point A/AAAA (and www CNAME as designed) to the VPS  
+3. Monitor SSL issuance  
+4. Test homepage, wp-admin, forms, login, cart, checkout  
+5. Watch error logs for the first 24–48 hours  
+6. Keep the old host available read-only briefly as rollback insurance  
+
+Update Search Console property if needed and crawl key URLs. Align with [WordPress technical SEO](/blog/technical-seo-checklist-wordpress) and the [modern websites SEO checklist](/blog/technical-seo-checklist-modern-websites) for sitemap and canonical sanity.
+
+## Common migration failures
+
+- **Email breaks** because MX was on the old host  
+- **Mixed content** from hardcoded HTTP assets  
+- **Wrong file permissions** causing upload failures  
+- **Cached DNS** making some users hit the old server  
+- **Missing PHP modules** (imagick, intl, etc.)  
+- **Cron silence** delaying WooCommerce emails  
+
+Rollback plan: repoint DNS to the old host if the VPS is not ready. That only works if you have not already decommissioned the old environment.
+
+## Aftercare and maintenance
+
+A VPS raises the importance of [ongoing maintenance](/blog/website-maintenance-guide): OS patches, SSL renewals, backup verification, and monitoring. Budget this into [WooCommerce cost planning](/blog/woocommerce-website-cost) if you run a store.
+
+If the old site was structurally broken, a migration alone will not fix conversion—review [redesign signs](/blog/signs-wordpress-needs-redesign) and [redesign services in Chandigarh](/blog/website-redesign-services-chandigarh).
+
+For hands-on help packaging migration with hardening and performance, see [services](/#services).
+
+## Migration day one-pager
+
+| Phase | Done when |
+| --- | --- |
+| Prepare | TTL low, backups verified, VPS hardened |
+| Copy | Files + DB on VPS, URLs corrected |
+| Test | Hosts-file browse passes critical paths |
+| Cut over | DNS updated, SSL live, payments tested |
+| Stabilize | Logs clean, backups scheduled offsite |
+
+## Choosing managed vs unmanaged VPS for WordPress
+
+**Managed** panels handle much of the stack: SSL helpers, one-click staging, visual backups, and WordPress-aware monitoring. You pay more for less late-night SSH.
+
+**Unmanaged** images are cheaper and flexible. You own firewall rules, fail2ban, PHP upgrades, and disk alerts. This fits teams that already run servers or hire someone who does.
+
+Be honest about internal skills. A bargain VPS that nobody patches becomes a [security](/blog/wordpress-security-checklist) liability. Price the humans, not only the monthly compute line.
+
+## Post-migration performance checklist
+
+After DNS settles:
+
+- Confirm page cache hit ratios for anonymous traffic  
+- Enable object cache if planned  
+- Re-test mobile LCP on key landers  
+- Purge old host caches and CDN if any  
+- Update deployment notes so the next developer knows the stack  
+
+Then continue front-end work with the [speed checklist](/blog/wordpress-speed-optimization-checklist). The move creates headroom; it does not replace image discipline.
+
+## DNS, CDN, and proxy gotchas
+
+If you use Cloudflare or another proxy:
+
+- Plan SSL modes so you do not create redirect loops  
+- Purge caches on both CDN and WordPress after cutover  
+- Update any IP allowlists for payment gateways or APIs  
+- Confirm real visitor IPs are restored for security logs  
+
+Misconfigured proxies can make the VPS look down when only the edge is stale. Test from multiple networks after DNS changes.
+
+## Team handoff document
+
+Leave the next person:
+
+- Server provider and panel URLs  
+- SSH access method  
+- PHP and web server versions  
+- Backup schedule and restore drill date  
+- Staging URL and how to sync  
+- Cron entries  
+- Known fragile plugins  
+
+Without this, the migration’s value decays the first time someone “just SSHes in.” Tie the document to [maintenance](/blog/website-maintenance-guide) retainers when you offer ongoing care via [services](/#services).
+
+## Closing
+
+Migrating WordPress to a VPS is a controlled move: provision, copy, test, cut over, harden. Treat DNS and email as first-class risks, dry-run before public switch, and follow with caching and monitoring. Done that way, the VPS becomes a stability upgrade—not a weekend fire drill.

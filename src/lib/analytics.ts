@@ -8,7 +8,13 @@ export type AnalyticsEvent =
   | "linkedin_click"
   | "book_call_click"
   | "contact_form_start"
-  | "contact_form_submit";
+  | "contact_form_submit"
+  | "blog_view"
+  | "blog_search"
+  | "blog_category_click"
+  | "blog_pagination_click"
+  | "related_post_click"
+  | "blog_cta_click";
 
 type EventParams = Record<string, string | number | boolean | undefined>;
 

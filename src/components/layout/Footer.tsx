@@ -29,11 +29,19 @@ export function Footer() {
                   <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-on-dark-muted">
                     {navItems.map((item) => (
                       <li key={item.href}>
-                        <a href={item.href} className="transition hover:text-white">
+                        <a
+                          href={`/${item.href}`}
+                          className="transition hover:text-white"
+                        >
                           {item.label}
                         </a>
                       </li>
                     ))}
+                    <li>
+                      <a href="/blog" className="transition hover:text-white">
+                        Blog
+                      </a>
+                    </li>
                   </ul>
                 </nav>
 
@@ -88,6 +96,12 @@ export function Footer() {
                   © {year} {personal.name}
                 </p>
                 <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <a href="/blog" className="transition hover:text-white">
+                    Blog
+                  </a>
+                  <a href="/feed.xml" className="transition hover:text-white">
+                    RSS
+                  </a>
                   <a href="/sitemap" className="transition hover:text-white">
                     Sitemap
                   </a>

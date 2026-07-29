@@ -55,6 +55,7 @@ export const metadata: Metadata = {
     canonical: "/",
     types: {
       "application/xml": [{ url: "/sitemap.xml", title: "Sitemap" }],
+      "application/rss+xml": [{ url: "/feed.xml", title: "RSS Feed" }],
     },
   },
   openGraph: {

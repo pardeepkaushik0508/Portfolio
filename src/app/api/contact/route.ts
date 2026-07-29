@@ -21,6 +21,7 @@ export async function POST(request: Request) {
 
     const data = parsed.data;
 
+    // Honeypot — pretend success, send nothing
     if (data.website && data.website.length > 0) {
       return NextResponse.json({
         message: "Thanks — your project details were sent successfully.",
@@ -28,9 +29,9 @@ export async function POST(request: Request) {
     }
 
     const resend = getResendClient();
-    const { from, to } = getContactEmails();
+    const { from, to: ownerInbox } = getContactEmails();
 
-    if (!resend || !from) {
+    if (!resend || !from || !ownerInbox) {
       console.error("[contact] Missing RESEND_API_KEY or CONTACT_FROM_EMAIL");
       return NextResponse.json(
         {
@@ -41,29 +42,23 @@ export async function POST(request: Request) {
       );
     }
 
-    const subject = `Portfolio inquiry from ${data.name} — ${data.projectType}`;
-    const html = `
-      <h2>New portfolio contact</h2>
-      <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-      <p><strong>Project Type:</strong> ${escapeHtml(data.projectType)}</p>
-      <p><strong>Budget:</strong> ${escapeHtml(data.budget || "Not specified")}</p>
-      <p><strong>Timeline:</strong> ${escapeHtml(data.timeline || "Not specified")}</p>
-      <p><strong>Details:</strong></p>
-      <p>${escapeHtml(data.details).replace(/\n/g, "<br />")}</p>
-    `;
+    // Client = person who filled the form (must receive thank-you)
+    const clientEmail = data.email.trim();
+    // Owner = you (must receive the enquiry only)
+    const ownerEmail = ownerInbox.trim();
 
-    const result = await resend.emails.send({
+    // 1) Enquiry → only to YOU
+    const enquiry = await resend.emails.send({
       from,
-      to: [to],
-      replyTo: data.email,
-      subject,
-      html,
+      to: [ownerEmail],
+      replyTo: clientEmail,
+      subject: `New portfolio enquiry — ${data.name} (${data.projectType})`,
+      html: buildOwnerEnquiryHtml(data),
     });
 
-    if (result.error) {
-      console.error("[contact] Resend error:", result.error);
-      const hint = resendErrorHint(result.error);
+    if (enquiry.error) {
+      console.error("[contact] Owner enquiry failed:", enquiry.error);
+      const hint = resendErrorHint(enquiry.error);
       return NextResponse.json(
         {
           error:
@@ -74,19 +69,29 @@ export async function POST(request: Request) {
       );
     }
 
-    try {
-      await resend.emails.send({
-        from,
-        to: [data.email],
-        subject: "Thanks — I received your project details",
-        html: `
-          <p>Hi ${escapeHtml(data.name)},</p>
-          <p>Thanks for reaching out. I received your enquiry about <strong>${escapeHtml(data.projectType)}</strong> and will reply soon with next steps.</p>
-          <p>— Pardeep Kaushik</p>
-        `,
+    // 2) Thank-you → only to the CLIENT (never to owner inbox)
+    const thankYou = await resend.emails.send({
+      from,
+      to: [clientEmail],
+      replyTo: ownerEmail,
+      subject: "Thanks — I received your project details",
+      html: buildClientThankYouHtml(data),
+    });
+
+    if (thankYou.error) {
+      // Enquiry already delivered; don't fail the whole request
+      console.error(
+        "[contact] Client thank-you failed (enquiry was still sent):",
+        {
+          clientEmail,
+          error: thankYou.error,
+        },
+      );
+    } else {
+      console.info("[contact] Emails sent", {
+        enquiryTo: ownerEmail,
+        thankYouTo: clientEmail,
       });
-    } catch (ackError) {
-      console.error("[contact] Acknowledgement email failed:", ackError);
     }
 
     return NextResponse.json({
@@ -102,6 +107,41 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+}
+
+function buildOwnerEnquiryHtml(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  projectType: string;
+  details: string;
+  budget?: string;
+  timeline?: string;
+}) {
+  return `
+    <h2>New portfolio enquiry</h2>
+    <p>This message is for you (site owner). Reply to this email to contact the client.</p>
+    <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+    <p><strong>Client email:</strong> ${escapeHtml(data.email)}</p>
+    <p><strong>Mobile:</strong> ${escapeHtml(data.phone?.trim() || "Not provided")}</p>
+    <p><strong>Project type:</strong> ${escapeHtml(data.projectType)}</p>
+    <p><strong>Budget:</strong> ${escapeHtml(data.budget || "Not specified")}</p>
+    <p><strong>Timeline:</strong> ${escapeHtml(data.timeline || "Not specified")}</p>
+    <p><strong>Details:</strong></p>
+    <p>${escapeHtml(data.details).replace(/\n/g, "<br />")}</p>
+  `;
+}
+
+function buildClientThankYouHtml(data: {
+  name: string;
+  projectType: string;
+}) {
+  return `
+    <p>Hi ${escapeHtml(data.name)},</p>
+    <p>Thanks for reaching out via my portfolio. I received your enquiry about <strong>${escapeHtml(data.projectType)}</strong> and will get back to you soon with next steps.</p>
+    <p>If you need to add anything, just reply to this email.</p>
+    <p>— Pardeep Kaushik<br />Full-Stack Developer</p>
+  `;
 }
 
 function escapeHtml(value: string) {
@@ -127,7 +167,7 @@ function resendErrorHint(error: unknown): string | null {
     message.includes("not verified") ||
     message.includes("from")
   ) {
-    return "Email sender is not verified in Resend. Use Portfolio <onboarding@resend.dev> for testing, or verify your domain and set CONTACT_FROM_EMAIL correctly.";
+    return "Email sender is not verified in Resend. Set CONTACT_FROM_EMAIL to an address on your verified domain, e.g. Pardeep <hello@pardeepkaushik.info>.";
   }
 
   if (message.includes("api key") || message.includes("unauthorized")) {
