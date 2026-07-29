@@ -53,8 +53,8 @@ export function Reveal({
       className={cn(className)}
       initial={getInitial(variant, y)}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-      viewport={{ once, amount: 0.18, margin: "0px 0px -40px 0px" }}
-      transition={{ duration: 0.55, delay, ease: EASE }}
+      viewport={{ once, amount: 0.12, margin: "0px 0px -24px 0px" }}
+      transition={{ duration: 0.45, delay, ease: EASE }}
     >
       {children}
     </motion.div>

@@ -55,19 +55,66 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
-  scroll-snap-type: y proximity;
+  /* Native momentum scroll — no snap (snap causes mobile stutter / stop-start) */
+  scroll-snap-type: none;
 }
 
-/* Snap major page sections into view while scrolling (skip thin strips) */
-main > section:not(.trust-strip) {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+/* Thin, unobtrusive scrollbar on desktop */
+@media (pointer: fine) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(15, 118, 110, 0.45) transparent;
+  }
+
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: rgba(15, 118, 110, 0.4);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: rgba(15, 118, 110, 0.65);
+    background-clip: padding-box;
+  }
+}
+
+/* Hide scrollbar on phones / touch devices — keeps native momentum feel */
+@media (max-width: 1024px), (pointer: coarse) {
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
   }
 
   *,
@@ -93,7 +140,8 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
 }
 
 body::before {
@@ -106,6 +154,13 @@ body::before {
   background-image: var(--noise);
   background-size: 180px 180px;
   mix-blend-mode: multiply;
+}
+
+/* Fixed noise + blend mode is expensive while scrolling on phones */
+@media (max-width: 1024px) {
+  body::before {
+    display: none;
+  }
 }
 
 h1,

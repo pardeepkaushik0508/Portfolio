@@ -18,22 +18,21 @@ export function Header() {
   const onHero = !scrolled;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     const sections = ["home", ...SECTION_IDS]
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
-    if (!sections.length) return;
+    let ticking = false;
 
-    function updateActive() {
+    function updateFromScroll() {
+      ticking = false;
+      const y = window.scrollY;
+      setScrolled(y > 20);
+
+      if (!sections.length) return;
+
       const headerOffset = 96;
-      const probe = window.scrollY + headerOffset + window.innerHeight * 0.22;
+      const probe = y + headerOffset + window.innerHeight * 0.22;
       let current = "home";
 
       for (const section of sections) {
@@ -42,10 +41,8 @@ export function Header() {
         }
       }
 
-      // Near page bottom — force last nav section (contact)
       const nearBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 48;
+        window.innerHeight + y >= document.documentElement.scrollHeight - 48;
       if (nearBottom) {
         current = SECTION_IDS[SECTION_IDS.length - 1] ?? current;
       }
@@ -54,12 +51,18 @@ export function Header() {
       setActive((prev) => (prev === href ? prev : href));
     }
 
-    updateActive();
-    window.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("resize", updateActive);
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateFromScroll);
+    }
+
+    updateFromScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("scroll", updateActive);
-      window.removeEventListener("resize", updateActive);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
