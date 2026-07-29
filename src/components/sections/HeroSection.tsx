@@ -1,14 +1,103 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 import { personal } from "@/data/personal";
 import { featuredProjects } from "@/data/projects";
+import type { Project } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { RotatingRoles } from "@/components/motion/RotatingRoles";
 import { TypedHeadline } from "@/components/motion/TypedHeadline";
 import { HeroLines } from "@/components/sections/HeroLines";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
+
+function HeroWorkCard({
+  project,
+  side,
+  reduced,
+}: {
+  project: Project;
+  side: "left" | "right";
+  reduced: boolean | null;
+}) {
+  const isLeft = side === "left";
+
+  return (
+    <motion.a
+      href={project.url ?? "#work"}
+      target={project.url ? "_blank" : undefined}
+      rel={project.url ? "noopener noreferrer" : undefined}
+      onClick={() =>
+        trackEvent("project_view", {
+          project: project.id,
+          source: "hero_float",
+        })
+      }
+      initial={reduced ? false : { opacity: 0, y: isLeft ? 18 : 24, scale: 0.94 }}
+      animate={
+        reduced
+          ? { opacity: 1 }
+          : {
+              opacity: 1,
+              y: [0, isLeft ? -7 : -10, 0],
+              scale: 1,
+            }
+      }
+      transition={
+        reduced
+          ? { duration: 0.4 }
+          : {
+              opacity: { duration: 0.55, delay: isLeft ? 0.35 : 0.48 },
+              scale: { duration: 0.55, delay: isLeft ? 0.35 : 0.48 },
+              y: {
+                duration: isLeft ? 5.2 : 6.1,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: isLeft ? 0.6 : 1.1,
+              },
+            }
+      }
+      whileHover={reduced ? undefined : { y: -4, scale: 1.03 }}
+      className={cn(
+        "hero-work-card group absolute z-20 hidden sm:block",
+        isLeft
+          ? "hero-work-card--left left-0 top-[11%] w-[46%] max-w-[210px] -translate-x-[18%] lg:-translate-x-[28%]"
+          : "hero-work-card--right bottom-[7%] right-0 w-[50%] max-w-[230px] translate-x-[12%] lg:translate-x-[22%]",
+      )}
+      aria-label={`View ${project.title}`}
+    >
+      <div className="hero-work-card__glow" aria-hidden />
+      <div className="hero-work-card__shell">
+        <div className="hero-work-card__media">
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes="230px"
+            className="object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+          />
+          <div className="hero-work-card__veil" aria-hidden />
+        </div>
+        <div className="hero-work-card__meta">
+          <span className="hero-work-card__live" aria-hidden>
+            <i />
+            Live
+          </span>
+          <p className="hero-work-card__title">{project.title}</p>
+          <p className="hero-work-card__type">
+            {project.type ?? project.category}
+          </p>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
 
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -16,7 +105,7 @@ export function HeroSection() {
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 60, damping: 18 });
   const sy = useSpring(my, { stiffness: 60, damping: 18 });
-  const previews = featuredProjects.slice(0, 3);
+  const [leftPreview, rightPreview] = featuredProjects;
 
   function onMove(e: React.MouseEvent<HTMLElement>) {
     if (reduced) return;
@@ -107,10 +196,7 @@ export function HeroSection() {
             transition={{ delay: 0.32 }}
             className="mt-8 inline-flex items-center gap-2.5 text-sm text-on-dark-muted"
           >
-            <span
-              className="size-2 rounded-full bg-success"
-              aria-hidden
-            />
+            <span className="size-2 rounded-full bg-success" aria-hidden />
             {personal.availability}
           </motion.div>
         </div>
@@ -122,8 +208,12 @@ export function HeroSection() {
           style={reduced ? undefined : { x: sx, y: sy }}
           className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end"
         >
-          <div className="relative">
-            <div className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/20 blur-xl" aria-hidden />
+          <div className="relative px-2 sm:px-6 lg:px-8">
+            <div
+              className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/20 blur-xl"
+              aria-hidden
+            />
+
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.15rem] border border-border-dark bg-dark-elevated shadow-[0_40px_90px_rgba(0,0,0,0.45)]">
               <Image
                 src={personal.profileImage}
@@ -142,39 +232,20 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="absolute -left-4 top-8 hidden w-[42%] overflow-hidden rounded-xl border border-border-dark bg-dark-elevated/95 shadow-xl backdrop-blur-sm sm:block lg:-left-10">
-              <div className="flex items-center gap-1 border-b border-border-dark px-2.5 py-1.5">
-                <span className="size-1.5 rounded-full bg-white/25" />
-                <span className="size-1.5 rounded-full bg-white/25" />
-                <span className="size-1.5 rounded-full bg-white/25" />
-              </div>
-              <div className="relative aspect-[16/10]">
-                <Image
-                  src={previews[0]?.image ?? personal.profileImage}
-                  alt={`${previews[0]?.title ?? "Project"} preview`}
-                  fill
-                  sizes="200px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="absolute -bottom-4 -right-2 hidden w-[46%] overflow-hidden rounded-xl border border-border-dark bg-dark-elevated/95 shadow-xl backdrop-blur-sm sm:block lg:-right-6">
-              <div className="flex items-center gap-1 border-b border-border-dark px-2.5 py-1.5">
-                <span className="size-1.5 rounded-full bg-white/25" />
-                <span className="size-1.5 rounded-full bg-white/25" />
-                <span className="size-1.5 rounded-full bg-white/25" />
-              </div>
-              <div className="relative aspect-[16/10]">
-                <Image
-                  src={previews[1]?.image ?? personal.profileImage}
-                  alt={`${previews[1]?.title ?? "Project"} preview`}
-                  fill
-                  sizes="220px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            {leftPreview ? (
+              <HeroWorkCard
+                project={leftPreview}
+                side="left"
+                reduced={reduced}
+              />
+            ) : null}
+            {rightPreview ? (
+              <HeroWorkCard
+                project={rightPreview}
+                side="right"
+                reduced={reduced}
+              />
+            ) : null}
           </div>
         </motion.div>
       </div>
