@@ -57,6 +57,7 @@ html {
   scroll-padding-top: calc(var(--header-h) + 1rem);
   /* Native momentum scroll — no snap (snap causes mobile stutter / stop-start) */
   scroll-snap-type: none;
+  overflow-x: hidden;
 }
 
 /* Thin, unobtrusive scrollbar on desktop */
