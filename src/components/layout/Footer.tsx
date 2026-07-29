@@ -83,11 +83,19 @@ export function Footer() {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-2 border-t border-border-dark pt-5 font-mono text-[11px] uppercase tracking-[0.12em] text-on-dark-muted sm:flex-row sm:justify-between">
+              <div className="mt-8 flex flex-col gap-2 border-t border-border-dark pt-5 font-mono text-[11px] uppercase tracking-[0.12em] text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
                 <p>
                   © {year} {personal.name}
                 </p>
-                <p>Available Worldwide</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <a href="/sitemap" className="transition hover:text-white">
+                    Sitemap
+                  </a>
+                  <a href="/sitemap.xml" className="transition hover:text-white">
+                    Sitemap XML
+                  </a>
+                  <p>Available Worldwide</p>
+                </div>
               </div>
             </div>
           </div>

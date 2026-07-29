@@ -31,6 +31,7 @@ export async function POST(request: Request) {
     const { from, to } = getContactEmails();
 
     if (!resend || !from) {
+      console.error("[contact] Missing RESEND_API_KEY or CONTACT_FROM_EMAIL");
       return NextResponse.json(
         {
           error:
@@ -61,9 +62,12 @@ export async function POST(request: Request) {
     });
 
     if (result.error) {
+      console.error("[contact] Resend error:", result.error);
+      const hint = resendErrorHint(result.error);
       return NextResponse.json(
         {
           error:
+            hint ||
             "Email delivery failed. Please try again later or contact me directly via email or WhatsApp.",
         },
         { status: 502 },
@@ -81,14 +85,15 @@ export async function POST(request: Request) {
           <p>— Pardeep Kaushik</p>
         `,
       });
-    } catch {
-      // Acknowledgement is best-effort; enquiry already delivered
+    } catch (ackError) {
+      console.error("[contact] Acknowledgement email failed:", ackError);
     }
 
     return NextResponse.json({
       message: "Thanks — your project details were sent successfully.",
     });
-  } catch {
+  } catch (error) {
+    console.error("[contact] Unexpected error:", error);
     return NextResponse.json(
       {
         error:
@@ -106,4 +111,28 @@ function escapeHtml(value: string) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function resendErrorHint(error: unknown): string | null {
+  const message =
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error &&
+    typeof (error as { message: unknown }).message === "string"
+      ? (error as { message: string }).message.toLowerCase()
+      : "";
+
+  if (
+    message.includes("domain") ||
+    message.includes("not verified") ||
+    message.includes("from")
+  ) {
+    return "Email sender is not verified in Resend. Use Portfolio <onboarding@resend.dev> for testing, or verify your domain and set CONTACT_FROM_EMAIL correctly.";
+  }
+
+  if (message.includes("api key") || message.includes("unauthorized")) {
+    return "Resend API key is invalid. Check RESEND_API_KEY in your hosting environment variables.";
+  }
+
+  return null;
 }

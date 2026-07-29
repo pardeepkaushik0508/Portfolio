@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
-import { personal } from "@/data/personal";
+import { personal, seo } from "@/data/personal";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${personal.name} — Portfolio`,
-    short_name: personal.firstName,
-    description: personal.title,
+    name: `${personal.name} — Full Stack Developer`,
+    short_name: "Pardeep",
+    description: seo.ogDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#070b14",
-    theme_color: "#0ea5e9",
+    background_color: "#0c1210",
+    theme_color: "#0f766e",
+    lang: "en-IN",
+    categories: ["business", "productivity"],
     icons: [
       {
         src: "/images/pardeep-kaushik.png",

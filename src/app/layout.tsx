@@ -43,35 +43,59 @@ export const metadata: Metadata = {
   keywords: [...seo.keywords],
   authors: [{ name: personal.name, url: siteUrl }],
   creator: personal.name,
-  applicationName: `${personal.name} Portfolio`,
-  alternates: { canonical: "/" },
+  publisher: personal.name,
+  applicationName: `${personal.name} — Full Stack Developer Portfolio`,
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/xml": [{ url: "/sitemap.xml", title: "Sitemap" }],
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    title: seo.title,
-    description: seo.description,
-    siteName: personal.name,
+    title: seo.ogTitle,
+    description: seo.ogDescription,
+    siteName: `${personal.name} Portfolio`,
     images: [
       {
         url: absoluteUrl(personal.profileImage),
         width: 900,
         height: 900,
-        alt: `${personal.name} — ${personal.title}`,
+        alt: `${personal.name} — Full Stack Developer in Chandigarh`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: seo.title,
-    description: seo.description,
+    title: seo.ogTitle,
+    description: seo.ogDescription,
     images: [absoluteUrl(personal.profileImage)],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   category: "technology",
+  classification: "Portfolio, Web Development, Freelance Services",
+  other: {
+    "geo.region": "IN-CH",
+    "geo.placename": "Chandigarh",
+  },
 };
 
 export const viewport: Viewport = {

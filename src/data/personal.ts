@@ -98,17 +98,40 @@ export const whyHire: WhyHireItem[] = [
 ];
 
 export const seo = {
-  title: "Pardeep Kaushik | Full Stack, WordPress & Shopify Developer",
+  title:
+    "Pardeep Kaushik | Full Stack Developer Chandigarh | WordPress, Shopify & Next.js",
   description:
-    "Full-Stack Developer specializing in React, Next.js, Node.js, WordPress, Shopify, WooCommerce, responsive development, performance optimization and VPS deployment.",
+    "Hire Pardeep Kaushik — freelance full stack developer in Chandigarh, India. Expert in React, Next.js, Node.js, WordPress, Shopify, WooCommerce, website redesign, performance optimization and VPS deployment for businesses worldwide.",
   keywords: [
     "Pardeep Kaushik",
-    "Full Stack Developer",
-    "WordPress Developer",
-    "Shopify Developer",
+    "Pardeep Kaushik developer",
+    "Full Stack Developer Chandigarh",
+    "Full Stack Developer India",
+    "Freelance Full Stack Developer",
+    "Hire Full Stack Developer",
+    "WordPress Developer Chandigarh",
+    "WordPress Developer India",
+    "Freelance WordPress Developer",
+    "Shopify Developer Chandigarh",
+    "Shopify Developer India",
+    "Freelance Shopify Developer",
     "WooCommerce Developer",
-    "Next.js Developer",
-    "React Developer",
-    "VPS Deployment",
+    "Next.js Developer Chandigarh",
+    "React Developer Chandigarh",
+    "Node.js Developer India",
+    "Website Developer Chandigarh",
+    "Web Application Developer",
+    "eCommerce Website Developer",
+    "Website Redesign Services",
+    "Website Performance Optimization",
+    "VPS Deployment Specialist",
+    "Custom Web Development",
+    "React Next.js Node.js Developer",
+    "Hire WordPress Developer India",
+    "Hire Shopify Developer",
   ],
+  ogTitle:
+    "Pardeep Kaushik — Full Stack, WordPress & Shopify Developer | Chandigarh",
+  ogDescription:
+    "Production-ready websites and web apps — React, Next.js, Node.js, WordPress, Shopify & WooCommerce. Based in Chandigarh, available worldwide.",
 };

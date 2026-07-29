@@ -3,12 +3,20 @@ import { getSiteUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
+  const now = new Date();
+
   return [
     {
       url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${siteUrl}/sitemap`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
   ];
 }
