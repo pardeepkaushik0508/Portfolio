@@ -35,13 +35,13 @@ export function HeroSection() {
       <div className="hero-grid" aria-hidden />
       <HeroLines />
 
-      <div className="container-shell relative grid min-h-[calc(100svh-var(--header-h))] items-center gap-12 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-20">
+      <div className="container-shell relative grid min-h-[calc(100svh-var(--header-h))] items-center gap-12 py-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-12">
         <div className="relative z-10 max-w-2xl">
           <motion.p
             initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="font-display text-[clamp(1.65rem,3.2vw,2.35rem)] font-bold tracking-[-0.04em] text-white"
+            className="font-display text-[clamp(1.65rem,3.2vw,1.5rem)] font-bold tracking-[-0.04em] text-white"
           >
             {personal.name}
           </motion.p>
@@ -63,7 +63,7 @@ export function HeroSection() {
           >
             <TypedHeadline
               text={personal.headline}
-              className="font-display text-[clamp(2rem,4.6vw,3.35rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+              className="font-display text-[clamp(2rem,4.6vw,2.8rem)] font-bold leading-[1.08] tracking-[-0.045em]"
               delay={400}
               charMs={24}
             />

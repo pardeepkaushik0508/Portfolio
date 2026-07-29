@@ -68,7 +68,7 @@ function CaseStudy({
     >
       {/* Left — browser mockup */}
       <div className="border-b border-border bg-[linear-gradient(165deg,#f4f7f8_0%,#e8eef1_100%)] p-5 sm:p-6 lg:border-b-0 lg:border-r lg:p-7">
-        <div className="preview-frame group h-full min-h-[220px] lg:min-h-[420px]">
+        <div className="preview-frame group  min-h-[220px] lg:min-h-[340px]">
           <div className="preview-chrome">
             <span className="preview-dot bg-[#ff5f57]" />
             <span className="preview-dot bg-[#febc2e]" />
@@ -77,7 +77,7 @@ function CaseStudy({
               {project.url?.replace(/^https?:\/\//, "") ?? project.title}
             </span>
           </div>
-          <div className="relative aspect-[16/10] overflow-hidden bg-[#0f172a] lg:aspect-auto lg:h-[calc(100%-2.5rem)] lg:min-h-[360px]">
+          <div className="relative aspect-[16/10] overflow-hidden bg-[#0f172a] lg:aspect-auto lg:h-[calc(100%-2.5rem)] lg:min-h-[300px]">
             <Image
               src={project.image}
               alt={`${project.title} website preview`}
@@ -225,7 +225,7 @@ export function FeaturedWorkSection() {
           </p>
         </Reveal>
 
-        <div className="mt-12">
+        <div className="lg:mt-12 mt-6">
           {featuredProjects.map((project, index) => (
             <Reveal key={project.id} delay={index * 0.06} variant="scale">
               <CaseStudy project={project} index={index} />

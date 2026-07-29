@@ -21,7 +21,7 @@ export function ExperienceSection() {
           </p>
         </Reveal>
 
-        <div className="relative mt-14">
+        <div className="relative lg:mt-14 mt-6">
           <div
             aria-hidden
             className="absolute bottom-0 left-[11px] top-2 w-px bg-gradient-to-b from-primary/50 via-border to-transparent md:left-1/2 md:-translate-x-px"

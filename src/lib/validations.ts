@@ -50,7 +50,7 @@ export const contactFormSchema = z.object({
   timeline: z
     .union([z.enum(contactTimelineOptions), z.literal("")])
     .optional(),
-  website: z.string().max(0).optional().or(z.literal("")),
+  website: z.string().optional(),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

@@ -16,7 +16,7 @@ export function WhyHireSection() {
           />
         </Reveal>
 
-        <Stagger className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="lg:mt-12 mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {whyHire.map((item, index) => (
             <StaggerItem key={item.id}>
               <div className="surface-card h-full p-6 transition duration-300 hover:-translate-y-0.5">

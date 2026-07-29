@@ -34,8 +34,8 @@ export const projects: Project[] = [
     result:
       "Live multi-tool platform at utilitytools.in with production hosting and ongoing maintenance capability.",
     technologies: ["Next.js", "React", "Node.js", "Express", "MongoDB", "Nginx", "PM2"],
-    image: "/images/projects/utilitytools.svg",
-    imageMobile: "/images/projects/utilitytools.svg",
+    image: "/images/projects/utilitytools.png",
+    imageMobile: "/images/projects/utilitytools.png",
     featured: true,
     hasLiveUrl: true,
   },
@@ -65,8 +65,8 @@ export const projects: Project[] = [
     result:
       "Production education platform with admin-managed content and public access at yogispeaks.com.",
     technologies: ["Next.js", "NestJS", "Prisma", "PostgreSQL"],
-    image: "/images/projects/yogispeaks.svg",
-    imageMobile: "/images/projects/yogispeaks.svg",
+    image: "/images/projects/yogispeaks.png",
+    imageMobile: "/images/projects/yogispeaks.png",
     featured: true,
     hasLiveUrl: true,
   },
@@ -96,8 +96,8 @@ export const projects: Project[] = [
     result:
       "Live company website at aivoxalabs.com on production infrastructure.",
     technologies: ["Next.js", "React", "VPS", "Nginx", "SSL"],
-    image: "/images/projects/aivoxa.svg",
-    imageMobile: "/images/projects/aivoxa.svg",
+    image: "/images/projects/aivoxa.png",
+    imageMobile: "/images/projects/aivoxa.png",
     featured: true,
     hasLiveUrl: true,
   },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     contribution:
       "Implemented and refined WordPress layouts with Elementor-based page structure.",
     technologies: ["WordPress", "Elementor", "HTML", "CSS"],
-    image: "/images/projects/luminoguru.svg",
+    image: "/images/projects/luminoguru.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     contribution:
       "Built page layouts, managed content structure and maintained site updates.",
     technologies: ["WordPress", "HTML", "CSS", "JavaScript"],
-    image: "/images/projects/placid.svg",
+    image: "/images/projects/placid.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -187,7 +187,7 @@ export const projects: Project[] = [
     contribution:
       "Contributed page-level WordPress implementation and layout refinements.",
     technologies: ["WordPress", "HTML", "CSS"],
-    image: "/images/projects/propertywala.svg",
+    image: "/images/projects/propertywala.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     contribution:
       "Supported responsive page development and WordPress layout updates.",
     technologies: ["WordPress", "HTML", "CSS", "JavaScript"],
-    image: "/images/projects/hexahome.svg",
+    image: "/images/projects/hexahome.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -217,7 +217,7 @@ export const projects: Project[] = [
     contribution:
       "Customized theme sections and responsive product/collection presentation.",
     technologies: ["Shopify", "Liquid", "HTML", "CSS"],
-    image: "/images/projects/boldify.svg",
+    image: "/images/projects/boldify.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -232,7 +232,7 @@ export const projects: Project[] = [
     contribution:
       "Implemented storefront layouts and refined product presentation across devices.",
     technologies: ["Shopify", "Liquid", "HTML", "CSS"],
-    image: "/images/projects/talwarsons.svg",
+    image: "/images/projects/talwarsons.png",
     featured: false,
     hasLiveUrl: true,
   },
@@ -262,7 +262,7 @@ export const projects: Project[] = [
     contribution:
       "Developed responsive interfaces, page structure and interactive website components.",
     technologies: ["React", "HTML", "CSS", "JavaScript"],
-    image: "/images/projects/sos.svg",
+    image: "/images/projects/sos.png",
     featured: false,
     hasLiveUrl: true,
   },

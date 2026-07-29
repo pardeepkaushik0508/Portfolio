@@ -5,7 +5,7 @@ export const RESUME_HREF = "/resume/pardeep-kaushik-full-stack.pdf";
 
 export const personal = {
   name: "Pardeep Kaushik",
-  firstName: "Pardeep",
+  firstName: "Pardeep Kaushik",
   title: "Full-Stack Developer",
   location: "Chandigarh, India",
   email: "pardeepkaushik0508@gmail.com",

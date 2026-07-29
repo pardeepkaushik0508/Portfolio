@@ -10,7 +10,7 @@ import { trackEvent } from "@/lib/analytics";
 export function AboutSection() {
   return (
     <section id="about" className="section-shell section-mesh">
-      <div className="container-shell grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div className="container-shell grid items-center gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <Reveal variant="slide-left">
           <div className="relative mx-auto w-full max-w-[100%] lg:mx-0">
             <div

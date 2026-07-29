@@ -32,7 +32,7 @@ export function MoreProjectsSection() {
         </Reveal>
 
         <div
-          className="mt-10 flex flex-wrap gap-2"
+          className="lg:mt-10 mt-6 flex flex-wrap gap-2"
           role="tablist"
           aria-label="Project categories"
         >
@@ -57,7 +57,7 @@ export function MoreProjectsSection() {
 
         <Stagger
           key={active}
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="lg:mt-10 mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((project) => (
             <StaggerItem key={project.id}>
@@ -73,7 +73,7 @@ export function MoreProjectsSection() {
                 }
                 className="surface-card group flex h-full flex-col overflow-hidden bg-white"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-slate-100">
+                <div className="aspect-[16/10] max-h-[200px]  overflow-hidden bg-slate-100">
                   <Image
                     src={project.image}
                     alt={`${project.title} website preview`}

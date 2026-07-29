@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/Button";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
+const SECTION_IDS = navItems.map((item) => item.href.replace("#", ""));
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#work");
+  const [active, setActive] = useState("#home");
   const menuId = useId();
   const onHero = !scrolled;
 
@@ -23,27 +25,42 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const ids = ["work", "services", "about", "experience", "process", "contact", "home"];
-    const sections = ids
+    const sections = ["home", ...SECTION_IDS]
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) {
-          const id = visible.target.id;
-          if (id === "home") return;
-          setActive(`#${id}`);
-        }
-      },
-      { rootMargin: "-35% 0px -50% 0px", threshold: [0.1, 0.35] },
-    );
+    if (!sections.length) return;
 
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    function updateActive() {
+      const headerOffset = 96;
+      const probe = window.scrollY + headerOffset + window.innerHeight * 0.22;
+      let current = "home";
+
+      for (const section of sections) {
+        if (section.offsetTop <= probe) {
+          current = section.id;
+        }
+      }
+
+      // Near page bottom — force last nav section (contact)
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 48;
+      if (nearBottom) {
+        current = SECTION_IDS[SECTION_IDS.length - 1] ?? current;
+      }
+
+      const href = current === "home" ? "#home" : `#${current}`;
+      setActive((prev) => (prev === href ? prev : href));
+    }
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, []);
 
   useEffect(() => {
@@ -58,6 +75,11 @@ export function Header() {
     };
   }, [open]);
 
+  function handleNavClick(href: string) {
+    setActive(href);
+    setOpen(false);
+  }
+
   return (
     <>
       <header
@@ -71,6 +93,7 @@ export function Header() {
         <div className="container-shell flex h-16 items-center justify-between gap-4">
           <a
             href="#home"
+            onClick={() => handleNavClick("#home")}
             className={cn(
               "font-display text-[1rem] font-bold tracking-[-0.03em] transition-colors md:text-[1.05rem]",
               onHero ? "text-white" : "text-foreground",
@@ -85,6 +108,8 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={() => handleNavClick(item.href)}
+                aria-current={active === item.href ? "true" : undefined}
                 className={cn(
                   "relative px-3 py-2 text-sm transition-colors",
                   onHero
@@ -115,7 +140,10 @@ export function Header() {
               size="sm"
               magnetic
               className="hidden sm:inline-flex"
-              onClick={() => trackEvent("hero_cta_click", { location: "header" })}
+              onClick={() => {
+                handleNavClick("#contact");
+                trackEvent("hero_cta_click", { location: "header" });
+              }}
             >
               Start a Project
             </Button>
@@ -157,7 +185,8 @@ export function Header() {
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    onClick={() => setOpen(false)}
+                    onClick={() => handleNavClick(item.href)}
+                    aria-current={active === item.href ? "true" : undefined}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.04 * i }}
@@ -175,7 +204,7 @@ export function Header() {
                 href="#contact"
                 className="w-full"
                 onClick={() => {
-                  setOpen(false);
+                  handleNavClick("#contact");
                   trackEvent("hero_cta_click", { location: "mobile_menu" });
                 }}
               >

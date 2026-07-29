@@ -55,11 +55,19 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
+  scroll-snap-type: y proximity;
+}
+
+/* Snap major page sections into view while scrolling (skip thin strips) */
+main > section:not(.trust-strip) {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   *,
@@ -129,7 +137,7 @@ a {
 
 .section-shell {
   position: relative;
-  padding-block: clamp(4.75rem, 10vw, 8rem);
+  padding-block: clamp(2.75rem, 10vw, 4rem);
 }
 
 .section-shell-tight {
@@ -170,7 +178,7 @@ a {
 }
 
 .section-heading {
-  font-size: clamp(2rem, 4.8vw, 3.35rem);
+  font-size: clamp(1.75rem, 4.8vw, 3.35rem);
   letter-spacing: -0.045em;
   max-width: 16ch;
   line-height: 1.05;

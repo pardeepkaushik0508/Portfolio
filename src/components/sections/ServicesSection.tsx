@@ -20,7 +20,7 @@ export function ServicesSection() {
           </p>
         </Reveal>
 
-        <Stagger className="mt-12 grid gap-5 lg:grid-cols-2">
+        <Stagger className="lg:mt-12 mt-6 grid gap-5 lg:grid-cols-2">
           {services.map((service, index) => (
             <StaggerItem key={service.id}>
               <article className="surface-card flex h-full flex-col p-6 transition duration-300 hover:-translate-y-0.5 sm:p-8">

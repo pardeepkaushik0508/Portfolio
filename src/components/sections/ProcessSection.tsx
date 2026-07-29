@@ -30,7 +30,7 @@ export function ProcessSection() {
           </p>
         </Reveal>
 
-        <div ref={ref} className="relative mt-14">
+        <div ref={ref} className="relative lg:mt-14 mt-6">
           <div
             aria-hidden
             className="absolute left-[8%] right-[8%] top-10 hidden h-px bg-border md:block"

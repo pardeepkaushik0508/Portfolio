@@ -47,7 +47,7 @@ function Field({
       </label>
       {children}
       {error ? (
-        <p className="text-xs text-danger" role="alert">
+        <p id={`${htmlFor}-error`} className="text-xs text-danger" role="alert">
           {error}
         </p>
       ) : null}
@@ -223,6 +223,8 @@ export function ContactSection() {
                         className={inputClass}
                         placeholder="Your name"
                         autoComplete="name"
+                        aria-invalid={errors.name ? true : undefined}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                         {...register("name")}
                       />
                     </Field>
@@ -233,6 +235,8 @@ export function ContactSection() {
                         className={inputClass}
                         placeholder="you@company.com"
                         autoComplete="email"
+                        aria-invalid={errors.email ? true : undefined}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                         {...register("email")}
                       />
                     </Field>
@@ -244,6 +248,10 @@ export function ContactSection() {
                       <select
                         id="projectType"
                         className={inputClass}
+                        aria-invalid={errors.projectType ? true : undefined}
+                        aria-describedby={
+                          errors.projectType ? "projectType-error" : undefined
+                        }
                         {...register("projectType")}
                       >
                         <option value="">Select a project type</option>
@@ -307,6 +315,10 @@ export function ContactSection() {
                         rows={4}
                         className={cn(inputClass, "resize-y")}
                         placeholder="Goals, pages, platform preferences, deadline…"
+                        aria-invalid={errors.details ? true : undefined}
+                        aria-describedby={
+                          errors.details ? "details-error" : undefined
+                        }
                         {...register("details")}
                       />
                     </Field>
