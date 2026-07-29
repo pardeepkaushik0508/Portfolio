@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" fill="none">
+<rect width="1280" height="800" fill="#0B1220"/>
+<rect x="48" y="48" width="1184" height="704" rx="18" fill="#0E1728" stroke="rgba(255,255,255,0.12)"/>
+<rect x="48" y="48" width="1184" height="52" rx="18" fill="#121A2B"/>
+<circle cx="84" cy="74" r="7" fill="#94A3B8"/><circle cx="108" cy="74" r="7" fill="#CBD5E1"/><circle cx="132" cy="74" r="7" fill="#2563EB"/>
+<rect x="168" y="62" width="420" height="24" rx="8" fill="#1E293B" stroke="rgba(255,255,255,0.08)"/>
+<rect x="80" y="140" width="280" height="14" rx="7" fill="#2563EB" fill-opacity="0.95"/>
+<rect x="80" y="176" width="520" height="28" rx="8" fill="rgba(245,247,250,0.9)"/>
+<rect x="80" y="220" width="380" height="12" rx="6" fill="rgba(164,172,185,0.45)"/>
+<rect x="80" y="248" width="320" height="12" rx="6" fill="rgba(164,172,185,0.28)"/>
+<rect x="80" y="300" width="160" height="40" rx="10" fill="#2563EB" fill-opacity="0.9"/>
+<rect x="700" y="140" width="460" height="520" rx="16" fill="#121A2B" stroke="rgba(255,255,255,0.08)"/>
+<rect x="732" y="176" width="396" height="180" rx="12" fill="#2563EB" fill-opacity="0.12"/>
+<rect x="732" y="388" width="240" height="12" rx="6" fill="rgba(245,247,250,0.55)"/>
+<rect x="732" y="416" width="320" height="10" rx="5" fill="rgba(164,172,185,0.35)"/>
+<rect x="732" y="440" width="280" height="10" rx="5" fill="rgba(164,172,185,0.22)"/>
+<text x="80" y="680" fill="rgba(245,247,250,0.55)" font-family="ui-monospace,monospace" font-size="18">Luminoguru</text>
+</svg>

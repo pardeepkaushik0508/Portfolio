@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pardeep Kaushik — Portfolio
 
-## Getting Started
+Production-ready personal portfolio for **Pardeep Kaushik**, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion and a single Resend-powered contact API route.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Hook Form + Zod
+- Resend (contact form)
+- Lucide React
+- next/font (Space Grotesk + Manrope)
+- React Three Fiber / Drei (lazy-loaded hero visual)
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill in:
 
-## Learn More
+| Variable | Required | Description |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Recommended for production | Canonical site URL (no trailing slash), e.g. `https://yourdomain.com` |
+| `RESEND_API_KEY` | Required for contact form delivery | Server-only Resend API key |
+| `CONTACT_FROM_EMAIL` | Required for contact form delivery | Verified sender, e.g. `Portfolio <onboarding@resend.dev>` |
+| `CONTACT_TO_EMAIL` | Optional | Defaults to `pardeepkaushik0508@gmail.com` |
 
-To learn more about Next.js, take a look at the following resources:
+The contact API will return a clear error if Resend is unconfigured. It never reports a fake success.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev      # local development
+npm run build    # production build
+npm run start    # serve production build
+npm run lint     # ESLint
+```
 
-## Deploy on Vercel
+## Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+src/
+  app/                 # layout, page, SEO routes, contact API
+  components/
+    layout/            # header, footer, floats, progress
+    sections/          # page sections
+    ui/                # shared UI
+    motion/            # reveal helpers
+  data/                # content source of truth
+  lib/                 # utils, validation, analytics, Resend
+  types/
+public/
+  images/              # profile + project previews
+  resume/              # PDF download
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Resume
+
+- Download Resume: `/resume/pardeep-kaushik-full-stack.pdf`
+
+## VPS deployment (Nginx + PM2)
+
+1. Build on the server (or CI):
+
+```bash
+npm ci
+npm run build
+```
+
+2. Start with PM2:
+
+```bash
+pm2 start npm --name "pardeep-portfolio" -- start
+pm2 save
+```
+
+3. Example Nginx reverse proxy:
+
+```nginx
+server {
+  listen 80;
+  server_name yourdomain.com www.yourdomain.com;
+
+  location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
+```
+
+4. Add SSL (Certbot), set production env vars, and point DNS `A`/`AAAA` records to the VPS.
+
+5. Confirm:
+
+- Homepage loads over HTTPS
+- Resume PDFs download
+- Contact form returns success only when Resend is configured
+- WhatsApp, email, LinkedIn and GitHub links work
+
+## Notes
+
+- Content is driven from `src/data/*` — avoid hardcoding personal details in components.
+- The 3D hero scene is lazy-loaded and disabled on smaller / low-performance devices.
+- Prefer `prefers-reduced-motion` safe interactions throughout.
