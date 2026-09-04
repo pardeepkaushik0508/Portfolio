@@ -3,12 +3,30 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Clock3, LayoutTemplate, MonitorPlay, X } from "lucide-react";
+import {
+  BadgePercent,
+  Clock3,
+  LayoutTemplate,
+  MonitorPlay,
+  X,
+} from "lucide-react";
 import { LeadForm } from "@/components/ui/LeadForm";
+import {
+  COUPON,
+  canShowCouponPromo,
+  markCouponClaimed,
+  markCouponDismissed,
+  wasCouponClaimedThisSession,
+} from "@/data/coupon";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const OFFERS = [
+  {
+    icon: BadgePercent,
+    title: `Flat ${COUPON.percent}% off first project`,
+    blurb: `Use code ${COUPON.code} on Starter/Standard packages.`,
+  },
   {
     icon: Clock3,
     title: "Free estimation time",
@@ -28,9 +46,11 @@ const OFFERS = [
 
 const STORAGE_KEY = "pk-lead-modal-dismissed";
 const EXIT_COOLDOWN_MS = 1000 * 60 * 60 * 12; // 12h after dismiss
+const SUPPRESS_CHATBOT_KEY = "pk-suppress-chatbot-auto";
 
 function canShowExitIntent() {
   try {
+    if (wasCouponClaimedThisSession()) return false;
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return true;
     const ts = Number(raw);
@@ -49,11 +69,28 @@ function markDismissed() {
   }
 }
 
+function suppressChatbotAuto() {
+  try {
+    sessionStorage.setItem(SUPPRESS_CHATBOT_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
+
+function isCouponSource(src: string) {
+  return src.startsWith("coupon");
+}
+
 export function openLeadModal(source = "cta") {
   if (typeof window === "undefined") return;
   window.dispatchEvent(
     new CustomEvent("open-lead-modal", { detail: { source } }),
   );
+}
+
+/** Opens the lead modal in coupon claim mode. */
+export function openCouponModal(source = "coupon_claim") {
+  openLeadModal(source.startsWith("coupon") ? source : `coupon_${source}`);
 }
 
 export function LeadModal() {
@@ -64,16 +101,27 @@ export function LeadModal() {
   const titleId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
   const exitArmed = useRef(false);
+  const couponArmed = useRef(false);
+  const openRef = useRef(false);
+
+  const couponMode = isCouponSource(source);
 
   const close = useCallback(() => {
     setOpen(false);
+    openRef.current = false;
     markDismissed();
-  }, []);
+    if (isCouponSource(source)) markCouponDismissed();
+  }, [source]);
 
   const openModal = useCallback((src: string) => {
+    openRef.current = true;
     setSource(src);
     setOpen(true);
+    suppressChatbotAuto();
     trackEvent("lead_modal_open", { source: src });
+    if (isCouponSource(src)) {
+      trackEvent("coupon_modal_open", { source: src });
+    }
   }, []);
 
   useEffect(() => {
@@ -103,7 +151,6 @@ export function LeadModal() {
         href === "#contact" ||
         href.endsWith("/#contact");
       if (!isContact) return;
-      // Allow modifier/new-tab
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       openModal("contact_link");
@@ -112,20 +159,40 @@ export function LeadModal() {
     return () => document.removeEventListener("click", onClick, true);
   }, [openModal]);
 
-  // Exit intent (desktop)
+  // Timed coupon promo (pricing faster; elsewhere after dwell)
+  useEffect(() => {
+    if (!canShowCouponPromo()) return;
+    const path = window.location.pathname.replace(/\/$/, "") || "/";
+    const delay =
+      path === "/pricing" ? COUPON.delayPricingMs : COUPON.delayHomeMs;
+
+    const t = window.setTimeout(() => {
+      if (couponArmed.current) return;
+      if (openRef.current) return;
+      if (!canShowCouponPromo()) return;
+      couponArmed.current = true;
+      openModal(path === "/pricing" ? "coupon_pricing" : "coupon_auto");
+    }, delay);
+
+    return () => window.clearTimeout(t);
+  }, [openModal]);
+
+  // Exit intent (desktop) — skip if coupon already claimed this session
   useEffect(() => {
     function onMouseOut(e: MouseEvent) {
-      if (open) return;
+      if (openRef.current) return;
       if (!canShowExitIntent()) return;
       if (e.clientY > 12) return;
       if (exitArmed.current) return;
-      // Ignore relatedTarget inside document
       const related = e.relatedTarget as Node | null;
       if (related && document.documentElement.contains(related)) return;
       exitArmed.current = true;
-      openModal("exit_intent");
+      if (canShowCouponPromo()) {
+        openModal("coupon_exit");
+      } else {
+        openModal("exit_intent");
+      }
     }
-    // Arm after short dwell so first paint doesn't trigger
     const t = window.setTimeout(() => {
       document.addEventListener("mouseout", onMouseOut);
     }, 8000);
@@ -133,7 +200,7 @@ export function LeadModal() {
       window.clearTimeout(t);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, [open, openModal]);
+  }, [openModal]);
 
   useEffect(() => {
     if (!open) return;
@@ -193,20 +260,47 @@ export function LeadModal() {
             </button>
 
             <div className="border-b border-border bg-dark px-5 py-5 text-white sm:px-6 sm:py-6 lg:border-b-0 lg:border-r lg:border-border-dark lg:px-7 lg:py-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                Free project kickoff
-              </p>
-              <h2
-                id={titleId}
-                className="mt-2 font-display text-[clamp(1.25rem,2.2vw,1.6rem)] font-bold leading-[1.15] tracking-tight"
-              >
-                Get a free estimate, sample design &amp; demo path
-              </h2>
-              <p className="mt-2 text-sm leading-snug text-on-dark-muted">
-                Share your requirement — I&apos;ll reply with a practical plan.
-              </p>
+              {couponMode ? (
+                <>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                    New client offer
+                  </p>
+                  <p className="mt-3 font-display text-[clamp(2.4rem,6vw,3.25rem)] font-bold leading-none tracking-tight text-white">
+                    {COUPON.title}
+                  </p>
+                  <h2
+                    id={titleId}
+                    className="mt-3 font-display text-[clamp(1.15rem,2vw,1.45rem)] font-bold leading-[1.2] tracking-tight"
+                  >
+                    {COUPON.subtitle}
+                  </h2>
+                  <p className="mt-3 inline-flex items-center rounded-lg border border-accent/40 bg-accent/15 px-3 py-1.5 font-mono text-sm tracking-[0.12em] text-accent">
+                    Code: {COUPON.code}
+                  </p>
+                  <p className="mt-3 text-sm leading-snug text-on-dark-muted">
+                    {COUPON.blurb}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                    Free project kickoff
+                  </p>
+                  <h2
+                    id={titleId}
+                    className="mt-2 font-display text-[clamp(1.25rem,2.2vw,1.6rem)] font-bold leading-[1.15] tracking-tight"
+                  >
+                    Get a free estimate, sample design &amp; demo path
+                  </h2>
+                  <p className="mt-2 text-sm leading-snug text-on-dark-muted">
+                    Share your requirement — I&apos;ll reply with a practical
+                    plan. New clients can also claim flat {COUPON.percent}% off
+                    with code {COUPON.code}.
+                  </p>
+                </>
+              )}
               <ul className="mt-4 space-y-2">
-                {OFFERS.map((item) => (
+                {(couponMode ? OFFERS : OFFERS.slice(1)).map((item) => (
                   <li
                     key={item.title}
                     className="flex gap-2.5 rounded-xl border border-white/10 bg-white/5 px-3 py-2"
@@ -229,14 +323,26 @@ export function LeadModal() {
 
             <div className="bg-white px-5 py-5 sm:px-6 sm:py-6 lg:px-7 lg:py-7">
               <p className="mb-3 pr-9 font-display text-lg font-semibold tracking-tight text-foreground">
-                Tell me what you need
+                {couponMode ? "Claim your 10% off" : "Tell me what you need"}
               </p>
               <LeadForm
+                key={source}
                 source={source}
                 idPrefix={`modal-${source}`}
-                submitLabel="Claim free estimate"
+                submitLabel={
+                  couponMode ? "Claim 10% off" : "Claim free estimate"
+                }
+                defaultDetails={
+                  couponMode ? COUPON.requirementPrefill : ""
+                }
                 compact
                 className="!shadow-none !rounded-none !bg-transparent !p-0"
+                onSuccess={() => {
+                  if (couponMode) {
+                    markCouponClaimed();
+                    trackEvent("coupon_form_submit", { source });
+                  }
+                }}
               />
             </div>
           </motion.div>

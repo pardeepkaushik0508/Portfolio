@@ -131,13 +131,18 @@ export default function ServicesPage() {
               Need a scoped estimate?
             </h2>
             <p className="mt-2 max-w-xl text-muted">
-              Share goals, stack preferences and timeline—I&apos;ll reply with a
-              practical plan.
+              Compare starting packages or share goals for a custom quote—I&apos;ll
+              reply with a practical plan.
             </p>
           </div>
-          <Button href="/contact" magnetic>
-            Start a Project
-          </Button>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Button href="/pricing" variant="dark" className="justify-center">
+              See packages
+            </Button>
+            <Button href="/contact" magnetic className="justify-center">
+              Start a Project
+            </Button>
+          </div>
         </div>
       </section>
     </main>

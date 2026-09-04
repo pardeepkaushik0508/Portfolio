@@ -51,6 +51,7 @@ export const personal = {
 export const navItems: NavItem[] = [
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Experience", href: "/experience" },
   { label: "Process", href: "/process" },

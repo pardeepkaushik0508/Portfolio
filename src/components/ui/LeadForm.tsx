@@ -57,6 +57,8 @@ type LeadFormProps = {
   submitLabel?: string;
   className?: string;
   compact?: boolean;
+  /** Prefill the requirement field (e.g. coupon claim). */
+  defaultDetails?: string;
   onSuccess?: () => void;
 };
 
@@ -66,6 +68,7 @@ export function LeadForm({
   submitLabel = "Get Free Estimate",
   className,
   compact = false,
+  defaultDetails = "",
   onSuccess,
 }: LeadFormProps) {
   const [serverMessage, setServerMessage] = useState<{
@@ -86,7 +89,7 @@ export function LeadForm({
       name: "",
       email: "",
       phone: "",
-      details: "",
+      details: defaultDetails,
       website: "",
       source,
     },
@@ -122,7 +125,14 @@ export function LeadForm({
         text: data.message || "Thanks — your details were sent successfully.",
       });
       setSubmitted(true);
-      reset({ name: "", email: "", phone: "", details: "", website: "", source });
+      reset({
+        name: "",
+        email: "",
+        phone: "",
+        details: defaultDetails,
+        website: "",
+        source,
+      });
       setFormStarted(false);
       onSuccess?.();
     } catch {

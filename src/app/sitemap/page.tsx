@@ -25,6 +25,7 @@ const sectionLinks = [
   { href: "/", label: "Home", blurb: "Introduction and availability" },
   { href: "/#work", label: "Work", blurb: "Featured case studies and client projects" },
   { href: "/services", label: "Services", blurb: "Full-stack, WordPress, Shopify and speed optimization" },
+  { href: "/pricing", label: "Pricing", blurb: "WordPress, Shopify and Full Stack package compare tables" },
   { href: "/about", label: "About", blurb: "Background, skills and approach" },
   { href: "/experience", label: "Experience", blurb: "Professional experience and roles" },
   { href: "/process", label: "Process", blurb: "How projects are planned and delivered" },

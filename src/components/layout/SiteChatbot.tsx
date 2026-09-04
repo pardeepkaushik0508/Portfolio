@@ -99,6 +99,8 @@ export function SiteChatbot() {
       try {
         if (sessionStorage.getItem(SESSION_OPENED_KEY) === "1") return;
         if (sessionStorage.getItem(SESSION_DISMISSED_KEY) === "1") return;
+        if (sessionStorage.getItem("pk-suppress-chatbot-auto") === "1") return;
+        if (document.querySelector('[role="dialog"][aria-modal="true"]')) return;
         sessionStorage.setItem(SESSION_OPENED_KEY, "1");
       } catch {
         /* ignore */
