@@ -18,9 +18,9 @@ export const personal = {
   linkedinVanity: "pardeep-kaushik-29206722a",
   upwork: "https://www.upwork.com/freelancers/pardeepwebdev",
   github: "https://github.com/pardeepkaushik0508",
-  profileImage: "/images/pardeep-kaushik.jpg",
+  profileImage: "/images/pardeep-kaushik.webp",
   /** Hero / banner portrait */
-  heroImage: "/images/pardeep-kaushik-banner.jpg",
+  heroImage: "/images/pardeep-kaushik-banner.webp",
   resume: RESUME_HREF,
   availability: "Available for freelance and long-term projects",
   experienceYears: "5+",

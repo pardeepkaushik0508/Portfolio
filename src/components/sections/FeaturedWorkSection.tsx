@@ -99,7 +99,9 @@ function CaseStudy({
                   alt={`${project.title} website preview`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 48vw"
+                  quality={index === 0 ? 70 : 65}
                   priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
                   className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.06]"
                 />
                 <div

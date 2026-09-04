@@ -7,12 +7,103 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { BriefcaseBusiness, Sparkles } from "lucide-react";
 import { experience } from "@/data/experience";
+import type { ExperienceItem } from "@/types";
 import { Reveal } from "@/components/motion/Reveal";
 import { TypedHeading } from "@/components/motion/TypedHeadline";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { DURATION, EASE, VIEWPORT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+
+function CompanionPanel({
+  item,
+  index,
+  align,
+}: {
+  item: ExperienceItem;
+  index: number;
+  align: "left" | "right";
+}) {
+  const number = String(index + 1).padStart(2, "0");
+
+  return (
+    <div
+      className={cn(
+        "hidden h-full md:flex md:flex-col md:justify-center",
+        align === "right" ? "md:pl-10" : "md:pr-10 md:items-end md:text-right",
+      )}
+    >
+      <div
+        className={cn(
+          "w-full max-w-sm rounded-[1.15rem] border border-border/80 bg-white/70 p-5 shadow-[var(--shadow-sm)] backdrop-blur-sm",
+          align === "left" && "md:ml-auto",
+        )}
+      >
+        <div
+          className={cn(
+            "flex items-center gap-2",
+            align === "left" && "md:flex-row-reverse",
+          )}
+        >
+          <span className="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            {index === 0 ? (
+              <Sparkles className="size-3.5" aria-hidden />
+            ) : (
+              <BriefcaseBusiness className="size-3.5" aria-hidden />
+            )}
+          </span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+            Chapter {number}
+          </p>
+        </div>
+
+        <p
+          className={cn(
+            "mt-3 font-display text-[1.05rem] font-semibold leading-snug tracking-tight text-foreground",
+          )}
+        >
+          {item.highlight ?? item.role}
+        </p>
+
+        {item.focus?.length ? (
+          <ul
+            className={cn(
+              "mt-4 flex flex-wrap gap-2",
+              align === "left" && "md:justify-end",
+            )}
+          >
+            {item.focus.map((label) => (
+              <li
+                key={label}
+                className="rounded-full border border-border bg-background px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-muted"
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        {item.technologies.length ? (
+          <div
+            className={cn(
+              "mt-4 border-t border-border/80 pt-3",
+              align === "left" && "md:text-right",
+            )}
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              Core stack
+            </p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/80">
+              {item.technologies.slice(0, 5).join(" · ")}
+              {item.technologies.length > 5 ? " +" : ""}
+            </p>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 export function ExperienceSection({
   showHeading = true,
@@ -50,7 +141,8 @@ export function ExperienceSection({
         <div
           ref={trackRef}
           className={cn("relative", showHeading ? "mt-6 lg:mt-14" : "mt-0")}
-        >          <div
+        >
+          <div
             aria-hidden
             className="absolute bottom-0 left-[11px] top-2 w-px overflow-hidden bg-border md:left-1/2 md:-translate-x-px"
           >
@@ -63,7 +155,7 @@ export function ExperienceSection({
             />
           </div>
 
-          <ol className="space-y-8">
+          <ol className="space-y-8 md:space-y-10">
             {experience.map((item, index) => {
               const isLeft = index % 2 === 0;
               return (
@@ -72,74 +164,30 @@ export function ExperienceSection({
                   delay={index * 0.05}
                   variant={isLeft ? "slide-right" : "slide-left"}
                 >
-                  <li className="relative grid gap-4 md:grid-cols-2 md:gap-10">
-                    <div
-                      className={
-                        isLeft
-                          ? "pl-10 md:pl-0 md:pr-10 md:text-right"
-                          : "pl-10 md:col-start-2 md:pl-10"
-                      }
-                    >
-                      <TiltCard intensity={4} lift={8}>
-                        <motion.article
-                          initial={
-                            reduced
-                              ? false
-                              : {
-                                  opacity: 0,
-                                  rotateY: isLeft ? 8 : -8,
-                                  z: -20,
-                                }
-                          }
-                          whileInView={{ opacity: 1, rotateY: 0, z: 0 }}
-                          viewport={{
-                            once: true,
-                            amount: VIEWPORT.amount,
-                            margin: VIEWPORT.margin,
-                          }}
-                          transition={{
-                            duration: DURATION.section,
-                            ease: EASE.out,
-                          }}
-                          className="surface-card !transform-none p-5 text-left sm:p-6"
-                          style={{ transformStyle: "preserve-3d" }}
-                        >
-                          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-primary">
-                            {item.startDate} — {item.endDate}
-                          </p>
-                          <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-foreground">
-                            {item.role}
-                          </h3>
-                          <p className="mt-1 text-sm text-muted">
-                            {item.company} · {item.location}
-                          </p>
-
-                          <ul className="mt-4 space-y-2">
-                            {item.responsibilities.map((point) => (
-                              <li
-                                key={point}
-                                className="relative pl-4 text-sm leading-relaxed text-muted before:absolute before:left-0 before:top-2 before:size-1.5 before:rounded-full before:bg-primary/70"
-                              >
-                                {point}
-                              </li>
-                            ))}
-                          </ul>
-
-                          {item.technologies.length ? (
-                            <ul className="mt-5 flex flex-wrap gap-2">
-                              {item.technologies.map((tech) => (
-                                <li
-                                  key={tech}
-                                  className="rounded-md border border-primary/15 bg-primary/8 px-2.5 py-1 font-mono text-[11px] text-primary"
-                                >
-                                  {tech}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : null}
-                        </motion.article>
-                      </TiltCard>
-                    </div>
+                  <li className="relative grid gap-4 md:grid-cols-2 md:items-stretch md:gap-10">
+                    {isLeft ? (
+                      <>
+                        <div className="pl-10 md:pl-0 md:pr-10 md:text-right">
+                          <ExperienceCard item={item} isLeft reduced={reduced} />
+                        </div>
+                        <CompanionPanel
+                          item={item}
+                          index={index}
+                          align="right"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <CompanionPanel
+                          item={item}
+                          index={index}
+                          align="left"
+                        />
+                        <div className="pl-10 md:col-start-2 md:pl-10">
+                          <ExperienceCard item={item} isLeft={false} reduced={reduced} />
+                        </div>
+                      </>
+                    )}
 
                     <motion.span
                       aria-hidden
@@ -166,5 +214,77 @@ export function ExperienceSection({
         </div>
       </div>
     </section>
+  );
+}
+
+function ExperienceCard({
+  item,
+  isLeft,
+  reduced,
+}: {
+  item: ExperienceItem;
+  isLeft: boolean;
+  reduced: boolean | null;
+}) {
+  return (
+    <TiltCard intensity={4} lift={8}>
+      <motion.article
+        initial={
+          reduced
+            ? false
+            : {
+                opacity: 0,
+                rotateY: isLeft ? 8 : -8,
+                z: -20,
+              }
+        }
+        whileInView={{ opacity: 1, rotateY: 0, z: 0 }}
+        viewport={{
+          once: true,
+          amount: VIEWPORT.amount,
+          margin: VIEWPORT.margin,
+        }}
+        transition={{
+          duration: DURATION.section,
+          ease: EASE.out,
+        }}
+        className="surface-card !transform-none p-5 text-left sm:p-6"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-primary">
+          {item.startDate} — {item.endDate}
+        </p>
+        <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-foreground">
+          {item.role}
+        </h3>
+        <p className="mt-1 text-sm text-muted">
+          {item.company} · {item.location}
+        </p>
+
+        <ul className="mt-4 space-y-2">
+          {item.responsibilities.map((point) => (
+            <li
+              key={point}
+              className="relative pl-4 text-sm leading-relaxed text-muted before:absolute before:left-0 before:top-2 before:size-1.5 before:rounded-full before:bg-primary/70"
+            >
+              {point}
+            </li>
+          ))}
+        </ul>
+
+        {item.technologies.length ? (
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {item.technologies.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-md border border-primary/15 bg-primary/8 px-2.5 py-1 font-mono text-[11px] text-primary"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </motion.article>
+    </TiltCard>
   );
 }

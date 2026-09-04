@@ -206,7 +206,7 @@ export function SocialConnectSection({
           </Reveal>
 
           <Reveal variant="slide-right" className="min-w-0">
-            <LinkedInProfileCard className="h-full" />
+            <LinkedInProfileCard />
           </Reveal>
         </div>
       </div>

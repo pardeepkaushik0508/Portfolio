@@ -14,9 +14,9 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["business", "productivity"],
     icons: [
       {
-        src: "/images/pardeep-kaushik.png",
+        src: "/images/pardeep-kaushik.jpg",
         sizes: "1024x1024",
-        type: "image/png",
+        type: "image/jpeg",
         purpose: "any",
       },
     ],

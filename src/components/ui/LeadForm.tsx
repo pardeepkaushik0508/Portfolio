@@ -24,15 +24,17 @@ function Field({
   error,
   children,
   compact = false,
+  className,
 }: {
   label: string;
   htmlFor: string;
   error?: string;
   children: React.ReactNode;
   compact?: boolean;
+  className?: string;
 }) {
   return (
-    <div className={compact ? "space-y-1.5" : "space-y-2.5"}>
+    <div className={cn(compact ? "space-y-1.5" : "space-y-2.5", className)}>
       <label
         htmlFor={htmlFor}
         className="font-mono text-[12px] uppercase tracking-[0.06em] text-muted"
@@ -177,7 +179,12 @@ export function LeadForm({
       )}
       noValidate
     >
-      <div className={cn("grid", compact ? "gap-3.5" : "gap-6 sm:gap-7")}>
+      <div
+        className={cn(
+          "grid",
+          compact ? "gap-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3" : "gap-6 sm:gap-7",
+        )}
+      >
         <Field
           label="Name"
           htmlFor={nameId}
@@ -216,6 +223,7 @@ export function LeadForm({
           htmlFor={phoneId}
           error={errors.phone?.message}
           compact={compact}
+          className={compact ? "sm:col-span-2" : undefined}
         >
           <input
             id={phoneId}
@@ -234,14 +242,15 @@ export function LeadForm({
           htmlFor={detailsId}
           error={errors.details?.message}
           compact={compact}
+          className={compact ? "sm:col-span-2" : undefined}
         >
           <textarea
             id={detailsId}
-            rows={compact ? 3 : 5}
+            rows={compact ? 2 : 5}
             className={cn(
               fieldInput,
               "resize-y",
-              compact ? "min-h-[4.5rem]" : "min-h-[7.5rem]",
+              compact ? "min-h-[3.25rem]" : "min-h-[7.5rem]",
             )}
             placeholder="Tell me about your website, store or app…"
             aria-invalid={errors.details ? true : undefined}

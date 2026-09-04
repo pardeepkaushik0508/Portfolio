@@ -35,6 +35,10 @@ export interface ExperienceItem {
   endDate: string;
   responsibilities: string[];
   technologies: string[];
+  /** Short professional summary shown opposite the timeline card */
+  highlight?: string;
+  /** Compact focus labels for the companion panel */
+  focus?: string[];
 }
 
 export interface EducationItem {

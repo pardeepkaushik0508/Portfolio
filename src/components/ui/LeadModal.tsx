@@ -156,7 +156,7 @@ export function LeadModal() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[90] flex items-end justify-center p-4 sm:items-center sm:p-8"
+          className="fixed inset-0 z-[90] flex items-end justify-center p-3 sm:items-center sm:p-5"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -177,48 +177,47 @@ export function LeadModal() {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.28 }}
             className={cn(
-              "relative z-[1] grid max-h-[min(66vh,670px)] w-full max-w-5xl overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-border bg-background shadow-[0_32px_80px_rgba(12,18,16,0.28)]",
-              "lg:grid-cols-[0.9fr_1.1fr]",
+              "relative z-[1] grid max-h-[90vh] w-full max-w-4xl overflow-x-hidden overflow-y-auto rounded-[1.25rem] border border-border bg-background shadow-[0_32px_80px_rgba(12,18,16,0.28)]",
+              "lg:grid-cols-[0.92fr_1.08fr]",
             )}
           >
             <button
               ref={closeRef}
               type="button"
               onClick={close}
-              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-border bg-white text-foreground transition hover:border-primary hover:text-primary sm:right-4 sm:top-4"
+              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-border bg-white text-foreground transition hover:border-primary hover:text-primary"
               aria-label="Close"
             >
               <X className="size-4" />
             </button>
 
-            <div className="border-b border-border bg-dark px-6 py-6 text-white sm:px-7 sm:py-7 lg:border-b-0 lg:border-r lg:border-border-dark lg:px-8 lg:py-8">
+            <div className="border-b border-border bg-dark px-5 py-5 text-white sm:px-6 sm:py-6 lg:border-b-0 lg:border-r lg:border-border-dark lg:px-7 lg:py-7">
               <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                 Free project kickoff
               </p>
               <h2
                 id={titleId}
-                className="mt-2 font-display text-[clamp(1.35rem,2.4vw,1.75rem)] font-bold leading-[1.15] tracking-tight"
+                className="mt-2 font-display text-[clamp(1.25rem,2.2vw,1.6rem)] font-bold leading-[1.15] tracking-tight"
               >
                 Get a free estimate, sample design &amp; demo path
               </h2>
-              <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
+              <p className="mt-2 text-sm leading-snug text-on-dark-muted">
                 Share your requirement — I&apos;ll reply with a practical plan.
-                No spam, no pushy sales call.
               </p>
-              <ul className="mt-5 space-y-2.5">
+              <ul className="mt-4 space-y-2">
                 {OFFERS.map((item) => (
                   <li
                     key={item.title}
-                    className="flex gap-3 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5"
+                    className="flex gap-2.5 rounded-xl border border-white/10 bg-white/5 px-3 py-2"
                   >
-                    <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-accent">
+                    <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-accent">
                       <item.icon className="size-3.5" aria-hidden />
                     </span>
                     <span>
-                      <span className="block text-sm font-semibold">
+                      <span className="block text-sm font-semibold leading-snug">
                         {item.title}
                       </span>
-                      <span className="mt-0.5 block text-xs leading-relaxed text-on-dark-muted">
+                      <span className="mt-0.5 block text-[11px] leading-snug text-on-dark-muted">
                         {item.blurb}
                       </span>
                     </span>
@@ -227,8 +226,8 @@ export function LeadModal() {
               </ul>
             </div>
 
-            <div className="bg-white px-6 py-6 sm:px-7 sm:py-7 lg:px-8 lg:py-8">
-              <p className="mb-4 pr-10 font-display text-lg font-semibold tracking-tight text-foreground sm:mb-5 sm:text-xl">
+            <div className="bg-white px-5 py-5 sm:px-6 sm:py-6 lg:px-7 lg:py-7">
+              <p className="mb-3 pr-9 font-display text-lg font-semibold tracking-tight text-foreground">
                 Tell me what you need
               </p>
               <LeadForm

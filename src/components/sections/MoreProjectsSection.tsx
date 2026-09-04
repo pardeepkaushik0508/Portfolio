@@ -127,6 +127,7 @@ export function MoreProjectsSection() {
                             width={640}
                             height={400}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            quality={60}
                             loading="lazy"
                             className={cn(
                               "h-full w-full object-cover object-top transition duration-700 ease-out",

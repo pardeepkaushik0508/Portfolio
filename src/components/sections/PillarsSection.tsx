@@ -13,7 +13,7 @@ const pillars = [
     title: "WordPress website development",
     blurb:
       "Business websites, Elementor website design and WooCommerce stores that stay easy to manage.",
-    image: "/images/projects/cactusjackpc.jpg",
+    image: "/images/projects/cactusjackpc.webp",
     href: "/services",
   },
   {
@@ -22,7 +22,7 @@ const pillars = [
     title: "Shopify store design",
     blurb:
       "Shopify website design, store setup and theme work built to convert on mobile and desktop.",
-    image: "/images/projects/talwarsons.png",
+    image: "/images/projects/talwarsons.webp",
     href: "/services",
   },
   {
@@ -31,7 +31,7 @@ const pillars = [
     title: "Website speed optimization",
     blurb:
       "WordPress and Shopify speed optimization plus Core Web Vitals—without changing your layout.",
-    image: "/images/banners/wordpress-speed.jpg",
+    image: "/images/banners/wordpress-speed.webp",
     href: "/services",
   },
   {
@@ -40,7 +40,7 @@ const pillars = [
     title: "Full-stack web apps",
     blurb:
       "React, Next.js and Node.js when a custom SaaS product fits better than a website builder.",
-    image: "/images/projects/utilitytools.png",
+    image: "/images/projects/utilitytools.webp",
     href: "/services",
   },
 ];
@@ -81,6 +81,8 @@ export function PillarsSection() {
                     alt={`${item.title} example mockup`}
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
+                    quality={65}
+                    loading="lazy"
                     className="object-cover object-top transition duration-700 group-hover:scale-[1.04]"
                   />
                 </div>

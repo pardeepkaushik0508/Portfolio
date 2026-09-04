@@ -84,6 +84,8 @@ function HeroWorkCard({
             alt=""
             fill
             sizes="230px"
+            quality={65}
+            loading="lazy"
             className="object-cover object-top transition duration-500 group-hover:scale-[1.04]"
           />
           <div className="hero-work-card__veil" aria-hidden />
@@ -252,6 +254,8 @@ export function HeroSection() {
                   alt="Pardeep Kaushik, full-stack web developer"
                   fill
                   priority
+                  fetchPriority="high"
+                  quality={75}
                   sizes="(max-width: 1024px) 90vw, 520px"
                   className="object-cover object-[50%_12%]"
                 />

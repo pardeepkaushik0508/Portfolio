@@ -70,7 +70,7 @@ export function ContactSection() {
             className="pointer-events-none absolute bottom-8 left-8 size-24 rounded-full border border-white/10 opacity-30"
           />
 
-          <div className="relative grid gap-10 px-6 py-12 sm:px-8 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:py-14">
+          <div className="relative grid gap-8 px-5 py-8 sm:px-7 sm:py-10 md:px-9 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-10 lg:py-11">
             <Reveal variant="rotate-in">
               <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-accent">
                 Free estimate · Sample design · Demo
@@ -78,49 +78,48 @@ export function ContactSection() {
               {reduced ? (
                 <TypedHeading
                   text="Get a free project estimate — no fluff."
-                  className="mt-4 max-w-[22ch] font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+                  className="mt-3 max-w-[22ch] font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.045em]"
                 />
               ) : (
                 <TextReveal
                   text="Get a free project estimate — no fluff."
                   as="h2"
                   mode="words"
-                  className="mt-4 max-w-[22ch] font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+                  className="mt-3 max-w-[22ch] font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.045em]"
                 />
               )}
-              <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-on-dark-muted md:text-base">
-                Share your requirement and I&apos;ll reply with a practical plan.
-                WordPress, Shopify, WooCommerce, redesign, speed work or a Next.js
-                web app — plus free estimation time, sample design direction and a
-                demo path when the brief fits.
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-on-dark-muted md:text-[0.9375rem]">
+                Share your requirement and I&apos;ll reply with a practical plan —
+                plus free estimation, sample design direction and a demo path when
+                the brief fits.
               </p>
 
-              <ul className="mt-6 space-y-2 text-sm text-on-dark-muted">
-                <li className="flex gap-2">
+              <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-on-dark-muted">
+                <li className="inline-flex items-center gap-1.5">
                   <span className="text-accent" aria-hidden>
                     ✓
                   </span>
-                  Free estimation time
+                  Free estimation
                 </li>
-                <li className="flex gap-2">
+                <li className="inline-flex items-center gap-1.5">
                   <span className="text-accent" aria-hidden>
                     ✓
                   </span>
-                  Free sample design direction
+                  Sample design
                 </li>
-                <li className="flex gap-2">
+                <li className="inline-flex items-center gap-1.5">
                   <span className="text-accent" aria-hidden>
                     ✓
                   </span>
-                  Free demo website path (when scoped)
+                  Demo path
                 </li>
               </ul>
 
-              <div className="mt-8 space-y-3">
-                <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-on-dark-muted">
+              <div className="mt-5 space-y-2.5">
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-on-dark-muted">
                   Prefer a direct channel?
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2.5">
                   {channels.map((ch) => (
                     <a
                       key={ch.label}
@@ -128,7 +127,7 @@ export function ContactSection() {
                       target={ch.external ? "_blank" : undefined}
                       rel={ch.external ? "noopener noreferrer" : undefined}
                       onClick={ch.onClick}
-                      className="inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-border-dark bg-dark-elevated px-4 py-2.5 text-sm text-on-dark transition duration-200 hover:border-accent hover:text-accent"
+                      className="inline-flex min-h-10 cursor-pointer items-center rounded-lg border border-border-dark bg-dark-elevated px-3.5 py-2 text-sm text-on-dark transition duration-200 hover:border-accent hover:text-accent"
                     >
                       {ch.label}
                     </a>
@@ -142,6 +141,8 @@ export function ContactSection() {
                 source="contact_section"
                 idPrefix="contact"
                 submitLabel="Get Free Estimate"
+                compact
+                className="!p-4 sm:!p-5"
               />
             </Reveal>
           </div>

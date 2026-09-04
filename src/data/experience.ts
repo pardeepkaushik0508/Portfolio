@@ -8,6 +8,9 @@ export const experience: ExperienceItem[] = [
     location: "Remote · Worldwide",
     startDate: "Jul 2026",
     endDate: "Present",
+    highlight:
+      "End-to-end ownership — from scope and build to VPS deployment and client communication.",
+    focus: ["Full-stack delivery", "Client ownership", "Production hosting"],
     technologies: [
       "React",
       "Next.js",
@@ -32,6 +35,9 @@ export const experience: ExperienceItem[] = [
     location: "Mohali, India",
     startDate: "Feb 2023",
     endDate: "Jul 2026",
+    highlight:
+      "Shipped React/Next.js products and WordPress stores with APIs, performance work and production ops.",
+    focus: ["Product websites", "WordPress & Woo", "DevOps basics"],
     technologies: [
       "React",
       "Next.js",
@@ -58,6 +64,9 @@ export const experience: ExperienceItem[] = [
     location: "Chandigarh / Zirakpur, India",
     startDate: "Jun 2022",
     endDate: "Jan 2024",
+    highlight:
+      "Turned design references into clean, mobile-first sites with steady delivery against deadlines.",
+    focus: ["Responsive UI", "Front-end polish", "Team delivery"],
     technologies: ["HTML", "CSS", "Bootstrap", "JavaScript"],
     responsibilities: [
       "Designed and developed responsive, user-friendly websites using HTML, CSS, Bootstrap and JavaScript.",
@@ -74,6 +83,9 @@ export const experience: ExperienceItem[] = [
     location: "India",
     startDate: "Feb 2022",
     endDate: "May 2022",
+    highlight:
+      "Built foundational layout craft — structure, compatibility and content updates that taught production discipline.",
+    focus: ["Layout systems", "Compatibility", "Usability"],
     technologies: ["HTML", "CSS"],
     responsibilities: [
       "Created responsive website layouts using HTML and CSS.",
