@@ -43,9 +43,10 @@ export function RotatingRoles({ className }: RotatingRolesProps) {
         "relative mt-1 h-[1.125rem] overflow-hidden font-mono text-[12px] uppercase tracking-[0.12em] text-accent",
         className,
       )}
-      aria-live="polite"
-      aria-atomic="true"
     >
+      <p className="sr-only">
+        Roles: {ROLES.join(", ")}
+      </p>
       <AnimatePresence mode="wait" initial={false}>
         <motion.p
           key={ROLES[index]}
@@ -54,6 +55,7 @@ export function RotatingRoles({ className }: RotatingRolesProps) {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-x-0 top-0 m-0 leading-[1.125rem]"
+          aria-hidden="true"
         >
           {ROLES[index]}
         </motion.p>

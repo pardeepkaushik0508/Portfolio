@@ -11,7 +11,7 @@ export function AuthorBlock() {
         <p className="blog-kicker">Author</p>
         <p className="blog-author__name">{personal.name}</p>
         <p className="blog-author__role">
-          Full Stack, WordPress & Shopify Developer
+          Full Stack Developer in India
         </p>
         <p className="blog-author__bio">
           Based in {personal.location}. Builds business websites and web

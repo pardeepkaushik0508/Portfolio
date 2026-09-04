@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ElementType, type ReactNode } from "react";
+import { useRef, type ElementType } from "react";
 import {
   motion,
   useInView,
@@ -46,6 +46,10 @@ type TextRevealProps = {
   once?: boolean;
 };
 
+/**
+ * Animated reveal of a single semantic text node.
+ * Words/chars are the real heading/paragraph content — no aria-label clone.
+ */
 export function TextReveal({
   text,
   className,
@@ -73,14 +77,13 @@ export function TextReveal({
   }
 
   return (
-    <Tag ref={ref} className={cn(className)} aria-label={text}>
+    <Tag ref={ref} className={cn(className)}>
       <motion.span
         className="inline"
         variants={wordContainer}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
         transition={{ delayChildren: delay }}
-        aria-hidden
       >
         {parts.map((part, i) => (
           <span

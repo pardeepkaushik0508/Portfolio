@@ -14,16 +14,16 @@ import {
   faqPageJsonLd,
   jsonLdScript,
   personJsonLd,
-  webPageJsonLd,
+  profilePageJsonLd,
 } from "@/lib/schema";
 import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About Pardeep Kaushik | Full Stack, WordPress & Shopify Developer",
-  description: `${personal.aboutIntro} GitHub, LinkedIn and Upwork profiles linked below.`,
+  title: "About Pardeep Kaushik — Full Stack Developer in India",
+  description: `${personal.aboutIntro} Verified GitHub, LinkedIn and Upwork profiles linked below.`,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: `About Pardeep Kaushik — Full Stack, WordPress & Shopify Developer`,
+    title: `About Pardeep Kaushik — Full Stack Developer in India`,
     description: personal.aboutIntro,
     url: absoluteUrl("/about"),
     type: "profile",
@@ -34,12 +34,17 @@ const aboutFaqs = [
   {
     question: "Who is Pardeep Kaushik?",
     answer:
-      "Pardeep Kaushik is a Full Stack, WordPress and Shopify Developer based in Chandigarh, India. He builds business websites, ecommerce stores and custom web apps for clients worldwide.",
+      "Pardeep Kaushik is a Full Stack Developer in India based in Chandigarh, with 5+ years of experience building WordPress, Shopify and custom web applications.",
+  },
+  {
+    question: "Is Pardeep Kaushik a full stack developer?",
+    answer:
+      "Yes. He works across frontend and backend—UI, APIs, databases and deployment—and also delivers WordPress and Shopify projects when those platforms fit.",
   },
   {
     question: "What technologies does Pardeep Kaushik work with?",
     answer:
-      "WordPress, Elementor, WooCommerce, Shopify 2.0, Shopify Liquid, React, Next.js, PHP, Node.js, website speed optimization, WordPress migration and API integrations.",
+      "WordPress, Elementor, WooCommerce, Shopify Liquid, React, Next.js, Node.js, PHP, MongoDB, PostgreSQL, REST APIs, Nginx and VPS deployment.",
   },
   {
     question: "How can I hire Pardeep Kaushik?",
@@ -56,11 +61,10 @@ export default function AboutPage() {
 
   const schemas = [
     personJsonLd(),
-    webPageJsonLd({
+    profilePageJsonLd({
       path: "/about",
-      name: "About Pardeep Kaushik",
+      name: "About Pardeep Kaushik — Full Stack Developer in India",
       description: personal.aboutIntro,
-      type: "ProfilePage",
     }),
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -81,7 +85,7 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About"
-        title="About Pardeep Kaushik"
+        title="About Pardeep Kaushik — Full Stack Developer in India"
         description={seo.entityStatement}
       />
 

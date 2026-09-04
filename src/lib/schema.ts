@@ -21,9 +21,8 @@ export function personJsonLd(extra: Record<string, unknown> = {}) {
     name: personal.name,
     givenName: "Pardeep",
     familyName: "Kaushik",
-    jobTitle: "Full Stack, WordPress & Shopify Developer",
-    description:
-      "Pardeep Kaushik is a Full Stack, WordPress and Shopify Developer specializing in WordPress, Elementor, WooCommerce, Shopify 2.0, Liquid, custom web development, React, Next.js, website performance optimization, migrations and API integrations.",
+    jobTitle: "Full Stack Developer",
+    description: seo.entityStatement,
     email: personal.email,
     telephone: personal.phone,
     url: siteUrl,
@@ -95,6 +94,27 @@ export function webPageJsonLd(opts: {
     isPartOf: { "@id": WEBSITE_ID() },
     about: { "@id": PERSON_ID() },
     author: { "@id": PERSON_ID() },
+    inLanguage: "en-IN",
+  };
+}
+
+/** About / profile page — Google ProfilePage with mainEntity Person */
+export function profilePageJsonLd(opts: {
+  path: string;
+  name: string;
+  description: string;
+}) {
+  const url = absoluteUrl(opts.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${url}#profilepage`,
+    url,
+    name: opts.name,
+    description: opts.description,
+    isPartOf: { "@id": WEBSITE_ID() },
+    about: { "@id": PERSON_ID() },
+    mainEntity: { "@id": PERSON_ID() },
     inLanguage: "en-IN",
   };
 }

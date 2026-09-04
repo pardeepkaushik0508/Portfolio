@@ -370,10 +370,10 @@ export const serviceLandings: ServiceLanding[] = [
     title: "Full Stack Developer",
     metaTitle: "Full Stack Developer | React, Next.js, Node.js & APIs",
     metaDescription:
-      "Full stack developer for React/Next.js frontends, Node.js APIs, databases and VPS deployment—when a CMS alone is not enough.",
+      "Full stack developer for React/Next.js frontends, Node.js APIs, databases and VPS deployment—when a CMS alone is not enough. Hire Pardeep Kaushik in India.",
     h1: "Full Stack Developer for Custom Web Apps and Product Sites",
     intro:
-      "As a full stack developer, I build applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases and production hosting.",
+      "As a full stack developer in India, I build applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases and production hosting. For India-focused hiring context, see the Full Stack Developer in India page.",
     capabilities: [
       "React and Next.js application development",
       "Node.js APIs and backend workflows",
@@ -411,7 +411,7 @@ export const serviceLandings: ServiceLanding[] = [
         description: "Production hosting, monitoring basics and iteration.",
       },
     ],
-    relatedSlugs: ["api-integration", "wordpress-developer", "shopify-developer"],
+    relatedSlugs: ["api-integration", "wordpress-developer", "shopify-developer", "full-stack-developer-india"],
     relatedProjectIds: ["utilitytools", "aivoxa-labs", "yogispeaks"],
     faqs: [
       {
@@ -591,6 +591,298 @@ export const serviceLandings: ServiceLanding[] = [
         question: "Can you connect a front-end to a custom backend?",
         answer:
           "Yes. React/Next.js frontends connected to Node.js APIs and databases are within scope.",
+      },
+    ],
+  },
+  {
+    slug: "full-stack-developer-india",
+    title: "Full Stack Developer in India",
+    metaTitle:
+      "Full Stack Developer in India | Hire Pardeep Kaushik",
+    metaDescription:
+      "Looking for an experienced full stack developer in India? Hire Pardeep Kaushik for React, Next.js, Node.js, WordPress, Shopify, APIs and VPS deployment—5+ years freelance experience.",
+    h1: "Full Stack Developer in India — Pardeep Kaushik",
+    intro:
+      "Looking for an experienced full stack developer in India? Pardeep Kaushik is a freelance full-stack developer based in Chandigarh who builds custom web applications and business websites with React, Next.js, Node.js, WordPress and Shopify—owning delivery from planning through deployment.",
+    capabilities: [
+      "Hire a full stack developer in India for end-to-end ownership",
+      "React / Next.js frontends with Node.js APIs",
+      "WordPress and Shopify when a CMS or store fits better",
+      "Database models, auth and admin workflows",
+      "VPS deployment, SSL and practical handoff",
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "WordPress",
+      "Shopify",
+      "MongoDB",
+      "PostgreSQL",
+      "Nginx",
+    ],
+    problems: [
+      "Projects stuck between separate frontend and backend freelancers",
+      "Businesses that need custom workflows beyond a theme",
+      "Founders who want one accountable developer in India time zones",
+      "Apps that need staging, production hosting and clear documentation",
+    ],
+    process: [
+      {
+        title: "Scope the seams",
+        description:
+          "Clarify UI, APIs, data, SEO markup and hosting so ownership is written down.",
+      },
+      {
+        title: "Build vertically",
+        description:
+          "Ship frontend and backend together with staging review—not disconnected tickets.",
+      },
+      {
+        title: "Deploy & support",
+        description:
+          "Production configuration, handoff notes and iteration after launch.",
+      },
+    ],
+    relatedSlugs: [
+      "full-stack-developer",
+      "api-integration",
+      "wordpress-developer-india",
+      "shopify-developer-india",
+      "web-developer-india",
+    ],
+    relatedProjectIds: ["utilitytools", "aivoxa-labs", "yogispeaks"],
+    faqs: [
+      {
+        question: "How do I choose the best full stack developer in India?",
+        answer:
+          "Look for verified portfolio work, clear ownership of UI + APIs + deployment, honest communication and technology fit—not empty “#1” claims. Review case studies on this site and ask how staging, auth and hosting will be handled.",
+      },
+      {
+        question: "Can I hire a freelance full stack developer in India remotely?",
+        answer:
+          "Yes. Pardeep works with clients across India and internationally via email, WhatsApp, LinkedIn and Upwork, with clear milestones and staging before production.",
+      },
+      {
+        question: "What full stack services are included?",
+        answer:
+          "Custom React/Next.js apps, Node.js APIs, databases, WordPress or Shopify when appropriate, API integrations, performance work and VPS deployment.",
+      },
+    ],
+  },
+  {
+    slug: "wordpress-developer-india",
+    title: "WordPress Developer in India",
+    metaTitle:
+      "WordPress Developer in India | Elementor & WooCommerce",
+    metaDescription:
+      "Hire a WordPress developer in India—Pardeep Kaushik builds Elementor sites, WooCommerce stores, redesigns, migrations and WordPress speed optimization with clear handoff.",
+    h1: "WordPress Developer in India for Business Sites That Stay Editable",
+    intro:
+      "Hire Pardeep Kaushik as a WordPress developer in India when you need a business website, Elementor layout, WooCommerce store, redesign or migration—with mobile-ready pages and an admin-friendly structure your team can update.",
+    capabilities: [
+      "WordPress website development from brief to launch",
+      "Elementor website design and reusable templates",
+      "WooCommerce catalogue and checkout refinements",
+      "WordPress redesign and migration support",
+      "WordPress speed optimization without visual redesign",
+    ],
+    technologies: [
+      "WordPress",
+      "Elementor",
+      "WooCommerce",
+      "ACF",
+      "PHP",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    problems: [
+      "Outdated WordPress sites that break on mobile",
+      "Hard-to-edit Elementor pages",
+      "Slow WordPress templates hurting leads",
+      "Unsafe or messy migrations",
+    ],
+    process: [
+      {
+        title: "Content & structure",
+        description: "Map pages, offers and editing needs before building.",
+      },
+      {
+        title: "Build & review",
+        description: "Implement on staging with responsive checks.",
+      },
+      {
+        title: "Launch & handoff",
+        description: "Go live with training notes for your editors.",
+      },
+    ],
+    relatedSlugs: [
+      "wordpress-developer",
+      "elementor-developer",
+      "woocommerce-developer",
+      "wordpress-migration",
+      "full-stack-developer-india",
+    ],
+    relatedProjectIds: ["placid-technologies", "cactusjack-pc", "shur-tite"],
+    faqs: [
+      {
+        question: "Can I hire a WordPress developer in India for redesign only?",
+        answer:
+          "Yes. Redesigns can keep your brand and content goals while improving structure, mobile UX and editing workflow.",
+      },
+      {
+        question: "Do you work with Elementor and WooCommerce?",
+        answer:
+          "Yes. Elementor layouts and WooCommerce store work are core WordPress services.",
+      },
+      {
+        question: "Do you offer WordPress speed optimization?",
+        answer:
+          "Yes. Caching, images, template cleanup and Core Web Vitals work—without changing your layout.",
+      },
+    ],
+  },
+  {
+    slug: "shopify-developer-india",
+    title: "Shopify Developer in India",
+    metaTitle:
+      "Shopify Developer in India | Liquid & Shopify 2.0",
+    metaDescription:
+      "Hire a Shopify developer in India—Pardeep Kaushik builds Shopify 2.0 stores, Liquid sections, theme customization, redesigns and Shopify speed optimization.",
+    h1: "Shopify Developer in India for Stores That Convert on Mobile",
+    intro:
+      "Hire Pardeep Kaushik as a Shopify developer in India for Shopify 2.0 themes, custom Liquid sections, store setup, redesigns and performance work—focused on clear product discovery and mobile shopping.",
+    capabilities: [
+      "Shopify store setup and theme customization",
+      "Shopify 2.0 sections and Liquid development",
+      "Collection, product and landing page layouts",
+      "Shopify redesign without losing brand clarity",
+      "Shopify speed optimization",
+    ],
+    technologies: [
+      "Shopify",
+      "Liquid",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Shopify 2.0",
+    ],
+    problems: [
+      "Theme limits blocking custom layouts",
+      "Slow storefronts hurting conversion",
+      "Figma designs that need faithful Shopify builds",
+      "Messy product/collection presentation on mobile",
+    ],
+    process: [
+      {
+        title: "Store brief",
+        description: "Products, collections, brand assets and conversion goals.",
+      },
+      {
+        title: "Theme & Liquid build",
+        description: "Sections, templates and responsive merchandising.",
+      },
+      {
+        title: "Polish & launch",
+        description: "Speed passes, QA and handoff for your team.",
+      },
+    ],
+    relatedSlugs: [
+      "shopify-developer",
+      "shopify-liquid-developer",
+      "website-speed-optimization",
+      "full-stack-developer-india",
+    ],
+    relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
+    faqs: [
+      {
+        question: "Do you create Shopify 2.0 stores?",
+        answer:
+          "Yes. Shopify 2.0 themes and Online Store 2.0 section patterns are part of regular Shopify work.",
+      },
+      {
+        question: "Can you customize Shopify Liquid?",
+        answer:
+          "Yes. Custom Liquid sections and theme edits are a core service.",
+      },
+      {
+        question: "Can you convert Figma designs to Shopify?",
+        answer:
+          "Yes. Design-to-Shopify builds are scoped from provided Figma or design files when available.",
+      },
+    ],
+  },
+  {
+    slug: "web-developer-india",
+    title: "Web Developer in India",
+    metaTitle:
+      "Web Developer in India | Custom Websites & Apps",
+    metaDescription:
+      "Hire a web developer in India—Pardeep Kaushik delivers business websites, ecommerce, custom web apps, redesigns, migrations and speed work across WordPress, Shopify and Next.js.",
+    h1: "Web Developer in India for Business Websites and Web Apps",
+    intro:
+      "Pardeep Kaushik is a web developer in India who helps businesses choose the right stack—WordPress, Shopify or custom React/Next.js—then builds, redesigns or optimizes the site with clear communication and production handoff.",
+    capabilities: [
+      "Business website development and redesign",
+      "Ecommerce on Shopify or WooCommerce",
+      "Custom web apps when a CMS is not enough",
+      "Website speed optimization and migrations",
+      "Frontend and backend work under one owner",
+    ],
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "WordPress",
+      "Shopify",
+      "React",
+      "Next.js",
+      "Node.js",
+    ],
+    problems: [
+      "Unclear whether to use WordPress, Shopify or custom code",
+      "Outdated sites that need a practical rebuild",
+      "Ecommerce that needs better mobile UX",
+      "Founders who want one developer instead of fragmented vendors",
+    ],
+    process: [
+      {
+        title: "Recommend the stack",
+        description: "Match platform to goals, budget and editing needs.",
+      },
+      {
+        title: "Build on staging",
+        description: "Implement, review and refine before go-live.",
+      },
+      {
+        title: "Launch & support",
+        description: "Deploy, document and offer post-launch fixes.",
+      },
+    ],
+    relatedSlugs: [
+      "full-stack-developer-india",
+      "wordpress-developer-india",
+      "shopify-developer-india",
+      "website-speed-optimization",
+    ],
+    relatedProjectIds: ["placid-technologies", "talwarsons", "utilitytools"],
+    faqs: [
+      {
+        question: "What kind of websites do you build?",
+        answer:
+          "Business marketing sites, ecommerce stores, education/content platforms and custom web apps—depending on what the brief needs.",
+      },
+      {
+        question: "Do you only use one platform?",
+        answer:
+          "No. WordPress, Shopify and custom Next.js/Node stacks are chosen based on content, ecommerce and product requirements.",
+      },
+      {
+        question: "Can I hire you for ongoing website maintenance?",
+        answer:
+          "Yes. Freelance projects and longer retainers are both available after launch.",
       },
     ],
   },
