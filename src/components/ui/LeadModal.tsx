@@ -156,7 +156,7 @@ export function LeadModal() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[90] flex items-start justify-center p-3 pt-[10vh] sm:items-center sm:p-5 sm:pt-5"
+          className="fixed inset-0 z-[90] flex items-start justify-center px-3 pt-[10vh] pb-[10vh] sm:items-center sm:p-5 sm:pt-5 sm:pb-5"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -172,12 +172,13 @@ export function LeadModal() {
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            initial={reduced ? false : { opacity: 0, y: 24, scale: 0.98 }}
+            initial={reduced ? false : { opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.98 }}
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.28 }}
             className={cn(
-              "relative z-[1] grid max-h-[90vh] w-full max-w-4xl overflow-x-hidden overflow-y-auto rounded-[1.25rem] border border-border bg-background shadow-[0_32px_80px_rgba(12,18,16,0.28)]",
+              "relative z-[1] grid max-h-[calc(100dvh-20vh)] w-full max-w-4xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-[1.25rem] border border-border bg-background shadow-[0_32px_80px_rgba(12,18,16,0.28)]",
+              "sm:max-h-[90vh]",
               "lg:grid-cols-[0.92fr_1.08fr]",
             )}
           >

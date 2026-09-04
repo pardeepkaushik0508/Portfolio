@@ -255,8 +255,8 @@ export function HeroSection() {
                   fill
                   priority
                   fetchPriority="high"
-                  quality={75}
-                  sizes="(max-width: 1024px) 90vw, 520px"
+                  quality={65}
+                  sizes="(max-width: 1024px) 70vw, 420px"
                   className="object-cover object-[50%_12%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-90" />

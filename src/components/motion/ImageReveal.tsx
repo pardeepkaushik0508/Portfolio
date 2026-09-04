@@ -44,16 +44,16 @@ export function ImageReveal({
   return (
     <div className={cn("relative overflow-hidden", className)}>
       <motion.div
-        initial={hidden}
+        initial={reduced ? false : { ...hidden, opacity: 0.35 }}
         whileInView={shown}
         viewport={{
           once,
           amount: 0.01,
-          margin: VIEWPORT.margin,
+          margin: "0px 0px 120px 0px",
         }}
         transition={{
-          duration: DURATION.section,
-          delay,
+          duration: Math.min(DURATION.section, 0.45),
+          delay: Math.min(delay, 0.08),
           ease: EASE.out,
         }}
         className="h-full w-full"

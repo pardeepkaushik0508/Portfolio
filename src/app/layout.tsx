@@ -118,6 +118,15 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href={personal.heroImage}
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-full font-sans text-foreground">
         {gaId ? (
           <>
