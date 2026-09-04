@@ -1,8 +1,7 @@
 export type ProjectCategory =
   | "full-stack"
   | "wordpress"
-  | "shopify"
-  | "woocommerce";
+  | "shopify";
 
 export interface Project {
   id: string;
@@ -17,6 +16,8 @@ export interface Project {
   imageMobile?: string;
   featured: boolean;
   hasLiveUrl: boolean;
+  /** Soft-disabled card (site offline / in progress) */
+  disabled?: boolean;
   type?: string;
   challenge?: string;
   solution?: string;

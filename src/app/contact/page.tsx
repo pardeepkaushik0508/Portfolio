@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { SocialConnectSection } from "@/components/sections/SocialConnectSection";
 import { personal } from "@/data/personal";
 import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Contact | Start a Website or Development Project",
-  description: `Contact ${personal.name} for WordPress, Shopify, full-stack development or speed optimization. Call ${personal.phone}, WhatsApp, email, LinkedIn or Upwork.`,
+  title: "Contact | Free Estimate, Sample Design & Demo",
+  description: `Contact ${personal.name} for a free project estimate, sample design direction or demo path. WordPress, Shopify, full-stack and speed optimization. Call ${personal.phone}.`,
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact — ${personal.name}`,
-    description: "Share project details and get a practical next-step plan.",
+    description:
+      "Get a free estimate, sample design direction and demo path for your website or web app.",
     url: absoluteUrl("/contact"),
     type: "website",
   },
@@ -23,16 +23,11 @@ export default function ContactPage() {
     <main id="main">
       <PageHero
         eyebrow="Contact"
-        title="Tell me about your project."
-        description="Share goals, timeline and stack preferences — or call / WhatsApp if you prefer a faster conversation."
+        title="Free estimate. Sample design. Demo path."
+        description="Share your requirement — name, email, phone and what you need. I’ll reply with a practical next step."
       />
-      <ContactSection />
       <TestimonialsSection />
-      <SocialConnectSection
-        eyebrow="Social & direct"
-        title="Prefer social profiles or a quick call?"
-        description="Message on LinkedIn, hire via Upwork, email, or reach me on phone / WhatsApp."
-      />
+      <ContactSection />
     </main>
   );
 }

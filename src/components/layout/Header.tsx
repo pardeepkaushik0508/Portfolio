@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion, LayoutGroup } from "framer-motion";
 import { navItems, personal } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
+import { TechMarquee } from "@/components/layout/TechMarquee";
 import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -158,6 +159,7 @@ export function Header() {
             : "border-b border-border/80 bg-white/88 shadow-[0_1px_0_rgba(12,18,16,0.04),0_12px_32px_rgba(12,18,16,0.06)] backdrop-blur-xl",
         )}
       >
+        <TechMarquee />
         <div className="container-shell flex h-16 items-center justify-between gap-4">
           <Link
             href={onHome ? "#home" : "/"}

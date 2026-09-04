@@ -27,8 +27,8 @@ export default function ServicesPage() {
     <main id="main">
       <PageHero
         eyebrow="Services"
-        title="Focused delivery for websites, stores and web apps."
-        description="WordPress, WooCommerce, Shopify, React/Next.js and performance work—with clear outcomes and post-launch support."
+        title="WordPress, Shopify, web apps and speed optimization."
+        description="Create a website, build WordPress or Shopify stores, redesign ecommerce sites, or ship a Next.js web app—with clear delivery and handoff."
       />
       <PillarsSection />
       <ServicesSection showHeading={false} />

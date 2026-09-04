@@ -3,9 +3,16 @@ import type { BlogPost } from "@/lib/blog-types";
 import { getCategoryBySlug } from "@/lib/blog-types";
 import { formatBlogDate } from "@/lib/blog-format";
 import { CopyLinkButton } from "@/components/blog/CopyLinkButton";
+import { BlogViewTracker } from "@/components/blog/BlogViewTracker";
 import { absoluteUrl } from "@/lib/utils";
 
-export function ArticleHeader({ post }: { post: BlogPost }) {
+export function ArticleHeader({
+  post,
+  initialViews,
+}: {
+  post: BlogPost;
+  initialViews: number;
+}) {
   const category = getCategoryBySlug(post.category);
   const updatedAt = post.updatedAt ?? null;
   const showUpdated = Boolean(updatedAt && updatedAt > post.publishedAt);
@@ -60,6 +67,11 @@ export function ArticleHeader({ post }: { post: BlogPost }) {
           By <span>{post.author}</span>
           <span className="blog-author-role"> · Full Stack Developer</span>
         </p>
+        <BlogViewTracker
+          slug={post.slug}
+          category={post.category}
+          initialViews={initialViews}
+        />
         <CopyLinkButton url={absoluteUrl(post.href)} />
       </div>
 

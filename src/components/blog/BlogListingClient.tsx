@@ -8,6 +8,7 @@ import { FeaturedPost } from "@/components/blog/FeaturedPost";
 import { CategoryNavigation } from "@/components/blog/CategoryNavigation";
 import { Pagination } from "@/components/blog/Pagination";
 import { ArticleCTA } from "@/components/blog/ArticleCTA";
+import { useBlogViewsMap } from "@/components/blog/useBlogViewsMap";
 import { BLOG_CATEGORIES } from "@/lib/blog-types";
 
 interface BlogListingClientProps {
@@ -37,6 +38,8 @@ export function BlogListingClient({
 }: BlogListingClientProps) {
   const [searchResults, setSearchResults] = useState<BlogPostMeta[] | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const viewSlugs = useMemo(() => posts.map((p) => p.slug), [posts]);
+  const viewsMap = useBlogViewsMap(viewSlugs);
 
   const onResults = useCallback((results: BlogPostMeta[] | null, query: string) => {
     setSearchResults(results);
@@ -67,13 +70,17 @@ export function BlogListingClient({
               ? `Results for “${searchQuery}”`
               : `No results for “${searchQuery}”`}
           </h2>
-          <PostList posts={searchResults} startIndex={1} />
+          <PostList posts={searchResults} startIndex={1} viewsMap={viewsMap} />
         </section>
       ) : (
         <>
           {showFeaturedLayout && featured[0] && currentPage === 1 ? (
             <section className="blog-highlights" aria-label="Featured articles">
-              <FeaturedPost post={featured[0]} number="01" />
+              <FeaturedPost
+                post={featured[0]}
+                number="01"
+                views={viewsMap[featured[0].slug]}
+              />
               {secondary.length > 0 ? (
                 <div className="blog-secondary-grid">
                   {secondary.map((post, i) => (
@@ -81,6 +88,7 @@ export function BlogListingClient({
                       key={post.slug}
                       post={post}
                       number={String(i + 2).padStart(2, "0")}
+                      views={viewsMap[post.slug]}
                     />
                   ))}
                 </div>
@@ -97,6 +105,7 @@ export function BlogListingClient({
             <PostList
               posts={showFeaturedLayout && currentPage === 1 ? listPosts : pagePosts}
               startIndex={startIndex}
+              viewsMap={viewsMap}
             />
           </section>
 

@@ -11,7 +11,6 @@ import {
   useMotionValue,
   useReducedMotion,
   useSpring,
-  useTransform,
 } from "framer-motion";
 import { EASE, PERSPECTIVE, TILT } from "@/lib/motion";
 import { useFinePointer } from "@/hooks/useFinePointer";
@@ -25,11 +24,14 @@ type TiltCardProps = {
   disabled?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
+/**
+ * Subtle 3D tilt — no extra shadow layer (that caused the white box behind cards).
+ */
 export function TiltCard({
   children,
   className,
   intensity,
-  lift = 12,
+  lift = 8,
   disabled = false,
   ...rest
 }: TiltCardProps) {
@@ -41,14 +43,6 @@ export function TiltCard({
   const springX = useSpring(rx, EASE.tilt);
   const springY = useSpring(ry, EASE.tilt);
   const elevate = useSpring(0, EASE.tilt);
-  const shadow = useTransform(
-    elevate,
-    [0, lift],
-    [
-      "0 8px 24px rgba(12, 18, 16, 0.06)",
-      "0 28px 56px rgba(12, 18, 16, 0.16)",
-    ],
-  );
   const max =
     intensity ??
     (typeof window !== "undefined" && window.innerWidth < 1024
@@ -98,11 +92,10 @@ export function TiltCard({
         style={{
           rotateX: springX,
           rotateY: springY,
-          z: elevate,
-          boxShadow: shadow,
+          y: elevate,
           transformStyle: "preserve-3d",
         }}
-        className="h-full will-change-transform"
+        className="h-full overflow-hidden rounded-[inherit] will-change-transform"
       >
         {children}
       </motion.div>

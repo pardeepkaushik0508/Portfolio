@@ -50,7 +50,11 @@ export function SkillsSection() {
             const Icon = groupIcons[group.id] ?? Code2;
             return (
               <StaggerItem key={group.id} variant="rotate-in">
-                <TiltCard intensity={6} lift={10} className="h-full">
+                <TiltCard
+                  intensity={6}
+                  lift={6}
+                  className="h-full overflow-hidden rounded-[var(--radius-lg)]"
+                >
                   <Spotlight size={220} className="h-full rounded-[var(--radius-lg)]">
                     <article className="surface-card group h-full !transform-none p-5 sm:p-6">
                       <div

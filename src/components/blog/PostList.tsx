@@ -5,10 +5,12 @@ export function PostList({
   posts,
   startIndex = 1,
   compact = false,
+  viewsMap,
 }: {
   posts: BlogPostMeta[];
   startIndex?: number;
   compact?: boolean;
+  viewsMap?: Record<string, number>;
 }) {
   if (!posts.length) {
     return (
@@ -26,6 +28,7 @@ export function PostList({
           post={post}
           index={startIndex + i}
           compact={compact}
+          views={viewsMap?.[post.slug]}
         />
       ))}
     </div>

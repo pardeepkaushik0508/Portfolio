@@ -1,30 +1,5 @@
 import { z } from "zod";
 
-export const contactProjectTypeOptions = [
-  "Full-Stack Development",
-  "WordPress & WooCommerce",
-  "Shopify Development",
-  "Website Redesign & Optimization",
-  "Other",
-] as const;
-
-export const contactBudgetOptions = [
-  "Under $500",
-  "$500 – $1,500",
-  "$1,500 – $5,000",
-  "$5,000+",
-  "Hourly / Retainer",
-  "Not sure yet",
-] as const;
-
-export const contactTimelineOptions = [
-  "ASAP",
-  "1 – 2 weeks",
-  "2 – 4 weeks",
-  "1 – 3 months",
-  "Flexible",
-] as const;
-
 export const contactFormSchema = z.object({
   name: z
     .string()
@@ -39,30 +14,52 @@ export const contactFormSchema = z.object({
   phone: z
     .string()
     .trim()
+    .min(7, "Please enter your phone number")
     .max(30, "Phone number is too long")
     .refine(
-      (value) => value === "" || /^[+]?[\d\s()-]{7,20}$/.test(value),
+      (value) => /^[+]?[\d\s()-]{7,20}$/.test(value),
       "Please enter a valid mobile number",
-    )
-    .optional(),
-  projectType: z.enum(contactProjectTypeOptions, {
-    message: "Please select a project type",
-  }),
+    ),
   details: z
     .string()
     .trim()
-    .min(20, "Please share a bit more about your project")
-    .max(4000, "Project details are too long"),
-  budget: z
-    .union([z.enum(contactBudgetOptions), z.literal("")])
-    .optional(),
-  timeline: z
-    .union([z.enum(contactTimelineOptions), z.literal("")])
-    .optional(),
+    .min(10, "Please share a short requirement")
+    .max(4000, "Message is too long"),
+  /** Honeypot */
   website: z.string().optional(),
+  /** Optional source label for analytics / email subject */
+  source: z.string().optional(),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+/** @deprecated kept for any leftover imports */
+export const contactProjectTypeOptions = [
+  "Full-Stack Development",
+  "WordPress & WooCommerce",
+  "Shopify Development",
+  "Website Redesign & Optimization",
+  "Other",
+] as const;
+
+/** @deprecated */
+export const contactBudgetOptions = [
+  "Under $500",
+  "$500 – $1,500",
+  "$1,500 – $5,000",
+  "$5,000+",
+  "Hourly / Retainer",
+  "Not sure yet",
+] as const;
+
+/** @deprecated */
+export const contactTimelineOptions = [
+  "ASAP",
+  "1 – 2 weeks",
+  "2 – 4 weeks",
+  "1 – 3 months",
+  "Flexible",
+] as const;
 
 /** @deprecated Use contactProjectTypeOptions */
 export const contactServiceOptions = contactProjectTypeOptions;

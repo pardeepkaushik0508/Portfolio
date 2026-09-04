@@ -5,48 +5,48 @@ export const faqs: FaqItem[] = [
     id: "who",
     question: "Who is Pardeep Kaushik?",
     answer:
-      "Pardeep Kaushik is a full-stack developer based in Chandigarh, India, specializing in WordPress, WooCommerce, Shopify, React, Next.js and Node.js. He works with businesses worldwide on websites, stores and web applications.",
+      "Pardeep Kaushik is a software developer and WordPress developer based in Chandigarh, India. He helps businesses create websites, build WordPress websites, design Shopify stores and ship Next.js web apps for clients worldwide.",
   },
   {
     id: "services",
-    question: "What services do you offer?",
+    question: "What website development services do you offer?",
     answer:
-      "Full-stack web app development, WordPress and WooCommerce sites, Shopify storefronts, website redesign, Core Web Vitals / PageSpeed optimization, technical SEO improvements and VPS deployment with post-launch support.",
+      "Website development, WordPress website development, Elementor website design, WooCommerce website builds, Shopify website design and store setup, website redesign, SaaS / web app development, and website speed optimization (WordPress and Shopify).",
+  },
+  {
+    id: "wordpress",
+    question: "Can you build or redesign a WordPress website?",
+    answer:
+      "Yes. I build WordPress websites from scratch, handle WordPress website redesign, Elementor layouts, WooCommerce stores, and fix WordPress issues—including WooCommerce fix work and WordPress speed optimization.",
+  },
+  {
+    id: "shopify",
+    question: "Do you offer Shopify store design and development?",
+    answer:
+      "Yes. Shopify website design, Shopify store setup, theme customization, Shopify redesign and Shopify speed optimization for product brands and ecommerce websites.",
   },
   {
     id: "speed",
-    question: "Can you improve my WordPress site speed and Core Web Vitals?",
+    question: "Can you improve website speed and Core Web Vitals?",
     answer:
-      "Yes. Typical work includes image optimization (WebP), caching, CSS/JS minification, database cleanup, CDN setup (e.g. Cloudflare) and Core Web Vitals fixes (LCP, INP/FID, CLS)—with before/after PageSpeed or GTmetrix reporting when useful.",
+      "Yes. Typical work includes image optimization, caching, CSS/JS cleanup, CDN setup and Core Web Vitals fixes (LCP, INP, CLS)—with PageSpeed or GTmetrix reporting when useful. Layout stays the same.",
   },
   {
     id: "start",
     question: "What do you need to get started?",
     answer:
-      "Project goals, any design references or existing brand assets, content (or a plan to create it), and access to hosting, domain and CMS admin when the site already exists. For speed work, WordPress/admin and hosting access is usually enough.",
-  },
-  {
-    id: "layout",
-    question: "Will speed optimization change my website layout?",
-    answer:
-      "No. Speed and Core Web Vitals work keeps your design and layout intact while improving load performance, mobile scores and technical SEO signals.",
+      "Project goals, design references or brand assets, content (or a plan to create it), and access to hosting, domain and CMS admin when the site already exists. For speed work, admin and hosting access is usually enough.",
   },
   {
     id: "timeline",
     question: "How long does a typical project take?",
     answer:
-      "Depends on scope. A focused speed optimization can complete in a few days. A business WordPress site often takes 1–3 weeks. Custom full-stack or larger eCommerce builds are planned with clear milestones after discovery.",
+      "A focused speed optimization can finish in a few days. A business website or WordPress build often takes 1–3 weeks. Custom web apps, SaaS MVPs and larger ecommerce websites are planned with clear milestones after discovery.",
   },
   {
     id: "hire",
     question: "Can I hire you for freelance or long-term work?",
     answer:
-      "Yes. Available for one-off projects, retainers and ongoing maintenance from Chandigarh, working with clients across India and internationally via email, WhatsApp and Upwork.",
-  },
-  {
-    id: "stack",
-    question: "Do you work with Elementor, WooCommerce and Shopify?",
-    answer:
-      "Yes. WordPress with Elementor/ACF, WooCommerce stores, Shopify themes and Liquid customization, plus React/Next.js when a custom application fits better than a CMS.",
+      "Yes. Available for one-off projects, retainers and ongoing maintenance from Chandigarh, working with clients across India and internationally via email, WhatsApp, LinkedIn and Upwork.",
   },
 ];

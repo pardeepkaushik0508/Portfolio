@@ -2,48 +2,23 @@
 
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import Script from "next/script";
 import { personal } from "@/data/personal";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 /**
  * Always-visible LinkedIn profile card (light theme).
- * Official badge iframe is unreliable in SPAs — we render a real card
- * and still attempt to hydrate the official badge when the script loads.
+ * Uniform radius on all corners via overflow clip — no mismatched header radius.
  */
 export function LinkedInProfileCard({ className }: { className?: string }) {
-  const hostRef = useRef<HTMLDivElement>(null);
-  const [badgeReady, setBadgeReady] = useState(false);
-
-  useEffect(() => {
-    const win = window as Window & {
-      IN?: { parse?: (node?: HTMLElement) => void };
-    };
-    const tryParse = () => {
-      if (!hostRef.current) return;
-      win.IN?.parse?.(hostRef.current);
-      const iframe = hostRef.current.querySelector("iframe");
-      if (iframe) setBadgeReady(true);
-    };
-    tryParse();
-    const t1 = window.setTimeout(tryParse, 600);
-    const t2 = window.setTimeout(tryParse, 1600);
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-    };
-  }, []);
-
   return (
     <div
       className={cn(
-        "flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-border bg-white shadow-[0_18px_50px_rgba(12,18,16,0.08)]",
+        "flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-white shadow-[0_18px_50px_rgba(12,18,16,0.08)]",
         className,
       )}
     >
-      <div className="relative overflow-hidden bg-[linear-gradient(135deg,#0a66c2_0%,#004182_100%)] px-5 py-4">
+      <div className="relative bg-[linear-gradient(135deg,#0a66c2_0%,#004182_100%)] px-5 pb-10 pt-4">
         <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/80">
           LinkedIn
         </p>
@@ -52,7 +27,7 @@ export function LinkedInProfileCard({ className }: { className?: string }) {
         </p>
       </div>
 
-      <div className="relative -mt-8 px-5">
+      <div className="relative -mt-9 px-5">
         <div className="flex items-end gap-4">
           <Image
             src={personal.profileImage}
@@ -60,6 +35,7 @@ export function LinkedInProfileCard({ className }: { className?: string }) {
             width={88}
             height={88}
             className="size-[88px] rounded-full border-4 border-white object-cover object-[50%_18%] shadow-md"
+            priority
           />
           <div className="min-w-0 pb-1">
             <p className="truncate font-display text-xl font-semibold tracking-tight text-foreground">
@@ -72,52 +48,11 @@ export function LinkedInProfileCard({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
+      <div className="flex flex-1 flex-col gap-5 px-5 pb-5 pt-4">
         <p className="text-sm leading-relaxed text-muted">
-          {personal.location} · Freelancing · Full-stack websites, stores and
-          performance work for clients worldwide.
+          {personal.location} · Freelancing · WordPress website development,
+          Shopify store design and full-stack websites for clients worldwide.
         </p>
-
-        <div
-          ref={hostRef}
-          className={cn(
-            "linkedin-badge-host mt-4 min-h-[1px]",
-            badgeReady ? "block" : "sr-only",
-          )}
-          aria-hidden={!badgeReady}
-        >
-          <Script
-            src="https://platform.linkedin.com/badges/js/profile.js"
-            strategy="lazyOnload"
-            onLoad={() => {
-              const win = window as Window & {
-                IN?: { parse?: (node?: HTMLElement) => void };
-              };
-              win.IN?.parse?.(hostRef.current ?? undefined);
-              window.setTimeout(() => {
-                if (hostRef.current?.querySelector("iframe")) {
-                  setBadgeReady(true);
-                }
-              }, 400);
-            }}
-          />
-          <div
-            className="badge-base LI-profile-badge"
-            data-locale="en_US"
-            data-size="large"
-            data-theme="light"
-            data-type="HORIZONTAL"
-            data-vanity={personal.linkedinVanity}
-            data-version="v1"
-          >
-            <a
-              className="badge-base__link LI-simple-link"
-              href={`${personal.linkedin}?trk=profile-badge`}
-            >
-              {personal.name}
-            </a>
-          </div>
-        </div>
 
         <a
           href={`${personal.linkedin}?trk=profile-badge`}

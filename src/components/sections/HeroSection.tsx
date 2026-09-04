@@ -12,7 +12,7 @@ import type { Project } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { RotatingRoles } from "@/components/motion/RotatingRoles";
 import { TextReveal } from "@/components/motion/TextReveal";
-import { Floating, AmbientOrb, Perspective } from "@/components/motion/Floating";
+import { AmbientOrb, Perspective } from "@/components/motion/Floating";
 import { ScrollIndicator } from "@/components/motion/ScrollIndicator";
 import { HeroLines } from "@/components/sections/HeroLines";
 import { usePointerParallax } from "@/hooks/usePointerParallax";
@@ -103,13 +103,6 @@ function HeroWorkCard({
   );
 }
 
-const TECH_SHAPES = [
-  { label: "Next", top: "8%", left: "4%", delay: 0.2 },
-  { label: "React", top: "22%", right: "6%", delay: 0.45 },
-  { label: "Node", bottom: "28%", left: "2%", delay: 0.7 },
-  { label: "WP", bottom: "12%", right: "8%", delay: 0.95 },
-] as const;
-
 export function HeroSection() {
   const reduced = useReducedMotion();
   const parallax = usePointerParallax({ strength: 18 });
@@ -143,38 +136,6 @@ export function HeroSection() {
         className="-right-16 bottom-0 size-[22rem]"
         color="accent"
       />
-
-      {/* Floating tech accents — background depth */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1] hidden md:block"
-        aria-hidden
-      >
-        {TECH_SHAPES.map((shape, i) => (
-          <Floating
-            key={shape.label}
-            amplitude={6 + i * 2}
-            duration={5.5 + i}
-            delay={shape.delay}
-            rotate={i % 2 === 0 ? 3 : -2}
-            className="absolute"
-            style={{
-              top: "top" in shape ? shape.top : undefined,
-              left: "left" in shape ? shape.left : undefined,
-              right: "right" in shape ? shape.right : undefined,
-              bottom: "bottom" in shape ? shape.bottom : undefined,
-            }}
-          >
-            <motion.span
-              initial={reduced ? false : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.55, scale: 1 }}
-              transition={{ delay: 0.8 + shape.delay, duration: 0.6 }}
-              className="hero-tech-chip"
-            >
-              {shape.label}
-            </motion.span>
-          </Floating>
-        ))}
-      </div>
 
       <div className="container-shell relative grid min-h-[calc(100svh-var(--header-h))] items-center gap-12 py-6 pb-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-12 lg:pb-16">
         <motion.div
@@ -287,7 +248,7 @@ export function HeroSection() {
 
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.15rem] border border-border-dark bg-dark-elevated shadow-[0_40px_90px_rgba(0,0,0,0.45)]">
                 <Image
-                  src={personal.profileImage}
+                  src={personal.heroImage}
                   alt="Pardeep Kaushik, full-stack web developer"
                   fill
                   priority

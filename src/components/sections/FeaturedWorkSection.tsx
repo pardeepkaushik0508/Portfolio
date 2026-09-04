@@ -68,7 +68,7 @@ function CaseStudy({
 
   return (
     <Reveal
-      variant={flip ? "slide-left" : "slide-right"}
+      variant="fade-up"
       delay={0.04}
       className={cn(index > 0 && "mt-8")}
     >
@@ -99,6 +99,7 @@ function CaseStudy({
                   alt={`${project.title} website preview`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 48vw"
+                  priority={index === 0}
                   className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.06]"
                 />
                 <div
@@ -259,15 +260,15 @@ export function FeaturedWorkSection() {
   return (
     <section id="work" className="section-shell section-mesh">
       <div className="container-shell">
-        <Reveal variant="clip-up">
+        <Reveal variant="fade-up">
           <p className="eyebrow">Selected Work</p>
           <TypedHeading
-            text="Featured case studies from recent full-stack delivery."
+            text="Featured website development case studies."
             className="section-heading mt-4"
           />
           <p className="section-lead">
-            Three detailed projects showing context, responsibility, stack and
-            outcome—without inflated metrics.
+            WordPress, Shopify and full-stack web app work—context,
+            responsibility, stack and outcome without inflated metrics.
           </p>
         </Reveal>
 

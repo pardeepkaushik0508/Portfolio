@@ -16,7 +16,7 @@ import { Spotlight } from "@/components/motion/Spotlight";
 import { Parallax } from "@/components/motion/Parallax";
 import { cn } from "@/lib/utils";
 
-const serviceIcons: LucideIcon[] = [Code2, ShoppingBag, RefreshCw, Gauge, Zap];
+const serviceIcons: LucideIcon[] = [Code2, ShoppingBag, Zap, RefreshCw, Gauge];
 
 export function ServicesSection({
   showHeading = true,
@@ -38,15 +38,16 @@ export function ServicesSection({
 
       <div className="container-shell relative">
         {showHeading ? (
-          <Reveal variant="clip-up">
+          <Reveal variant="fade-up">
             <p className="eyebrow">Services</p>
             <TypedHeading
-              text="Focused delivery for websites, stores and web applications."
+              text="WordPress, Shopify, web apps and website speed optimization."
               className="section-heading mt-4"
             />
             <p className="section-lead">
-              Service areas with clear outcomes—so you know what can be built,
-              optimized and launched.
+              Create a website, build a WordPress or Shopify store, redesign an
+              ecommerce site, or ship a Next.js web app—with clear outcomes for
+              every engagement.
             </p>
           </Reveal>
         ) : null}
@@ -61,7 +62,11 @@ export function ServicesSection({
             const Icon = serviceIcons[index % serviceIcons.length];
             return (
               <StaggerItem key={service.id} variant="depth">
-                <TiltCard intensity={7} lift={14} className="h-full">
+                <TiltCard
+                  intensity={7}
+                  lift={8}
+                  className="h-full overflow-hidden rounded-[var(--radius-lg)]"
+                >
                   <Spotlight className="h-full rounded-[var(--radius-lg)]">
                     <article className="surface-card motion-depth-card group flex h-full flex-col !transform-none p-6 sm:p-8">
                       <div

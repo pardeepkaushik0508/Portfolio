@@ -9,6 +9,8 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { BackToTop } from "@/components/layout/BackToTop";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { LeadModal } from "@/components/ui/LeadModal";
+import { SiteChatbot } from "@/components/layout/SiteChatbot";
 import "./globals.css";
 
 const display = Syne({
@@ -143,6 +145,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <LeadModal />
+        <SiteChatbot />
         <BackToTop />
         <WhatsAppFloat />
       </body>

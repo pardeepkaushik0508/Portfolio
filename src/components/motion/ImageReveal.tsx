@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { DURATION, EASE, VIEWPORT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,10 @@ type ImageRevealProps = {
   once?: boolean;
 };
 
+/**
+ * Scroll-in for project media. Uses whileInView so images never stay
+ * stuck at opacity 0 after the first intersection.
+ */
 export function ImageReveal({
   children,
   className,
@@ -20,13 +24,7 @@ export function ImageReveal({
   delay = 0,
   once = true,
 }: ImageRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const inView = useInView(ref, {
-    once,
-    amount: VIEWPORT.amount,
-    margin: VIEWPORT.margin,
-  });
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -34,33 +32,31 @@ export function ImageReveal({
 
   const hidden =
     direction === "left"
-      ? { opacity: 0, x: -36, scale: 1.02 }
+      ? { opacity: 0, x: -20, scale: 1.02 }
       : direction === "right"
-        ? { opacity: 0, x: 36, scale: 1.02 }
+        ? { opacity: 0, x: 20, scale: 1.02 }
         : direction === "scale"
-          ? { opacity: 0, scale: 1.08 }
-          : { opacity: 0, y: 28, scale: 1.02 };
+          ? { opacity: 0, scale: 1.05 }
+          : { opacity: 0, y: 16, scale: 1.02 };
+
+  const shown = { opacity: 1, x: 0, y: 0, scale: 1 };
 
   return (
-    <div ref={ref} className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden", className)}>
       <motion.div
         initial={hidden}
-        animate={
-          inView
-            ? {
-                opacity: 1,
-                x: 0,
-                y: 0,
-                scale: 1,
-              }
-            : undefined
-        }
+        whileInView={shown}
+        viewport={{
+          once,
+          amount: 0.01,
+          margin: VIEWPORT.margin,
+        }}
         transition={{
           duration: DURATION.section,
           delay,
           ease: EASE.out,
         }}
-        className="h-full w-full will-change-transform"
+        className="h-full w-full"
       >
         {children}
       </motion.div>

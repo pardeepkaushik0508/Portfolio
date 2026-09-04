@@ -2,15 +2,18 @@ import Link from "next/link";
 import type { BlogPostMeta } from "@/lib/blog-types";
 import { getCategoryBySlug } from "@/lib/blog-types";
 import { formatBlogDate } from "@/lib/blog-format";
+import { ViewBadge } from "@/components/blog/ViewBadge";
 
 export function PostListItem({
   post,
   index,
   compact = false,
+  views,
 }: {
   post: BlogPostMeta;
   index: number;
   compact?: boolean;
+  views?: number;
 }) {
   const category = getCategoryBySlug(post.category);
   const number = String(index).padStart(2, "0");
@@ -31,6 +34,12 @@ export function PostListItem({
           <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt)}</time>
           <span aria-hidden="true"> · </span>
           <span>{post.readingTime}</span>
+          {typeof views === "number" ? (
+            <>
+              <span aria-hidden="true"> · </span>
+              <ViewBadge views={views} />
+            </>
+          ) : null}
         </p>
         <h3 className="blog-list-item__title">
           <Link href={post.href}>{post.title}</Link>
@@ -49,12 +58,12 @@ export function PostListItem({
             <span />
           )}
           <Link
-  href={post.href}
-  className="blog-read-link"
-  aria-label={`Read article: ${post.title}`}
->
-  Read article
-</Link>
+            href={post.href}
+            className="blog-read-link"
+            aria-label={`Read article: ${post.title}`}
+          >
+            Read article
+          </Link>
         </div>
       </div>
     </article>

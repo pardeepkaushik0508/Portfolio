@@ -9,6 +9,7 @@ import { TiltCard } from "@/components/motion/TiltCard";
 import { Parallax } from "@/components/motion/Parallax";
 import { AmbientOrb } from "@/components/motion/Floating";
 import { Button } from "@/components/ui/Button";
+import { openLeadModal } from "@/components/ui/LeadModal";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ export function AboutSection({
         />
       </div>
 
-      <div className="container-shell relative grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div className="container-shell relative grid items-start gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <Reveal variant="rotate-in">
           <TiltCard intensity={6} lift={10} className="mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
             <div className="relative">
@@ -51,7 +52,7 @@ export function AboutSection({
                   height={1000}
                   sizes="(max-width: 1024px) 80vw, 400px"
                   loading="lazy"
-                  className="h-auto w-full object-cover object-[50%_18%]"
+                  className="h-auto w-full object-cover object-top"
                 />
               </ImageReveal>
             </div>
@@ -63,7 +64,7 @@ export function AboutSection({
             <Reveal variant="blur" delay={0.05}>
               <p className="eyebrow">About</p>
               <TypedHeading
-                text="Full-stack and CMS specialist based in Chandigarh."
+                text="WordPress, Shopify and full-stack developer in Chandigarh."
                 className="section-heading mt-4"
               />
             </Reveal>
@@ -108,10 +109,11 @@ export function AboutSection({
                 Download Resume
               </Button>
               <Button
-                href="/contact"
+                type="button"
                 variant="dark"
                 magnetic
                 className="w-full justify-center sm:w-auto"
+                onClick={() => openLeadModal("about")}
               >
                 Discuss Your Project
               </Button>

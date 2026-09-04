@@ -84,7 +84,7 @@ export function SocialConnectSection({
 
         <div className="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-8">
           <Reveal variant="slide-left" className="min-w-0">
-            <div className="overflow-hidden rounded-[1.25rem] border border-border/80 bg-white/90 shadow-[0_24px_60px_rgba(12,18,16,0.08)] backdrop-blur-sm">
+            <div className="overflow-hidden rounded-[1.5rem] border border-border/80 bg-white/90 shadow-[0_24px_60px_rgba(12,18,16,0.08)] backdrop-blur-sm">
               <div className="border-b border-border bg-dark px-6 py-6 text-white sm:px-8 sm:py-7">
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/55">
                   Direct contact
@@ -206,7 +206,7 @@ export function SocialConnectSection({
           </Reveal>
 
           <Reveal variant="slide-right" className="min-w-0">
-            <LinkedInProfileCard className="h-full min-h-[420px]" />
+            <LinkedInProfileCard className="h-full" />
           </Reveal>
         </div>
       </div>

@@ -22,7 +22,7 @@ import { ArticleNavigation } from "@/components/blog/ArticleNavigation";
 import { ArticleCTA } from "@/components/blog/ArticleCTA";
 import { AuthorBlock } from "@/components/blog/AuthorBlock";
 import { ArticleFaqs } from "@/components/blog/ArticleFaqs";
-import { BlogViewTracker } from "@/components/blog/BlogViewTracker";
+import { getBlogViews } from "@/lib/blog-views";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -47,6 +47,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const category = getCategoryBySlug(post.category);
   const related = getRelatedPosts(post, 3);
   const { previous, next } = getAdjacentPosts(post.slug);
+  const initialViews = await getBlogViews(post.slug);
 
   const schemas = [
     blogPostingJsonLd(post),
@@ -63,7 +64,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <main id="main" className="blog-root">
-      <BlogViewTracker slug={post.slug} category={post.category} />
       <ReadingProgress />
       {schemas.map((schema, i) => (
         <script
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       ))}
 
       <div className="blog-container blog-article-layout">
-        <ArticleHeader post={post} />
+        <ArticleHeader post={post} initialViews={initialViews} />
 
         <div className="blog-article-grid">
           <aside className="blog-article-aside">

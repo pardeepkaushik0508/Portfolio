@@ -2,13 +2,16 @@ import Link from "next/link";
 import type { BlogPostMeta } from "@/lib/blog-types";
 import { getCategoryBySlug } from "@/lib/blog-types";
 import { formatBlogDate } from "@/lib/blog-format";
+import { ViewBadge } from "@/components/blog/ViewBadge";
 
 export function FeaturedPost({
   post,
   number,
+  views,
 }: {
   post: BlogPostMeta;
   number: string;
+  views?: number;
 }) {
   const category = getCategoryBySlug(post.category);
 
@@ -29,6 +32,12 @@ export function FeaturedPost({
 
             <span aria-hidden="true"> · </span>
             <span>{post.readingTime}</span>
+            {typeof views === "number" ? (
+              <>
+                <span aria-hidden="true"> · </span>
+                <ViewBadge views={views} />
+              </>
+            ) : null}
           </p>
         </div>
       </div>

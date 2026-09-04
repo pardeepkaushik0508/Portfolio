@@ -21,7 +21,6 @@ export async function POST(request: Request) {
 
     const data = parsed.data;
 
-    // Honeypot — pretend success, send nothing
     if (data.website && data.website.length > 0) {
       return NextResponse.json({
         message: "Thanks — your project details were sent successfully.",
@@ -42,17 +41,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // Client = person who filled the form (must receive thank-you)
     const clientEmail = data.email.trim();
-    // Owner = you (must receive the enquiry only)
     const ownerEmail = ownerInbox.trim();
+    const source = data.source?.trim() || "website";
 
-    // 1) Enquiry → only to YOU
     const enquiry = await resend.emails.send({
       from,
       to: [ownerEmail],
       replyTo: clientEmail,
-      subject: `New portfolio enquiry — ${data.name} (${data.projectType})`,
+      subject: `New portfolio enquiry — ${data.name} (${source})`,
       html: buildOwnerEnquiryHtml(data),
     });
 
@@ -69,7 +66,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2) Thank-you → only to the CLIENT (never to owner inbox)
     const thankYou = await resend.emails.send({
       from,
       to: [clientEmail],
@@ -79,19 +75,10 @@ export async function POST(request: Request) {
     });
 
     if (thankYou.error) {
-      // Enquiry already delivered; don't fail the whole request
       console.error(
         "[contact] Client thank-you failed (enquiry was still sent):",
-        {
-          clientEmail,
-          error: thankYou.error,
-        },
+        { clientEmail, error: thankYou.error },
       );
-    } else {
-      console.info("[contact] Emails sent", {
-        enquiryTo: ownerEmail,
-        thankYouTo: clientEmail,
-      });
     }
 
     return NextResponse.json({
@@ -112,33 +99,26 @@ export async function POST(request: Request) {
 function buildOwnerEnquiryHtml(data: {
   name: string;
   email: string;
-  phone?: string;
-  projectType: string;
+  phone: string;
   details: string;
-  budget?: string;
-  timeline?: string;
+  source?: string;
 }) {
   return `
     <h2>New portfolio enquiry</h2>
     <p>This message is for you (site owner). Reply to this email to contact the client.</p>
     <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
     <p><strong>Client email:</strong> ${escapeHtml(data.email)}</p>
-    <p><strong>Mobile:</strong> ${escapeHtml(data.phone?.trim() || "Not provided")}</p>
-    <p><strong>Project type:</strong> ${escapeHtml(data.projectType)}</p>
-    <p><strong>Budget:</strong> ${escapeHtml(data.budget || "Not specified")}</p>
-    <p><strong>Timeline:</strong> ${escapeHtml(data.timeline || "Not specified")}</p>
-    <p><strong>Details:</strong></p>
+    <p><strong>Mobile:</strong> ${escapeHtml(data.phone)}</p>
+    <p><strong>Source:</strong> ${escapeHtml(data.source || "website")}</p>
+    <p><strong>Requirement:</strong></p>
     <p>${escapeHtml(data.details).replace(/\n/g, "<br />")}</p>
   `;
 }
 
-function buildClientThankYouHtml(data: {
-  name: string;
-  projectType: string;
-}) {
+function buildClientThankYouHtml(data: { name: string }) {
   return `
     <p>Hi ${escapeHtml(data.name)},</p>
-    <p>Thanks for reaching out via my portfolio. I received your enquiry about <strong>${escapeHtml(data.projectType)}</strong> and will get back to you soon with next steps.</p>
+    <p>Thanks for reaching out via my portfolio. I received your requirement and will get back to you soon with next steps — including estimate timing where possible.</p>
     <p>If you need to add anything, just reply to this email.</p>
     <p>— Pardeep Kaushik<br />Full-Stack Developer</p>
   `;

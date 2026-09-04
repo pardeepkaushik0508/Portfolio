@@ -10,37 +10,37 @@ const pillars = [
   {
     id: "wordpress",
     number: "01",
-    title: "WordPress & WooCommerce",
+    title: "WordPress website development",
     blurb:
-      "Business sites, Elementor builds and online stores that stay easy to manage.",
-    image: "/images/showcase/wordpress-lumiere.png",
+      "Business websites, Elementor website design and WooCommerce stores that stay easy to manage.",
+    image: "/images/projects/cactusjackpc.jpg",
     href: "/services",
   },
   {
     id: "shopify",
     number: "02",
-    title: "Shopify storefronts",
+    title: "Shopify store design",
     blurb:
-      "Product pages, collections and theme work built to convert on mobile and desktop.",
-    image: "/images/showcase/shopify-store.png",
+      "Shopify website design, store setup and theme work built to convert on mobile and desktop.",
+    image: "/images/projects/talwarsons.png",
     href: "/services",
   },
   {
     id: "speed",
     number: "03",
-    title: "Speed & Core Web Vitals",
+    title: "Website speed optimization",
     blurb:
-      "Caching, images, CDN and PageSpeed fixes — without changing your layout.",
-    image: "/images/showcase/wordpress-theme.png",
+      "WordPress and Shopify speed optimization plus Core Web Vitals—without changing your layout.",
+    image: "/images/banners/wordpress-speed.jpg",
     href: "/services",
   },
   {
     id: "fullstack",
     number: "04",
-    title: "Full-stack apps",
+    title: "Full-stack web apps",
     blurb:
-      "React, Next.js and Node.js when a custom product fits better than a CMS.",
-    image: "/images/showcase/shopify-theme-ui.png",
+      "React, Next.js and Node.js when a custom SaaS product fits better than a website builder.",
+    image: "/images/projects/utilitytools.png",
     href: "/services",
   },
 ];
@@ -56,12 +56,12 @@ export function PillarsSection() {
         <Reveal variant="fade-up">
           <p className="eyebrow">What I build</p>
           <TypedHeading
-            text="Four ways I help businesses ship."
+            text="Four ways I help businesses create websites."
             className="section-heading mt-4"
           />
           <p className="section-lead">
-            Clear delivery areas — so you know whether you need a store, a CMS
-            site, speed work, or a custom app.
+            WordPress website development, Shopify store design, website speed
+            optimization, or a custom web app—so you know what to hire me for.
           </p>
         </Reveal>
 
@@ -81,11 +81,8 @@ export function PillarsSection() {
                     alt={`${item.title} example mockup`}
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                    className="object-cover object-top transition duration-700 group-hover:scale-[1.04]"
                   />
-                  <span className="absolute left-3 top-3 rounded-md bg-dark/85 px-2 py-1 font-mono text-[11px] text-white">
-                    {item.number}
-                  </span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-lg font-semibold tracking-tight">

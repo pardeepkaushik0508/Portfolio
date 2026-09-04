@@ -70,8 +70,8 @@ export function FaqSection({ showHeading = true }: { showHeading?: boolean }) {
               className="section-heading mt-4"
             />
             <p className="section-lead">
-              Common questions about WordPress, speed optimization, timelines and
-              working together.
+              Common questions about WordPress website development, Shopify store
+              design, speed optimization, timelines and working together.
             </p>
           </Reveal>
         ) : null}

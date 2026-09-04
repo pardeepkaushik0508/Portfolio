@@ -52,7 +52,11 @@ export function WhyHireSection() {
                 key={item.id}
                 variant={index % 3 === 0 ? "depth" : "fade-up"}
               >
-                <TiltCard intensity={5} lift={8} className="h-full">
+                <TiltCard
+                  intensity={5}
+                  lift={6}
+                  className="h-full overflow-hidden rounded-[var(--radius-lg)]"
+                >
                   <Spotlight size={200} className="h-full rounded-[var(--radius-lg)]">
                     <div className="surface-card h-full !transform-none p-6">
                       <span

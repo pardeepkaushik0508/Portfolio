@@ -68,7 +68,11 @@ export function ProcessSection({
           >
             {processSteps.map((step, index) => (
               <StaggerItem key={step.id} variant="rotate-in" className="min-w-0">
-                <TiltCard intensity={5} lift={8} className="h-full">
+                <TiltCard
+                  intensity={5}
+                  lift={6}
+                  className="h-full overflow-hidden rounded-[var(--radius-lg)]"
+                >
                   <Spotlight size={180} className="h-full rounded-[var(--radius-lg)]">
                     <motion.div
                       className="surface-card relative h-full !transform-none p-5 sm:p-6"

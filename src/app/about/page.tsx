@@ -24,7 +24,7 @@ export default function AboutPage() {
     <main id="main">
       <PageHero
         eyebrow="About"
-        title="Full-stack and CMS specialist based in Chandigarh."
+        title="WordPress, Shopify and full-stack developer in Chandigarh."
         description={personal.aboutIntro}
       />
       <AboutSection showHeading={false} />

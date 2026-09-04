@@ -17,7 +17,8 @@
   --border-dark: rgba(154, 171, 163, 0.22);
   --success: #16a34a;
   --danger: #dc2626;
-  --header-h: 4.25rem;
+  --header-h: 6.5rem;
+  --tech-marquee-h: 2.25rem;
   --radius: 0.625rem;
   --radius-lg: 1.125rem;
   --shadow-sm: 0 1px 2px rgba(12, 18, 16, 0.04);
@@ -250,14 +251,15 @@ a {
 
 .surface-card {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--surface);
   border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   transition:
     border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
+    box-shadow 0.28s ease;
 }
 
 .surface-card::before {
@@ -269,12 +271,12 @@ a {
   background: linear-gradient(180deg, var(--primary), color-mix(in srgb, var(--accent) 70%, var(--primary)));
   opacity: 0;
   transition: opacity 0.28s ease;
+  z-index: 1;
 }
 
 .surface-card:hover {
   border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
 }
 
 .surface-card:hover::before {
@@ -282,9 +284,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .surface-card,
-  .surface-card:hover {
-    transform: none;
+  .surface-card {
+    transition: border-color 0.2s ease;
   }
 }
 
@@ -775,6 +776,131 @@ a {
   border-radius: 1.35rem;
   background: var(--surface);
   box-shadow: var(--shadow-md);
+}
+
+/* ——— Tech marquee (top strip) ——— */
+.tech-marquee {
+  position: relative;
+  height: var(--tech-marquee-h);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(15, 118, 110, 0.06), transparent 28%, transparent 72%, rgba(196, 120, 42, 0.07)),
+    #ffffff;
+  border-bottom: 1px solid rgba(213, 220, 227, 0.95);
+}
+
+.tech-marquee__viewport {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.tech-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: max-content;
+  padding-inline: 0.75rem;
+  animation: tech-marquee-scroll 38s linear infinite;
+}
+
+.tech-marquee__track--reverse {
+  animation-direction: reverse;
+  animation-duration: 46s;
+}
+
+.tech-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.14);
+  background: linear-gradient(180deg, #fff, #f4f7f8);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 14px rgba(12, 18, 16, 0.04);
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3d4a52;
+  white-space: nowrap;
+}
+
+.tech-marquee__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+  animation: tech-marquee-pulse 2.4s ease-in-out infinite;
+}
+
+.tech-marquee__item:nth-child(3n) .tech-marquee__dot {
+  animation-delay: 0.4s;
+}
+
+.tech-marquee__item:nth-child(3n + 1) .tech-marquee__dot {
+  animation-delay: 0.8s;
+}
+
+.tech-marquee__fade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3.5rem;
+  z-index: 1;
+}
+
+.tech-marquee__fade--left {
+  left: 0;
+  background: linear-gradient(90deg, #fff, transparent);
+}
+
+.tech-marquee__fade--right {
+  right: 0;
+  background: linear-gradient(270deg, #fff, transparent);
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tech-marquee-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee__track {
+    animation: none;
+  }
+
+  .tech-marquee__dot {
+    animation: none;
+  }
 }
 
 .trust-strip {

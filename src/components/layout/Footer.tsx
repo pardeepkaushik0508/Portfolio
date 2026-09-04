@@ -1,17 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navItems, personal } from "@/data/personal";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 import { trackEvent } from "@/lib/analytics";
 
+const MERGED_FOOTER_PATHS = new Set(["/", "/contact"]);
+
+/**
+ * Standalone footer for pages that do not include ContactSection
+ * (Contact + Footer are merged on home and /contact).
+ */
 export function Footer() {
+  const pathname = usePathname();
+  if (MERGED_FOOTER_PATHS.has(pathname)) return null;
+
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-background px-4 pb-6 pt-2 sm:px-6 sm:pb-8 sm:pt-4">
       <div className="container-shell">
-        <div className="relative overflow-hidden rounded-[1.25rem] border border-border-dark bg-dark text-white shadow-[0_28px_70px_rgba(12,18,16,0.18)]">
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-border-dark bg-dark text-white shadow-[0_28px_70px_rgba(12,18,16,0.18)]">
           <div
             className="pointer-events-none absolute inset-0 opacity-80"
             aria-hidden
