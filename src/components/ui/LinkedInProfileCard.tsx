@@ -47,7 +47,7 @@ export function LinkedInProfileCard({ className }: { className?: string }) {
       </div>
 
       <div className="relative -mt-10 px-4 sm:-mt-11 sm:px-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
           <Image
             src={personal.profileImage}
             alt={`${personal.name} profile photo`}
@@ -58,11 +58,11 @@ export function LinkedInProfileCard({ className }: { className?: string }) {
             className="size-[76px] shrink-0 rounded-full border-4 border-white object-cover object-[50%_18%] shadow-md sm:size-[88px]"
             loading="lazy"
           />
-          <div className="min-w-0 pb-0.5 pt-1 sm:pt-8">
+          <div className="min-w-0 pt-2 sm:pt-11">
             <p className="font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
               {personal.name}
             </p>
-            <p className="mt-1 text-sm leading-snug text-muted">
+            <p className="mt-1.5 text-sm leading-snug text-muted">
               {personal.title} · WordPress · Shopify · Next.js
             </p>
           </div>
