@@ -156,7 +156,7 @@ export function LeadModal() {
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[90] flex items-end justify-center p-3 sm:items-center sm:p-5"
+          className="fixed inset-0 z-[90] flex items-start justify-center p-3 pt-[10vh] sm:items-center sm:p-5 sm:pt-5"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
