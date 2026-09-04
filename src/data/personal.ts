@@ -19,8 +19,8 @@ export const personal = {
   upwork: "https://www.upwork.com/freelancers/pardeepwebdev",
   github: "https://github.com/pardeepkaushik0508",
   profileImage: "/images/pardeep-kaushik.jpg",
-  /** Hero / banner portrait (previous brand shot) */
-  heroImage: "/images/pardeep-kaushik-hero.jpg",
+  /** Hero / banner portrait */
+  heroImage: "/images/pardeep-kaushik-banner.jpg",
   resume: RESUME_HREF,
   availability: "Available for freelance and long-term projects",
   experienceYears: "5+",

@@ -253,7 +253,7 @@ export function HeroSection() {
                   fill
                   priority
                   sizes="(max-width: 1024px) 90vw, 520px"
-                  className="scale-[1.05] object-cover object-[50%_18%]"
+                  className="object-cover object-[50%_12%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-90" />
                 <div
