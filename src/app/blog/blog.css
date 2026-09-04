@@ -674,6 +674,52 @@
     position: sticky;
     top: calc(var(--header-h) + 1.5rem);
     align-self: start;
+    max-height: calc(100vh - var(--header-h) - 2.5rem);
+    max-height: calc(100dvh - var(--header-h) - 2.5rem);
+    overflow: hidden;
+  }
+
+  .blog-article-aside .blog-toc {
+    height: 100%;
+    max-height: inherit;
+  }
+
+  .blog-article-aside .blog-toc__panel {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - var(--header-h) - 2.5rem);
+    max-height: calc(100dvh - var(--header-h) - 2.5rem);
+    overflow: hidden;
+  }
+
+  .blog-article-aside .blog-toc__title {
+    flex-shrink: 0;
+  }
+
+  .blog-article-aside .blog-toc__list {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.35rem;
+    margin-right: -0.15rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(15, 118, 110, 0.45) transparent;
+  }
+
+  .blog-article-aside .blog-toc__list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .blog-article-aside .blog-toc__list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .blog-article-aside .blog-toc__list::-webkit-scrollbar-thumb {
+    background: rgba(15, 118, 110, 0.4);
+    border-radius: 999px;
+  }
+
+  .blog-article-aside .blog-toc__list::-webkit-scrollbar-thumb:hover {
+    background: rgba(15, 118, 110, 0.6);
   }
 }
 

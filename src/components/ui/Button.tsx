@@ -18,7 +18,7 @@ const variantClasses: Record<Variant, string> = {
     "bg-primary btn-primary-text hover:bg-primary-hover shadow-[0_1px_2px_rgba(15,118,110,0.28)]",
   secondary:
     "border border-white/25 bg-white/8 text-white hover:border-white/45 hover:bg-white/12",
-  dark: "border border-border bg-surface text-foreground hover:border-primary/35 hover:text-primary",
+  dark: "border border-border bg-white text-foreground hover:border-primary/40 hover:text-primary shadow-[0_1px_2px_rgba(12,18,16,0.05)]",
   ghost: "text-muted hover:text-foreground",
   line: "border-b border-current rounded-none px-0 pb-1 text-current hover:text-primary",
 };

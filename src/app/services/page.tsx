@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { PillarsSection } from "@/components/sections/PillarsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
@@ -74,22 +75,41 @@ export default function ServicesPage() {
             Service pages
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-            Detailed pages for each focus area—capabilities, process, FAQs and
-            related projects.
+            Open a dedicated page for each focus area—capabilities, process,
+            FAQs and related projects.
           </p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {landings.map((landing) =>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {landings.map((landing, index) =>
               landing ? (
                 <li key={landing.slug}>
                   <Link
                     href={`/${landing.slug}`}
-                    className="block rounded-lg border border-border bg-white px-4 py-3 transition hover:border-primary/35"
+                    className="group relative flex h-full flex-col overflow-hidden rounded-[1.15rem] border border-border bg-white p-5 shadow-[var(--shadow-sm)] transition duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_18px_40px_rgba(12,18,16,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   >
-                    <span className="font-medium text-foreground">
+                    <span
+                      className="pointer-events-none absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition duration-300 group-hover:scale-x-100"
+                      aria-hidden
+                    />
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-primary">
+                        {String(index + 1).padStart(2, "0")} · Service page
+                      </span>
+                      <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-primary transition duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white group-hover:rotate-12">
+                        <ArrowUpRight className="size-4" aria-hidden />
+                      </span>
+                    </div>
+                    <span className="mt-3 font-display text-lg font-semibold tracking-tight text-foreground transition group-hover:text-primary">
                       {landing.title}
                     </span>
-                    <span className="mt-1 block text-sm text-muted line-clamp-2">
+                    <span className="mt-2 flex-1 text-sm leading-relaxed text-muted line-clamp-3">
                       {landing.metaDescription}
+                    </span>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      View service page
+                      <ArrowUpRight
+                        className="size-3.5 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        aria-hidden
+                      />
                     </span>
                   </Link>
                 </li>

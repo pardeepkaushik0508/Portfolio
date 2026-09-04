@@ -189,7 +189,12 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
             <Button href="/contact" magnetic>
               Discuss Your Project
             </Button>
-            <Button href="/services" variant="secondary">
+            <Button
+              href="/services"
+              variant="dark"
+              magnetic
+              className="border border-border bg-white text-foreground shadow-sm hover:border-primary hover:bg-white hover:text-primary"
+            >
               All services
             </Button>
           </div>
