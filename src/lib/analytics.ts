@@ -6,6 +6,7 @@ export type AnalyticsEvent =
   | "email_click"
   | "whatsapp_click"
   | "linkedin_click"
+  | "upwork_click"
   | "book_call_click"
   | "contact_form_start"
   | "contact_form_submit"

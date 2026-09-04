@@ -15,6 +15,8 @@ export const personal = {
     "Hello Pardeep, I visited your portfolio and would like to discuss a website or development project.",
   ),
   linkedin: "https://www.linkedin.com/in/pardeep-kaushik-29206722a",
+  linkedinVanity: "pardeep-kaushik-29206722a",
+  upwork: "https://www.upwork.com/freelancers/pardeepwebdev",
   github: "https://github.com/pardeepkaushik0508",
   profileImage: "/images/pardeep-kaushik.png",
   resume: RESUME_HREF,
@@ -25,10 +27,11 @@ export const personal = {
   supportingCopy:
     "Full-Stack Developer specializing in WordPress, Shopify, React, Next.js and Node.js—from planning and development to deployment and long-term support.",
   aboutIntro:
-    "I help businesses ship production-ready websites and web applications with clear communication, end-to-end ownership and practical technical decisions.",
+    "I help businesses ship production-ready websites and web applications with clear communication, end-to-end ownership and practical technical decisions. On Upwork I’m known for WordPress delivery, eCommerce builds and Core Web Vitals / PageSpeed optimization.",
   aboutPoints: [
     "5+ years building business websites, eCommerce stores and full-stack applications",
     "Specialized in WordPress, Shopify, WooCommerce, React, Next.js and Node.js",
+    "WordPress speed optimization — caching, images, Core Web Vitals and CDN setup",
     "Worked with education platforms, SaaS products, real-estate sites and online stores",
     "Manage projects from planning and development through deployment and support",
     "Based in Chandigarh, India — available for clients worldwide",
@@ -44,12 +47,13 @@ export const personal = {
 } as const;
 
 export const navItems: NavItem[] = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Process", href: "/process" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const whyHire: WhyHireItem[] = [

@@ -13,7 +13,7 @@ export const services: ServiceItem[] = [
       "VPS deployment",
     ],
     relevantProject: "UtilityTools",
-    relevantProjectHref: "#case-utilitytools",
+    relevantProjectHref: "/#case-utilitytools",
   },
   {
     id: "wordpress",
@@ -27,7 +27,7 @@ export const services: ServiceItem[] = [
       "Performance optimization",
     ],
     relevantProject: "Resource Portal Shop",
-    relevantProjectHref: "#more-projects",
+    relevantProjectHref: "/#more-projects",
   },
   {
     id: "shopify",
@@ -41,7 +41,7 @@ export const services: ServiceItem[] = [
       "Custom sections and variants",
     ],
     relevantProject: "Boldify",
-    relevantProjectHref: "#more-projects",
+    relevantProjectHref: "/#more-projects",
   },
   {
     id: "redesign",
@@ -55,6 +55,20 @@ export const services: ServiceItem[] = [
       "Technical SEO",
     ],
     relevantProject: "Selected client sites",
-    relevantProjectHref: "#work",
+    relevantProjectHref: "/#work",
+  },
+  {
+    id: "speed",
+    title: "WordPress Speed & Core Web Vitals",
+    outcome:
+      "Faster load times and better PageSpeed scores—caching, images, CDN and Core Web Vitals fixes without changing your design.",
+    capabilities: [
+      "PageSpeed Insights & GTmetrix",
+      "Caching and CDN (Cloudflare)",
+      "Image optimization (WebP)",
+      "Database cleanup & minification",
+    ],
+    relevantProject: "Upwork speed projects",
+    relevantProjectHref: "/reviews",
   },
 ];

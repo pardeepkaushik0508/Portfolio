@@ -2,69 +2,122 @@
 
 import Image from "next/image";
 import { personal } from "@/data/personal";
-import { Reveal } from "@/components/motion/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TypedHeading } from "@/components/motion/TypedHeadline";
+import { ImageReveal } from "@/components/motion/ImageReveal";
+import { TiltCard } from "@/components/motion/TiltCard";
+import { Parallax } from "@/components/motion/Parallax";
+import { AmbientOrb } from "@/components/motion/Floating";
 import { Button } from "@/components/ui/Button";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 
-export function AboutSection() {
+export function AboutSection({
+  showHeading = true,
+}: {
+  showHeading?: boolean;
+}) {
   return (
-    <section id="about" className="section-shell section-mesh">
-      <div className="container-shell grid items-center gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-        <Reveal variant="slide-left">
-          <div className="relative mx-auto w-full max-w-[100%] lg:mx-0">
-            <div
-              className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-lg"
-              aria-hidden
-            />
-            <div className="relative overflow-hidden rounded-[1.15rem] border border-border bg-surface shadow-[var(--shadow-md)]">
-              <Image
-                src={personal.profileImage}
-                alt="Pardeep Kaushik professional portrait"
-                width={800}
-                height={1000}
-                sizes="(max-width: 1024px) 80vw, 400px"
-                className="h-auto w-full object-cover object-[50%_18%]"
-              />
-            </div>
-          </div>
-        </Reveal>
+    <section id="about" className="section-shell section-mesh relative overflow-hidden">
+      <AmbientOrb
+        className="-right-32 top-1/3 size-[20rem] opacity-60"
+        color="primary"
+      />
+      <div
+        className="pointer-events-none absolute -left-10 bottom-10"
+        aria-hidden
+      >
+        <Parallax
+          offset={30}
+          className="size-40 rounded-full border border-primary/10 opacity-40"
+        />
+      </div>
 
-        <Reveal delay={0.08} variant="slide-right">
-          <p className="eyebrow">About</p>
-          <TypedHeading
-            text="Full-stack and CMS specialist based in Chandigarh."
-            className="section-heading mt-4"
-          />
-          <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-muted md:text-base">
-            {personal.aboutIntro}
-          </p>
-
-          <ul className="mt-8 space-y-3">
-            {personal.aboutPoints.map((point) => (
-              <li key={point} className="flex gap-3 text-[0.9375rem] text-foreground">
-                <span
-                  className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
+      <div className="container-shell relative grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <Reveal variant="rotate-in">
+          <TiltCard intensity={6} lift={10} className="mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+            <div className="relative">
+              <Parallax offset={24} className="absolute -inset-3 rounded-[1.35rem]">
+                <div
+                  className="h-full w-full rounded-[1.35rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-lg"
                   aria-hidden
                 />
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Button
-              href={personal.resume}
-              download
-              onClick={() => trackEvent("resume_download", { location: "about" })}
-            >
-              Download Resume
-            </Button>
-            <Button href="#contact" variant="dark">
-              Discuss Your Project
-            </Button>
-          </div>
+              </Parallax>
+              <ImageReveal direction="up" className="relative overflow-hidden rounded-[1.15rem] border border-border bg-surface shadow-[var(--shadow-md)]">
+                <Image
+                  src={personal.profileImage}
+                  alt="Pardeep Kaushik professional portrait"
+                  width={800}
+                  height={1000}
+                  sizes="(max-width: 1024px) 80vw, 400px"
+                  loading="lazy"
+                  className="h-auto w-full object-cover object-[50%_18%]"
+                />
+              </ImageReveal>
+            </div>
+          </TiltCard>
         </Reveal>
+
+        <div>
+          {showHeading ? (
+            <Reveal variant="blur" delay={0.05}>
+              <p className="eyebrow">About</p>
+              <TypedHeading
+                text="Full-stack and CMS specialist based in Chandigarh."
+                className="section-heading mt-4"
+              />
+            </Reveal>
+          ) : null}
+
+          <Reveal variant="slide-right" delay={0.12}>
+            <p
+              className={cn(
+                "max-w-xl text-[0.9375rem] leading-relaxed text-muted md:text-base",
+                showHeading ? "mt-5" : "mt-0",
+              )}
+            >
+              {personal.aboutIntro}
+            </p>
+          </Reveal>
+
+          <Stagger className="mt-8 space-y-3.5" stagger={0.07}>
+            {personal.aboutPoints.map((point) => (
+              <StaggerItem key={point} variant="clip-left">
+                <div className="flex gap-3 text-[0.9375rem] leading-relaxed text-foreground">
+                  <span
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
+                    aria-hidden
+                  />
+                  <span>{point}</span>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          <Reveal variant="fade-up" delay={0.2}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Button
+                href={personal.resume}
+                download
+                magnetic
+                className="w-full justify-center sm:w-auto"
+                onClick={() =>
+                  trackEvent("resume_download", { location: "about" })
+                }
+              >
+                Download Resume
+              </Button>
+              <Button
+                href="/contact"
+                variant="dark"
+                magnetic
+                className="w-full justify-center sm:w-auto"
+              >
+                Discuss Your Project
+              </Button>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

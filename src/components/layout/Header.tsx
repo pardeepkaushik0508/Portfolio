@@ -3,41 +3,76 @@
 import { useEffect, useId, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion, LayoutGroup } from "framer-motion";
 import { navItems, personal } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
+import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const SECTION_IDS = navItems
-  .filter((item) => item.href.startsWith("#"))
-  .map((item) => item.href.replace("#", ""));
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <span className="relative block size-5" aria-hidden>
+      <motion.span
+        className="absolute left-0 top-[5px] h-[1.5px] w-5 origin-center rounded-full bg-current"
+        animate={open ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: DURATION.hover, ease: EASE.out }}
+      />
+      <motion.span
+        className="absolute left-0 top-[9.5px] h-[1.5px] w-5 rounded-full bg-current"
+        animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+        transition={{ duration: DURATION.micro }}
+      />
+      <motion.span
+        className="absolute left-0 top-[14px] h-[1.5px] w-5 origin-center rounded-full bg-current"
+        animate={open ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: DURATION.hover, ease: EASE.out }}
+      />
+    </span>
+  );
+}
 
-function resolveHref(href: string, onHome: boolean) {
-  if (href.startsWith("http") || href.startsWith("/")) return href;
-  if (href.startsWith("#")) return onHome ? href : `/${href}`;
-  return href;
+function isItemActive(pathname: string, itemHref: string, homeHash: string) {
+  if (itemHref === "/blog") return pathname.startsWith("/blog");
+  if (itemHref.startsWith("/#")) {
+    return pathname === "/" && homeHash === itemHref.replace("/", "");
+  }
+  if (itemHref.startsWith("#")) {
+    return pathname === "/" && homeHash === itemHref;
+  }
+  return pathname === itemHref || pathname.startsWith(`${itemHref}/`);
 }
 
 export function Header() {
   const pathname = usePathname();
   const onHome = pathname === "/";
-  const onBlog = pathname?.startsWith("/blog") ?? false;
-  const [scrolled, setScrolled] = useState(!onHome);
+  const [homeScrolled, setHomeScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(onBlog ? "/blog" : "#home");
+  const [homeActive, setHomeActive] = useState("#home");
+  const [entered, setEntered] = useState(false);
   const menuId = useId();
+  const reduced = useReducedMotion();
+
+  const scrolled = onHome ? homeScrolled : true;
   const onHero = onHome && !scrolled;
 
   useEffect(() => {
-    if (!onHome) {
-      setScrolled(true);
-      setActive(onBlog ? "/blog" : "");
-      return;
-    }
+    const t = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
 
-    const sections = ["home", ...SECTION_IDS]
+  useEffect(() => {
+    if (!onHome) return;
+
+    const hashIds = navItems
+      .filter((item) => item.href.includes("#"))
+      .map((item) => item.href.split("#")[1])
+      .filter(Boolean) as string[];
+
+    const sectionIds = ["work", "services", "about", "experience", "process", "testimonials", "faq", "contact"];
+    const ids = [...new Set([...hashIds, ...sectionIds])];
+
+    const sections = ["home", ...ids]
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
@@ -46,7 +81,7 @@ export function Header() {
     function updateFromScroll() {
       ticking = false;
       const y = window.scrollY;
-      setScrolled(y > 20);
+      setHomeScrolled(y > 20);
 
       if (!sections.length) return;
 
@@ -63,11 +98,11 @@ export function Header() {
       const nearBottom =
         window.innerHeight + y >= document.documentElement.scrollHeight - 48;
       if (nearBottom) {
-        current = SECTION_IDS[SECTION_IDS.length - 1] ?? current;
+        current = "contact";
       }
 
       const href = current === "home" ? "#home" : `#${current}`;
-      setActive((prev) => (prev === href ? prev : href));
+      setHomeActive((prev) => (prev === href ? prev : href));
     }
 
     function onScroll() {
@@ -83,7 +118,7 @@ export function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [onHome, onBlog]);
+  }, [onHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -97,15 +132,14 @@ export function Header() {
     };
   }, [open]);
 
-  function handleNavClick(href: string) {
-    setActive(href);
+  function handleNavClick() {
     setOpen(false);
   }
 
   const items = [
     ...navItems.map((item) => ({
       label: item.label,
-      href: resolveHref(item.href, onHome),
+      href: item.href,
       key: item.href,
     })),
     { label: "Blog", href: "/blog", key: "/blog" },
@@ -113,20 +147,23 @@ export function Header() {
 
   return (
     <>
-      <header
+      <motion.header
+        initial={reduced ? false : { y: -24, opacity: 0 }}
+        animate={entered ? { y: 0, opacity: 1 } : undefined}
+        transition={{ duration: 0.55, ease: EASE.out }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
           onHero
             ? "border-b border-transparent bg-transparent"
-            : "border-b border-border bg-white/90 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-md",
+            : "border-b border-border/80 bg-white/88 shadow-[0_1px_0_rgba(12,18,16,0.04),0_12px_32px_rgba(12,18,16,0.06)] backdrop-blur-xl",
         )}
       >
         <div className="container-shell flex h-16 items-center justify-between gap-4">
           <Link
             href={onHome ? "#home" : "/"}
-            onClick={() => handleNavClick(onHome ? "#home" : "/")}
+            onClick={() => handleNavClick()}
             className={cn(
-              "font-display text-[1rem] font-bold tracking-[-0.03em] transition-colors md:text-[1.05rem]",
+              "font-display text-[1rem] font-bold tracking-[-0.03em] transition-colors duration-200 md:text-[1.05rem]",
               onHero ? "text-white" : "text-foreground",
             )}
           >
@@ -134,51 +171,59 @@ export function Header() {
             <span className={onHero ? "text-accent" : "text-primary"}>.</span>
           </Link>
 
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
-            {items.map((item) => {
-              const isActive =
-                item.key === "/blog"
-                  ? onBlog
-                  : onHome && active === item.key;
-              return (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  onClick={() => handleNavClick(item.key)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "relative px-3 py-2 text-sm transition-colors",
-                    onHero
-                      ? isActive
-                        ? "text-white"
-                        : "text-white/75 hover:text-white"
-                      : isActive
-                        ? "text-primary"
-                        : "text-muted hover:text-foreground",
-                  )}
-                >
-                  {item.label}
-                  {isActive ? (
-                    <span
-                      className={cn(
-                        "absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full",
-                        onHero ? "bg-accent" : "bg-primary",
-                      )}
-                    />
-                  ) : null}
-                </Link>
-              );
-            })}
-          </nav>
+          <LayoutGroup id="nav-pill">
+            <nav
+              className="hidden items-center gap-0.5 lg:flex"
+              aria-label="Primary"
+            >
+              {items.map((item) => {
+                const isActive = isItemActive(pathname, item.key, homeActive);
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    onClick={() => handleNavClick()}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "relative cursor-pointer px-2.5 py-2 text-sm transition-colors duration-200 xl:px-3",
+                      onHero
+                        ? isActive
+                          ? "text-white"
+                          : "text-white/75 hover:text-white"
+                        : isActive
+                          ? "text-primary"
+                          : "text-muted hover:text-foreground",
+                    )}
+                  >
+                    {item.label}
+                    {isActive ? (
+                      <motion.span
+                        layoutId="nav-active"
+                        className={cn(
+                          "absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full",
+                          onHero ? "bg-accent" : "bg-primary",
+                        )}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 32,
+                        }}
+                      />
+                    ) : null}
+                  </Link>
+                );
+              })}
+            </nav>
+          </LayoutGroup>
 
           <div className="flex items-center gap-2">
             <Button
-              href={onHome ? "#contact" : "/#contact"}
+              href="/contact"
               size="sm"
               magnetic
               className="hidden sm:inline-flex"
               onClick={() => {
-                handleNavClick("#contact");
+                handleNavClick();
                 trackEvent("hero_cta_click", { location: "header" });
               }}
             >
@@ -188,21 +233,21 @@ export function Header() {
             <button
               type="button"
               className={cn(
-                "inline-flex size-10 items-center justify-center rounded-lg border lg:hidden",
+                "inline-flex size-11 cursor-pointer items-center justify-center rounded-lg border transition duration-200 lg:hidden",
                 onHero
-                  ? "border-white/25 text-white"
-                  : "border-border text-foreground",
+                  ? "border-white/25 text-white hover:bg-white/10"
+                  : "border-border text-foreground hover:bg-background",
               )}
               aria-expanded={open}
               aria-controls={menuId}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              <MenuIcon open={open} />
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {open ? (
@@ -211,31 +256,47 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-md lg:hidden"
+            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.45, ease: EASE.out }}
+            className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-xl lg:hidden"
+            style={{ perspective: 1200 }}
           >
-            <div className="flex h-full flex-col px-6 pb-10 pt-24">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-40"
+              aria-hidden
+              style={{
+                background:
+                  "radial-gradient(ellipse 50% 40% at 80% 10%, rgba(15,118,110,0.35), transparent), radial-gradient(ellipse 40% 30% at 10% 90%, rgba(196,120,42,0.2), transparent)",
+              }}
+            />
+            <div className="relative flex h-full flex-col px-6 pb-10 pt-24">
               <nav className="flex flex-1 flex-col gap-1" aria-label="Mobile">
                 {items.map((item, i) => {
-                  const isActive =
-                    item.key === "/blog"
-                      ? onBlog
-                      : onHome && active === item.key;
+                  const isActive = isItemActive(pathname, item.key, homeActive);
                   return (
                     <motion.a
                       key={item.key}
                       href={item.href}
-                      onClick={() => handleNavClick(item.key)}
+                      onClick={() => handleNavClick()}
                       aria-current={isActive ? "page" : undefined}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.04 * i }}
+                      initial={
+                        reduced
+                          ? false
+                          : { opacity: 0, y: 28, rotateX: -18, z: -40 }
+                      }
+                      animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                      transition={{
+                        delay: 0.08 + STAGGER.base * i,
+                        duration: 0.5,
+                        ease: EASE.out,
+                      }}
                       className={cn(
                         "border-b border-border-dark py-4 font-display text-3xl tracking-tight",
                         isActive ? "text-accent" : "text-white",
                       )}
+                      style={{ transformStyle: "preserve-3d" }}
                     >
                       {item.label}
                     </motion.a>
@@ -243,16 +304,23 @@ export function Header() {
                 })}
               </nav>
 
-              <Button
-                href={onHome ? "#contact" : "/#contact"}
-                className="w-full"
-                onClick={() => {
-                  handleNavClick("#contact");
-                  trackEvent("hero_cta_click", { location: "mobile_menu" });
-                }}
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35, duration: 0.4 }}
               >
-                Start a Project
-              </Button>
+                <Button
+                  href="/contact"
+                  className="w-full"
+                  magnetic
+                  onClick={() => {
+                    handleNavClick();
+                    trackEvent("hero_cta_click", { location: "mobile_menu" });
+                  }}
+                >
+                  Start a Project
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
         ) : null}

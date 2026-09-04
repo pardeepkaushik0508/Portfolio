@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { navItems, personal, seo } from "@/data/personal";
+import { personal, seo } from "@/data/personal";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { absoluteUrl, getSiteUrl } from "@/lib/utils";
@@ -22,23 +22,14 @@ export const metadata: Metadata = {
 };
 
 const sectionLinks = [
-  { href: "/#home", label: "Home", blurb: "Introduction and availability" },
-  ...navItems.map((item) => ({
-    href: `/${item.href}`,
-    label: item.label,
-    blurb:
-      item.label === "Work"
-        ? "Featured case studies and client projects"
-        : item.label === "Services"
-          ? "Full-stack, WordPress, Shopify and redesign"
-          : item.label === "About"
-            ? "Background, skills and approach"
-            : item.label === "Experience"
-              ? "Professional experience and roles"
-              : item.label === "Process"
-                ? "How projects are planned and delivered"
-                : "Start a project enquiry",
-  })),
+  { href: "/", label: "Home", blurb: "Introduction and availability" },
+  { href: "/#work", label: "Work", blurb: "Featured case studies and client projects" },
+  { href: "/services", label: "Services", blurb: "Full-stack, WordPress, Shopify and speed optimization" },
+  { href: "/about", label: "About", blurb: "Background, skills and approach" },
+  { href: "/experience", label: "Experience", blurb: "Professional experience and roles" },
+  { href: "/process", label: "Process", blurb: "How projects are planned and delivered" },
+  { href: "/reviews", label: "Reviews", blurb: "Client feedback from Upwork and LinkedIn" },
+  { href: "/contact", label: "Contact", blurb: "Start a project enquiry" },
   {
     href: "/blog",
     label: "Blog",
@@ -50,9 +41,9 @@ const sectionLinks = [
     blurb: "Subscribe to new articles",
   },
   {
-    href: "/#testimonials",
-    label: "Testimonials",
-    blurb: "Client feedback and outcomes",
+    href: "/#faq",
+    label: "FAQ",
+    blurb: "Common questions about delivery and speed work",
   },
   {
     href: "/#more-projects",

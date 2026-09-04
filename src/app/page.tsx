@@ -1,17 +1,21 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
-import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
-import { MoreProjectsSection } from "@/components/sections/MoreProjectsSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { PillarsSection } from "@/components/sections/PillarsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { WhyHireSection } from "@/components/sections/WhyHireSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
+import { MoreProjectsSection } from "@/components/sections/MoreProjectsSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { SocialConnectSection } from "@/components/sections/SocialConnectSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { personal, seo } from "@/data/personal";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
+import { faqs } from "@/data/faqs";
 import { absoluteUrl, getSiteUrl } from "@/lib/utils";
 
 export default function HomePage() {
@@ -37,7 +41,7 @@ export default function HomePage() {
     },
     url: siteUrl,
     image: absoluteUrl(personal.profileImage),
-    sameAs: [personal.linkedin, personal.github],
+    sameAs: [personal.linkedin, personal.github, personal.upwork],
     knowsAbout: [
       "Full Stack Development",
       "React",
@@ -126,40 +130,14 @@ export default function HomePage() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Who is Pardeep Kaushik?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Pardeep Kaushik is a full stack developer based in Chandigarh, India, specializing in React, Next.js, Node.js, WordPress, Shopify and WooCommerce for businesses worldwide.",
-        },
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
       },
-      {
-        "@type": "Question",
-        name: "What services does Pardeep Kaushik offer?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Full-stack web application development, WordPress and WooCommerce websites, Shopify storefronts, website redesign, performance optimization and VPS deployment.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I hire a freelance full stack developer in Chandigarh?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Pardeep Kaushik is available for freelance and long-term projects from Chandigarh and works with clients across India and internationally.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does Pardeep build WordPress and Shopify websites?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. He builds and customizes WordPress, WooCommerce and Shopify sites, including theme work, responsive layouts and eCommerce storefronts.",
-        },
-      },
-    ],
+    })),
   };
 
   return (
@@ -196,14 +174,22 @@ export default function HomePage() {
       />
       <HeroSection />
       <TrustStrip />
-      <FeaturedWorkSection />
-      <MoreProjectsSection />
+      {/* Jasmine-style flow: who → what I build → services → why → process → proof */}
+      <AboutSection />
+      <PillarsSection />
       <ServicesSection />
       <WhyHireSection />
-      <AboutSection />
-      <ExperienceSection />
       <ProcessSection />
+      <FeaturedWorkSection />
+      <MoreProjectsSection />
+      <ExperienceSection />
       <TestimonialsSection />
+      <FaqSection />
+      <SocialConnectSection
+        eyebrow="Next step"
+        title="Ready to talk about your project?"
+        description="Call or WhatsApp for a quick chat — or use the form below with project details."
+      />
       <ContactSection />
     </main>
   );

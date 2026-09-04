@@ -48,18 +48,47 @@ export function TypedHeading({
     const node = rootRef.current;
     if (!node) return;
 
+    let settled = false;
+    const activate = () => {
+      if (settled) return;
+      settled = true;
+      setActive(true);
+    };
+
+    const isVisiblyNear = () => {
+      const rect = node.getBoundingClientRect();
+      const vh = window.innerHeight || 0;
+      return rect.top < vh * 0.95 && rect.bottom > vh * 0.05;
+    };
+
+    if (isVisiblyNear()) {
+      activate();
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setActive(true);
+          activate();
           observer.disconnect();
         }
       },
-      { threshold: 0.4, rootMargin: "0px 0px -10% 0px" },
+      // Match portfolio reveal thresholds — negative bottom margin + high
+      // threshold left headings blank after nav jumps / fast scroll.
+      { threshold: 0.08, rootMargin: "0px 0px 18% 0px" },
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Safety net if IntersectionObserver misses (fast scroll / hash jump).
+    const fallback = window.setTimeout(() => {
+      if (isVisiblyNear()) activate();
+    }, 900);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [reduced, startOnView]);
 
   useEffect(() => {

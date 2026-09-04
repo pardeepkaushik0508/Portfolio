@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   contactBudgetOptions,
   contactFormSchema,
@@ -13,13 +14,18 @@ import {
 } from "@/lib/validations";
 import { personal } from "@/data/personal";
 import { Reveal } from "@/components/motion/Reveal";
+import { TextReveal } from "@/components/motion/TextReveal";
 import { TypedHeading } from "@/components/motion/TypedHeadline";
+import { AmbientOrb, Floating } from "@/components/motion/Floating";
+import { TiltCard } from "@/components/motion/TiltCard";
 import { Button } from "@/components/ui/Button";
+import { useFinePointer } from "@/hooks/useFinePointer";
+import { DURATION, EASE } from "@/lib/motion";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const inputClass =
-  "w-full rounded-lg border border-border bg-white px-3.5 py-3 text-[0.9375rem] text-foreground outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/15";
+  "w-full rounded-lg border border-border bg-white px-3.5 py-3 text-[0.9375rem] text-foreground outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:shadow-[0_0_0_4px_rgba(15,118,110,0.08)]";
 
 function Field({
   label,
@@ -62,6 +68,9 @@ export function ContactSection() {
   } | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [formStarted, setFormStarted] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const fine = useFinePointer();
 
   const {
     register,
@@ -86,6 +95,15 @@ export function ContactSection() {
     if (formStarted) return;
     setFormStarted(true);
     trackEvent("contact_form_start");
+  }
+
+  function onSpotMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!fine || reduced || !shellRef.current) return;
+    const rect = shellRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    shellRef.current.style.setProperty("--spot-x", `${x}%`);
+    shellRef.current.style.setProperty("--spot-y", `${y}%`);
   }
 
   async function onSubmit(values: ContactFormValues) {
@@ -122,19 +140,63 @@ export function ContactSection() {
     }
   }
 
+  const channels = [
+    {
+      label: "Email",
+      href: `mailto:${personal.email}`,
+      onClick: () => trackEvent("email_click", { location: "contact" }),
+    },
+    {
+      label: "WhatsApp",
+      href: personal.whatsapp,
+      external: true,
+      onClick: () => trackEvent("whatsapp_click", { location: "contact" }),
+    },
+    {
+      label: "Download Resume",
+      href: personal.resume,
+      download: true,
+      onClick: () => trackEvent("resume_download", { location: "contact" }),
+    },
+  ];
+
   return (
     <section id="contact" className="bg-background pt-[clamp(4.5rem,9vw,7.5rem)]">
       <div className="container-shell">
-        <div className="section-ink overflow-hidden rounded-t-[1.25rem] border border-b-0 border-border-dark text-white shadow-[0_28px_70px_rgba(12,18,16,0.18)]">
-          <div className="grid gap-10 px-6 py-12 sm:px-8 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:py-14">
-            <Reveal>
+        <div
+          ref={shellRef}
+          onMouseMove={onSpotMove}
+          className="contact-spotlight-host section-ink relative overflow-hidden rounded-t-[1.25rem] border border-b-0 border-border-dark text-white shadow-[0_28px_70px_rgba(12,18,16,0.18)]"
+        >
+          <div className="contact-spotlight" aria-hidden />
+          <AmbientOrb
+            className="-right-20 -top-10 size-[22rem] opacity-70"
+            color="primary"
+          />
+          <Floating
+            amplitude={12}
+            duration={8}
+            className="pointer-events-none absolute bottom-8 left-8 size-24 rounded-full border border-white/10 opacity-30"
+          />
+
+          <div className="relative grid gap-10 px-6 py-12 sm:px-8 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:py-14">
+            <Reveal variant="rotate-in">
               <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-accent">
                 Contact
               </p>
-              <TypedHeading
-                text="Have a project that needs proper execution?"
-                className="mt-4 max-w-[20ch] font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.045em]"
-              />
+              {reduced ? (
+                <TypedHeading
+                  text="Have a project that needs proper execution?"
+                  className="mt-4 max-w-[20ch] font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+                />
+              ) : (
+                <TextReveal
+                  text="Have a project that needs proper execution?"
+                  as="h2"
+                  mode="words"
+                  className="mt-4 max-w-[20ch] font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+                />
+              )}
               <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-on-dark-muted md:text-base">
                 Share what you are building and where you need support. I can help
                 with full-stack development, WordPress, Shopify, WooCommerce,
@@ -146,44 +208,31 @@ export function ContactSection() {
                   Prefer a direct channel?
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <a
-                    href={`mailto:${personal.email}`}
-                    onClick={() =>
-                      trackEvent("email_click", { location: "contact" })
-                    }
-                    className="rounded-lg border border-border-dark bg-dark-elevated px-4 py-2.5 text-sm text-on-dark transition hover:border-accent hover:text-accent"
-                  >
-                    Email
-                  </a>
-                  <a
-                    href={personal.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() =>
-                      trackEvent("whatsapp_click", { location: "contact" })
-                    }
-                    className="rounded-lg border border-border-dark bg-dark-elevated px-4 py-2.5 text-sm text-on-dark transition hover:border-accent hover:text-accent"
-                  >
-                    WhatsApp
-                  </a>
-                  <a
-                    href={personal.resume}
-                    download
-                    onClick={() =>
-                      trackEvent("resume_download", { location: "contact" })
-                    }
-                    className="rounded-lg border border-border-dark bg-dark-elevated px-4 py-2.5 text-sm text-on-dark transition hover:border-accent hover:text-accent"
-                  >
-                    Download Resume
-                  </a>
+                  {channels.map((ch) => (
+                    <TiltCard key={ch.label} intensity={6} lift={6}>
+                      <a
+                        href={ch.href}
+                        target={ch.external ? "_blank" : undefined}
+                        rel={ch.external ? "noopener noreferrer" : undefined}
+                        download={ch.download}
+                        onClick={ch.onClick}
+                        className="inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-border-dark bg-dark-elevated px-4 py-2.5 text-sm text-on-dark transition duration-200 hover:border-accent hover:text-accent"
+                      >
+                        {ch.label}
+                      </a>
+                    </TiltCard>
+                  ))}
                 </div>
               </div>
             </Reveal>
 
-            <Reveal delay={0.08}>
+            <Reveal variant="depth" delay={0.1}>
               {submitted ? (
-                <div
+                <motion.div
                   id="thank-you"
+                  initial={reduced ? false : { opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: DURATION.reveal, ease: EASE.out }}
                   className="rounded-2xl bg-white p-7 text-foreground sm:p-8"
                   role="status"
                 >
@@ -198,6 +247,7 @@ export function ContactSection() {
                   <div className="mt-8 flex flex-wrap gap-3">
                     <Button
                       type="button"
+                      magnetic
                       onClick={() => {
                         setSubmitted(false);
                         setServerMessage(null);
@@ -205,11 +255,11 @@ export function ContactSection() {
                     >
                       Send another message
                     </Button>
-                    <Button href="#work" variant="dark">
+                    <Button href="#work" variant="dark" magnetic>
                       Back to work
                     </Button>
                   </div>
-                </div>
+                </motion.div>
               ) : (
                 <form
                   onSubmit={handleSubmit(onSubmit)}

@@ -81,10 +81,21 @@ export interface WhyHireItem {
 export interface Testimonial {
   id: string;
   name: string;
+  role?: string;
   company?: string;
   project?: string;
   feedback: string;
+  rating?: number;
+  date?: string;
+  verified?: boolean;
+  endorsements?: string[];
   image?: string;
   sourceUrl?: string;
   sourceLabel?: string;
+}
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
 }

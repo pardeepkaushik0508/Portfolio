@@ -3,17 +3,20 @@
 import Image from "next/image";
 import {
   motion,
-  useMotionValue,
-  useSpring,
   useReducedMotion,
+  useTransform,
 } from "framer-motion";
 import { personal } from "@/data/personal";
 import { featuredProjects } from "@/data/projects";
 import type { Project } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { RotatingRoles } from "@/components/motion/RotatingRoles";
-import { TypedHeadline } from "@/components/motion/TypedHeadline";
+import { TextReveal } from "@/components/motion/TextReveal";
+import { Floating, AmbientOrb, Perspective } from "@/components/motion/Floating";
+import { ScrollIndicator } from "@/components/motion/ScrollIndicator";
 import { HeroLines } from "@/components/sections/HeroLines";
+import { usePointerParallax } from "@/hooks/usePointerParallax";
+import { DURATION, EASE } from "@/lib/motion";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -53,13 +56,13 @@ function HeroWorkCard({
         reduced
           ? { duration: 0.4 }
           : {
-              opacity: { duration: 0.55, delay: isLeft ? 0.35 : 0.48 },
-              scale: { duration: 0.55, delay: isLeft ? 0.35 : 0.48 },
+              opacity: { duration: 0.55, delay: isLeft ? 0.55 : 0.7 },
+              scale: { duration: 0.55, delay: isLeft ? 0.55 : 0.7 },
               y: {
                 duration: isLeft ? 5.2 : 6.1,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: isLeft ? 0.6 : 1.1,
+                delay: isLeft ? 0.9 : 1.3,
               },
             }
       }
@@ -71,6 +74,7 @@ function HeroWorkCard({
           : "hero-work-card--right bottom-[7%] right-0 w-[50%] max-w-[230px] translate-x-[12%] lg:translate-x-[22%]",
       )}
       aria-label={`View ${project.title}`}
+      style={{ transformStyle: "preserve-3d" }}
     >
       <div className="hero-work-card__glow" aria-hidden />
       <div className="hero-work-card__shell">
@@ -99,156 +103,234 @@ function HeroWorkCard({
   );
 }
 
+const TECH_SHAPES = [
+  { label: "Next", top: "8%", left: "4%", delay: 0.2 },
+  { label: "React", top: "22%", right: "6%", delay: 0.45 },
+  { label: "Node", bottom: "28%", left: "2%", delay: 0.7 },
+  { label: "WP", bottom: "12%", right: "8%", delay: 0.95 },
+] as const;
+
 export function HeroSection() {
   const reduced = useReducedMotion();
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 60, damping: 18 });
-  const sy = useSpring(my, { stiffness: 60, damping: 18 });
+  const parallax = usePointerParallax({ strength: 18 });
+  const midX = useTransform(parallax.x, (v) => v * 0.55);
+  const midY = useTransform(parallax.y, (v) => v * 0.55);
+  const farX = useTransform(parallax.x, (v) => v * 0.25);
+  const farY = useTransform(parallax.y, (v) => v * 0.25);
+  const nearX = useTransform(parallax.x, (v) => v * 1.15);
+  const nearY = useTransform(parallax.y, (v) => v * 1.15);
+  const rotY = useTransform(parallax.x, (v) => v * 0.35);
+  const rotX = useTransform(parallax.y, (v) => -v * 0.3);
   const [leftPreview, rightPreview] = featuredProjects;
-
-  function onMove(e: React.MouseEvent<HTMLElement>) {
-    if (reduced) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    mx.set(((e.clientX - rect.left) / rect.width - 0.5) * 12);
-    my.set(((e.clientY - rect.top) / rect.height - 0.5) * 10);
-  }
 
   return (
     <section
       id="home"
-      onMouseMove={onMove}
+      onMouseMove={parallax.onMove}
+      onMouseLeave={parallax.onLeave}
       className="relative overflow-hidden bg-dark pt-[var(--header-h)] text-white"
     >
       <div className="hero-glow" aria-hidden />
-      <div className="hero-grid" aria-hidden />
+      <motion.div
+        aria-hidden
+        style={parallax.enabled ? { x: farX, y: farY } : undefined}
+        className="hero-grid will-change-transform"
+      />
       <HeroLines />
 
-      <div className="container-shell relative grid min-h-[calc(100svh-var(--header-h))] items-center gap-12 py-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-12">
-        <div className="relative z-10 max-w-2xl">
+      <AmbientOrb className="-left-24 top-1/4 size-[28rem]" color="primary" />
+      <AmbientOrb
+        className="-right-16 bottom-0 size-[22rem]"
+        color="accent"
+      />
+
+      {/* Floating tech accents — background depth */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] hidden md:block"
+        aria-hidden
+      >
+        {TECH_SHAPES.map((shape, i) => (
+          <Floating
+            key={shape.label}
+            amplitude={6 + i * 2}
+            duration={5.5 + i}
+            delay={shape.delay}
+            rotate={i % 2 === 0 ? 3 : -2}
+            className="absolute"
+            style={{
+              top: "top" in shape ? shape.top : undefined,
+              left: "left" in shape ? shape.left : undefined,
+              right: "right" in shape ? shape.right : undefined,
+              bottom: "bottom" in shape ? shape.bottom : undefined,
+            }}
+          >
+            <motion.span
+              initial={reduced ? false : { opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.55, scale: 1 }}
+              transition={{ delay: 0.8 + shape.delay, duration: 0.6 }}
+              className="hero-tech-chip"
+            >
+              {shape.label}
+            </motion.span>
+          </Floating>
+        ))}
+      </div>
+
+      <div className="container-shell relative grid min-h-[calc(100svh-var(--header-h))] items-center gap-12 py-6 pb-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-12 lg:pb-16">
+        <motion.div
+          style={parallax.enabled ? { x: midX, y: midY } : undefined}
+          className="relative z-10 max-w-2xl will-change-transform"
+        >
           <motion.p
-            initial={reduced ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            initial={reduced ? false : { opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: DURATION.reveal, ease: EASE.out }}
             className="font-display text-[clamp(1.65rem,3.2vw,1.5rem)] font-bold tracking-[-0.04em] text-white"
           >
             {personal.name}
           </motion.p>
 
           <motion.p
-            initial={reduced ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.04 }}
+            initial={reduced ? false : { opacity: 0, clipPath: "inset(0 100% 0 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+            transition={{ duration: 0.7, delay: 0.12, ease: EASE.out }}
             className="mt-2 font-mono text-[12px] uppercase tracking-[0.16em] text-accent"
           >
             {personal.title} · {personal.location}
           </motion.p>
 
-          <motion.div
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.08 }}
-            className="mt-6 max-w-[36rem]"
-          >
-            <TypedHeadline
-              text={personal.headline}
-              className="font-display text-[clamp(2rem,4.6vw,2.8rem)] font-bold leading-[1.08] tracking-[-0.045em]"
-              delay={400}
-              charMs={24}
-            />
-          </motion.div>
+          <div className="mt-6 max-w-[36rem]">
+            {reduced ? (
+              <h1 className="font-display text-[clamp(2rem,4.6vw,2.8rem)] font-bold leading-[1.08] tracking-[-0.045em]">
+                {personal.headline}
+              </h1>
+            ) : (
+              <TextReveal
+                text={personal.headline}
+                as="h1"
+                mode="words"
+                delay={0.2}
+                className="font-display text-[clamp(2rem,4.6vw,2.8rem)] font-bold leading-[1.08] tracking-[-0.045em]"
+              />
+            )}
+          </div>
 
           <motion.p
-            initial={reduced ? false : { opacity: 0, y: 18 }}
+            initial={reduced ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.16 }}
+            transition={{ duration: 0.65, delay: 0.55, ease: EASE.out }}
             className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-on-dark-muted md:text-lg"
           >
             {personal.supportingCopy}
           </motion.p>
 
           <motion.div
-            initial={reduced ? false : { opacity: 0, y: 16 }}
+            initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.24 }}
-            className="mt-9 flex flex-wrap items-center gap-3"
+            transition={{ duration: 0.55, delay: 0.72, ease: EASE.out }}
+            className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center"
           >
             <Button
-              href="#work"
-              magnetic
-              onClick={() => trackEvent("hero_cta_click", { cta: "view_work" })}
-            >
-              View Selected Work
-            </Button>
-            <Button
               href="#contact"
-              variant="secondary"
               magnetic
+              className="w-full justify-center sm:w-auto"
               onClick={() => trackEvent("hero_cta_click", { cta: "discuss" })}
             >
               Discuss Your Project
             </Button>
+            <Button
+              href="#work"
+              variant="secondary"
+              magnetic
+              className="w-full justify-center sm:w-auto"
+              onClick={() => trackEvent("hero_cta_click", { cta: "view_work" })}
+            >
+              View Selected Work
+            </Button>
           </motion.div>
 
           <motion.div
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.32 }}
-            className="mt-8 inline-flex items-center gap-2.5 text-sm text-on-dark-muted"
+            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.9, duration: 0.45 }}
+            className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-sm text-on-dark-muted"
           >
-            <span className="size-2 rounded-full bg-success" aria-hidden />
+            <span className="relative flex size-2" aria-hidden>
+              <span className="absolute inline-flex size-full rounded-full bg-success opacity-40 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2 rounded-full bg-success" />
+            </span>
             {personal.availability}
           </motion.div>
-        </div>
-
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 36, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          style={reduced ? undefined : { x: sx, y: sy }}
-          className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end"
-        >
-          <div className="relative px-2 sm:px-6 lg:px-8">
-            <div
-              className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/20 blur-xl"
-              aria-hidden
-            />
-
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.15rem] border border-border-dark bg-dark-elevated shadow-[0_40px_90px_rgba(0,0,0,0.45)]">
-              <Image
-                src={personal.profileImage}
-                alt="Pardeep Kaushik, full-stack web developer"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 520px"
-                className="scale-[1.05] object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-90" />
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                <p className="font-display text-lg font-bold tracking-tight">
-                  {personal.name}
-                </p>
-                <RotatingRoles />
-              </div>
-            </div>
-
-            {leftPreview ? (
-              <HeroWorkCard
-                project={leftPreview}
-                side="left"
-                reduced={reduced}
-              />
-            ) : null}
-            {rightPreview ? (
-              <HeroWorkCard
-                project={rightPreview}
-                side="right"
-                reduced={reduced}
-              />
-            ) : null}
-          </div>
         </motion.div>
+
+        <Perspective className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end">
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 48, rotateX: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+            transition={{
+              duration: DURATION.hero,
+              delay: 0.28,
+              ease: EASE.out,
+            }}
+            style={
+              parallax.enabled
+                ? { x: nearX, y: nearY, rotateX: rotX, rotateY: rotY }
+                : undefined
+            }
+            className="relative will-change-transform"
+          >
+            <div className="relative px-2 sm:px-6 lg:px-8">
+              <div
+                className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/20 blur-xl"
+                aria-hidden
+              />
+
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.15rem] border border-border-dark bg-dark-elevated shadow-[0_40px_90px_rgba(0,0,0,0.45)]">
+                <Image
+                  src={personal.profileImage}
+                  alt="Pardeep Kaushik, full-stack web developer"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 520px"
+                  className="scale-[1.05] object-cover object-[50%_18%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-90" />
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-40"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse 60% 40% at 70% 20%, rgba(15,118,110,0.35), transparent)",
+                  }}
+                  aria-hidden
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <p className="font-display text-lg font-bold tracking-tight">
+                    {personal.name}
+                  </p>
+                  <RotatingRoles />
+                </div>
+              </div>
+
+              {leftPreview ? (
+                <HeroWorkCard
+                  project={leftPreview}
+                  side="left"
+                  reduced={reduced}
+                />
+              ) : null}
+              {rightPreview ? (
+                <HeroWorkCard
+                  project={rightPreview}
+                  side="right"
+                  reduced={reduced}
+                />
+              ) : null}
+            </div>
+          </motion.div>
+        </Perspective>
       </div>
+
+      <ScrollIndicator href="#work" className="hidden sm:flex" />
     </section>
   );
 }
