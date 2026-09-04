@@ -13,7 +13,7 @@ export const services: ServiceItem[] = [
       "VPS deployment and handoff",
     ],
     relevantProject: "UtilityTools",
-    relevantProjectHref: "/#case-utilitytools",
+    relevantProjectHref: "/work/utilitytools",
   },
   {
     id: "wordpress",
@@ -27,7 +27,7 @@ export const services: ServiceItem[] = [
       "WordPress speed optimization",
     ],
     relevantProject: "Placid Technologies",
-    relevantProjectHref: "/#more-projects",
+    relevantProjectHref: "/work/placid-technologies",
   },
   {
     id: "shopify",
@@ -41,7 +41,7 @@ export const services: ServiceItem[] = [
       "Shopify speed optimization",
     ],
     relevantProject: "Talwar Sons",
-    relevantProjectHref: "/#case-talwarsons",
+    relevantProjectHref: "/work/talwarsons",
   },
   {
     id: "redesign",
@@ -69,6 +69,6 @@ export const services: ServiceItem[] = [
       "Shopify bugs that hurt load time",
     ],
     relevantProject: "Upwork speed projects",
-    relevantProjectHref: "/reviews",
+    relevantProjectHref: "/website-speed-optimization",
   },
 ];

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { personal } from "@/data/personal";
 
 export function AuthorBlock() {
@@ -9,13 +10,23 @@ export function AuthorBlock() {
       <div className="blog-author__inner">
         <p className="blog-kicker">Author</p>
         <p className="blog-author__name">{personal.name}</p>
-        <p className="blog-author__role">Full Stack Developer</p>
+        <p className="blog-author__role">
+          Full Stack, WordPress & Shopify Developer
+        </p>
         <p className="blog-author__bio">
           Based in {personal.location}. Builds business websites and web
-          applications with WordPress, Shopify, React, Next.js and Node.js—
-          from planning and development through deployment and support.
+          applications with WordPress, Elementor, WooCommerce, Shopify Liquid,
+          React, Next.js and Node.js—from planning and development through
+          deployment and support.
         </p>
         <div className="blog-author__links">
+          <a
+            href={personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
           <a
             href={personal.linkedin}
             target="_blank"
@@ -24,7 +35,7 @@ export function AuthorBlock() {
             LinkedIn
           </a>
           <a href={`mailto:${personal.email}`}>Email</a>
-          <a href="/#contact">Contact</a>
+          <Link href="/contact">Contact</Link>
         </div>
       </div>
     </section>

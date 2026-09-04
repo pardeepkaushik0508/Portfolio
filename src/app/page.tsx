@@ -16,54 +16,26 @@ import { personal, seo } from "@/data/personal";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { faqs } from "@/data/faqs";
+import {
+  BUSINESS_ID,
+  faqPageJsonLd,
+  jsonLdScript,
+  personJsonLd,
+  PERSON_ID,
+  websiteJsonLd,
+  webPageJsonLd,
+} from "@/lib/schema";
 import { absoluteUrl, getSiteUrl } from "@/lib/utils";
 
 export default function HomePage() {
   const siteUrl = getSiteUrl();
   const featured = projects.filter((p) => p.featured);
 
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${siteUrl}/#person`,
-    name: personal.name,
-    givenName: "Pardeep",
-    familyName: "Kaushik",
-    jobTitle: personal.title,
-    description: seo.description,
-    email: personal.email,
-    telephone: personal.phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Chandigarh",
-      addressRegion: "Chandigarh",
-      addressCountry: "IN",
-    },
-    url: siteUrl,
-    image: absoluteUrl(personal.profileImage),
-    sameAs: [personal.linkedin, personal.github, personal.upwork],
-    knowsAbout: [
-      "Full Stack Development",
-      "React",
-      "Next.js",
-      "Node.js",
-      "WordPress",
-      "Shopify",
-      "WooCommerce",
-      "VPS Deployment",
-      "Website Performance Optimization",
-    ],
-    worksFor: {
-      "@type": "Organization",
-      name: `${personal.name} Freelance`,
-    },
-  };
-
-  const serviceJsonLd = {
+  const professionalServiceJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": `${siteUrl}/#business`,
-    name: `${personal.name} — Full Stack Web Development`,
+    "@id": BUSINESS_ID(),
+    name: `${personal.name} — Full Stack, WordPress & Shopify Development`,
     description: seo.description,
     url: siteUrl,
     image: absoluteUrl(personal.profileImage),
@@ -80,7 +52,8 @@ export default function HomePage() {
       addressLocality: "Chandigarh",
       addressCountry: "IN",
     },
-    founder: { "@id": `${siteUrl}/#person` },
+    founder: { "@id": PERSON_ID() },
+    provider: { "@id": PERSON_ID() },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Web development services",
@@ -96,22 +69,6 @@ export default function HomePage() {
     },
   };
 
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": `${siteUrl}/#website`,
-    name: `${personal.name} Portfolio`,
-    url: siteUrl,
-    description: seo.description,
-    inLanguage: "en-IN",
-    publisher: { "@id": `${siteUrl}/#person` },
-    potentialAction: {
-      "@type": "CommunicateAction",
-      target: `${siteUrl}/#contact`,
-      name: "Contact Pardeep Kaushik",
-    },
-  };
-
   const portfolioJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -122,59 +79,35 @@ export default function HomePage() {
       "@type": "ListItem",
       position: index + 1,
       name: project.title,
-      url: project.url ?? `${siteUrl}/#case-${project.id}`,
+      url: absoluteUrl(`/work/${project.id}`),
       description: project.description,
     })),
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
+  const schemas = [
+    personJsonLd(),
+    websiteJsonLd(),
+    webPageJsonLd({
+      path: "/",
+      name: seo.title,
+      description: seo.description,
+    }),
+    professionalServiceJsonLd,
+    portfolioJsonLd,
+    faqPageJsonLd(faqs),
+  ];
 
   return (
     <main id="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(portfolioJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(schema)}
+        />
+      ))}
       <HeroSection />
       <TrustStrip />
-      {/* Jasmine-style flow: who → what I build → services → why → process → proof */}
       <AboutSection />
       <PillarsSection />
       <ServicesSection />

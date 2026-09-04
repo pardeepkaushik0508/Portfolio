@@ -14,7 +14,7 @@ const pillars = [
     blurb:
       "Business websites, Elementor website design and WooCommerce stores that stay easy to manage.",
     image: "/images/projects/cactusjackpc.webp",
-    href: "/services",
+    href: "/wordpress-developer",
   },
   {
     id: "shopify",
@@ -23,7 +23,7 @@ const pillars = [
     blurb:
       "Shopify website design, store setup and theme work built to convert on mobile and desktop.",
     image: "/images/projects/talwarsons.webp",
-    href: "/services",
+    href: "/shopify-developer",
   },
   {
     id: "speed",
@@ -32,7 +32,7 @@ const pillars = [
     blurb:
       "WordPress and Shopify speed optimization plus Core Web Vitals—without changing your layout.",
     image: "/images/banners/wordpress-speed.webp",
-    href: "/services",
+    href: "/website-speed-optimization",
   },
   {
     id: "fullstack",
@@ -41,7 +41,7 @@ const pillars = [
     blurb:
       "React, Next.js and Node.js when a custom SaaS product fits better than a website builder.",
     image: "/images/projects/utilitytools.webp",
-    href: "/services",
+    href: "/full-stack-developer",
   },
 ];
 

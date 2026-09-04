@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getAllPostMetas, getPostsByCategory, POSTS_PER_PAGE } from "@/lib/blog";
 import { BLOG_CATEGORIES } from "@/lib/blog-types";
+import { getAllServiceSlugs } from "@/data/service-landings";
+import { projects } from "@/data/projects";
 import { getSiteUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,13 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/services`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${siteUrl}/about`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.85,
+      priority: 0.9,
     },
     {
       url: `${siteUrl}/experience`,
@@ -71,6 +73,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
     },
   ];
+
+  for (const slug of getAllServiceSlugs()) {
+    entries.push({
+      url: `${siteUrl}/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.92,
+    });
+  }
+
+  for (const project of projects) {
+    entries.push({
+      url: `${siteUrl}/work/${project.id}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: project.featured ? 0.88 : 0.7,
+    });
+  }
 
   for (let page = 2; page <= totalPages; page += 1) {
     entries.push({

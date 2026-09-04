@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   authors: [{ name: personal.name, url: siteUrl }],
   creator: personal.name,
   publisher: personal.name,
-  applicationName: `${personal.name} — Full Stack Developer Portfolio`,
+  applicationName: `${personal.name} — Full Stack, WordPress & Shopify Developer`,
   referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
         url: absoluteUrl(personal.profileImage),
         width: 900,
         height: 900,
-        alt: `${personal.name} — Full Stack Developer in Chandigarh`,
+        alt: `${personal.name} — Full Stack, WordPress and Shopify Developer`,
       },
     ],
   },

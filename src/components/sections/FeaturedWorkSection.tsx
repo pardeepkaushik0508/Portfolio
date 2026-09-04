@@ -173,8 +173,18 @@ function CaseStudy({
               </Button>
             ) : null}
             <Button
-              href="#contact"
+              href={`/work/${project.id}`}
               variant="dark"
+              magnetic
+              onClick={() =>
+                trackEvent("case_study_view", { project: project.id })
+              }
+            >
+              Read Case Study
+            </Button>
+            <Button
+              href="#contact"
+              variant="ghost"
               magnetic
               onClick={() =>
                 trackEvent("case_study_view", { project: project.id })

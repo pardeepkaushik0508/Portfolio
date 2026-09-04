@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { moreProjects, projectCollections } from "@/data/projects";
 import { personal } from "@/data/personal";
 import type { ProjectCategory } from "@/types";
@@ -82,13 +82,11 @@ export function MoreProjectsSection() {
             >
               {filtered.map((project, i) => {
                 const isDisabled = Boolean(project.disabled);
-                const hasUrl = Boolean(project.url) && !isDisabled;
-                const CardTag = hasUrl ? "a" : "div";
-                const linkProps = hasUrl
+                const caseHref = `/work/${project.id}`;
+                const CardTag = isDisabled ? "div" : "a";
+                const linkProps = !isDisabled
                   ? {
-                      href: project.url!,
-                      target: "_blank" as const,
-                      rel: "noopener noreferrer",
+                      href: caseHref,
                       onClick: () =>
                         trackEvent("project_view", {
                           project: project.id,
@@ -112,7 +110,7 @@ export function MoreProjectsSection() {
                         aria-disabled={isDisabled || undefined}
                         className={cn(
                           "surface-card group flex h-full flex-col overflow-hidden bg-white !transform-none",
-                          hasUrl ? "cursor-pointer" : "cursor-default",
+                          !isDisabled ? "cursor-pointer" : "cursor-default",
                           isDisabled && "opacity-70 grayscale-[0.35]",
                         )}
                       >
@@ -188,16 +186,16 @@ export function MoreProjectsSection() {
                               ))}
                             </ul>
                           ) : null}
-                          {hasUrl ? (
-                            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                              Visit website
-                              <ExternalLink className="size-3.5" aria-hidden />
-                            </span>
-                          ) : isDisabled ? (
+                          {isDisabled ? (
                             <span className="mt-4 text-sm font-medium text-muted">
                               Website temporarily unavailable
                             </span>
-                          ) : null}
+                          ) : (
+                            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                              View case study
+                              <ArrowUpRight className="size-3.5" aria-hidden />
+                            </span>
+                          )}
                         </div>
                       </CardTag>
                     </TiltCard>

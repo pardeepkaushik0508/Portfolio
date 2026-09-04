@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { personal, seo } from "@/data/personal";
 import { projects } from "@/data/projects";
-import { services } from "@/data/services";
+import { getAllServiceSlugs, getServiceLanding } from "@/data/service-landings";
 import { absoluteUrl, getSiteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Sitemap | Site Index & Portfolio Sections",
-  description: `Complete sitemap for ${personal.name} — full stack developer in ${personal.location}. Browse work, services, experience, process and contact pages.`,
+  description: `Complete sitemap for ${personal.name} — full stack, WordPress and Shopify developer in ${personal.location}. Browse work, services, experience, process and contact pages.`,
   alternates: { canonical: "/sitemap" },
   openGraph: {
     title: `Sitemap — ${personal.name}`,
@@ -56,6 +56,9 @@ export default function SitemapPage() {
   const siteUrl = getSiteUrl();
   const featured = projects.filter((p) => p.featured);
   const more = projects.filter((p) => !p.featured);
+  const landings = getAllServiceSlugs()
+    .map((slug) => getServiceLanding(slug))
+    .filter(Boolean);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -122,24 +125,26 @@ export default function SitemapPage() {
 
             <div>
               <h2 className="font-display text-xl font-bold tracking-tight text-foreground">
-                Services
+                Service focus pages
               </h2>
               <ul className="mt-4 space-y-3">
-                {services.map((service) => (
-                  <li key={service.id}>
-                    <Link
-                      href="/#services"
-                      className="group block rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-primary/35"
-                    >
-                      <span className="font-medium text-foreground group-hover:text-primary">
-                        {service.title}
-                      </span>
-                      <span className="mt-0.5 block text-sm text-muted">
-                        {service.outcome}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {landings.map((landing) =>
+                  landing ? (
+                    <li key={landing.slug}>
+                      <Link
+                        href={`/${landing.slug}`}
+                        className="group block rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-primary/35"
+                      >
+                        <span className="font-medium text-foreground group-hover:text-primary">
+                          {landing.title}
+                        </span>
+                        <span className="mt-0.5 block text-sm text-muted line-clamp-2">
+                          {landing.metaDescription}
+                        </span>
+                      </Link>
+                    </li>
+                  ) : null,
+                )}
               </ul>
             </div>
           </div>
@@ -152,7 +157,7 @@ export default function SitemapPage() {
               {featured.map((project) => (
                 <li key={project.id}>
                   <Link
-                    href={`/#case-${project.id}`}
+                    href={`/work/${project.id}`}
                     className="group block rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-primary/35"
                   >
                     <span className="font-medium text-foreground group-hover:text-primary">
@@ -175,10 +180,8 @@ export default function SitemapPage() {
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {more.map((project) => (
                 <li key={project.id}>
-                  <a
-                    href={project.url ?? "/#more-projects"}
-                    target={project.url ? "_blank" : undefined}
-                    rel={project.url ? "noopener noreferrer" : undefined}
+                  <Link
+                    href={`/work/${project.id}`}
                     className="group block rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-primary/35"
                   >
                     <span className="font-medium text-foreground group-hover:text-primary">
@@ -187,7 +190,7 @@ export default function SitemapPage() {
                     <span className="mt-0.5 block text-sm capitalize text-muted">
                       {project.category.replace("-", " ")} · {project.role}
                     </span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

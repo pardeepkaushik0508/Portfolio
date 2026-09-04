@@ -5,7 +5,7 @@ export const faqs: FaqItem[] = [
     id: "who",
     question: "Who is Pardeep Kaushik?",
     answer:
-      "Pardeep Kaushik is a software developer and WordPress developer based in Chandigarh, India. He helps businesses create websites, build WordPress websites, design Shopify stores and ship Next.js web apps for clients worldwide.",
+      "Pardeep Kaushik is a Full Stack, WordPress and Shopify Developer based in Chandigarh, India. His work includes WordPress, Elementor, WooCommerce, Shopify 2.0, Liquid, React, Next.js, website performance optimization, migrations and API integrations for clients worldwide.",
   },
   {
     id: "services",

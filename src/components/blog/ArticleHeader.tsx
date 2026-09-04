@@ -65,7 +65,7 @@ export function ArticleHeader({
         </p>
         <p>
           By <span>{post.author}</span>
-          <span className="blog-author-role"> · Full Stack Developer</span>
+          <span className="blog-author-role"> · Full Stack, WordPress & Shopify Developer</span>
         </p>
         <BlogViewTracker
           slug={post.slug}

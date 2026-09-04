@@ -3,6 +3,12 @@ import { PageHero } from "@/components/layout/PageHero";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { personal } from "@/data/personal";
+import {
+  breadcrumbJsonLd,
+  jsonLdScript,
+  personJsonLd,
+  webPageJsonLd,
+} from "@/lib/schema";
 import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -19,8 +25,29 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const schemas = [
+    personJsonLd(),
+    webPageJsonLd({
+      path: "/contact",
+      name: "Contact Pardeep Kaushik",
+      description: `Contact ${personal.name} for WordPress, Shopify, full-stack and speed optimization projects.`,
+      type: "ContactPage",
+    }),
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" },
+    ]),
+  ];
+
   return (
     <main id="main">
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(schema)}
+        />
+      ))}
       <PageHero
         eyebrow="Contact"
         title="Free estimate. Sample design. Demo path."

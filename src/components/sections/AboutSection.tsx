@@ -65,7 +65,7 @@ export function AboutSection({
             <Reveal variant="blur" delay={0.05}>
               <p className="eyebrow">About</p>
               <TypedHeading
-                text="WordPress, Shopify and full-stack developer in Chandigarh."
+                text="Full Stack, WordPress and Shopify Developer in Chandigarh."
                 className="section-heading mt-4"
               />
             </Reveal>

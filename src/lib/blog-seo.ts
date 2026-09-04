@@ -116,12 +116,14 @@ export function blogPostingJsonLd(post: BlogPost) {
     datePublished: post.publishedAt,
     dateModified,
     author: {
+      "@id": `${siteUrl}/#person`,
       "@type": "Person",
       name: post.author,
-      jobTitle: "Full Stack Developer",
+      jobTitle: "Full Stack, WordPress & Shopify Developer",
       url: siteUrl,
     },
     publisher: {
+      "@id": `${siteUrl}/#person`,
       "@type": "Person",
       name: personal.name,
       url: siteUrl,
