@@ -41,9 +41,9 @@ export default function BlogPage() {
             Practical guides for building, improving and hiring for websites
           </h1>
           <p className="blog-hero__lead">
-            Notes from real project work across full-stack apps, WordPress,
-            Shopify and WooCommerce—written for business owners and teams in
-            Chandigarh and beyond.
+            Practical web development, WordPress, Shopify, ecommerce and
+            full-stack guides for business owners, founders, ecommerce teams and
+            agencies worldwide.
           </p>
         </div>
       </header>

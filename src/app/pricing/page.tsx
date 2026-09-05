@@ -18,13 +18,13 @@ import {
 import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Web Development Pricing India | WordPress, Shopify & Full Stack",
-  description: `Affordable WordPress, Shopify and full stack packages from ${personal.name} — clear starting prices, timelines and custom quotes for projects in India and worldwide.`,
+  title: "Web Development Pricing | WordPress, Shopify & Full Stack",
+  description: `Transparent starting packages for WordPress websites, Shopify stores and full-stack MVPs from ${personal.name}. View INR or USD estimates, or request a custom quote.`,
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: `Pricing — ${personal.name}`,
+    title: `Web Development Pricing — ${personal.name}`,
     description:
-      "WordPress, Shopify and Full Stack MVP packages with starting prices, compare tables and custom quote options.",
+      "Transparent WordPress, Shopify and Full Stack MVP packages with INR/USD estimates and custom quote options.",
     url: absoluteUrl("/pricing"),
     type: "website",
   },
@@ -35,8 +35,8 @@ export default function PricingPage() {
     personJsonLd(),
     webPageJsonLd({
       path: "/pricing",
-      name: "Web Development Pricing India",
-      description: `Affordable WordPress, Shopify and full stack packages from ${personal.name}.`,
+      name: "Web Development Pricing for WordPress, Shopify & Full Stack",
+      description: `Transparent starting packages for WordPress, Shopify and full-stack MVPs from ${personal.name}.`,
     }),
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -57,20 +57,29 @@ export default function PricingPage() {
 
       <PageHero
         eyebrow="Pricing"
-        title="Affordable web development packages in India"
-        description={`${personal.name} — WordPress, Shopify and Full Stack MVP plans with clear starting prices. Prefer a custom scope? Request a quote below.`}
+        title="Web Development Pricing for WordPress, Shopify & Full Stack"
+        description="Transparent starting packages for WordPress websites, Shopify stores and full-stack MVPs. View INR or USD estimates, or request a custom quote for your project."
       />
 
       <section className="section-shell-tight border-b border-border bg-white">
         <div className="container-shell flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+          <Link href="/wordpress-developer" className="text-primary hover:underline">
+            WordPress developer
+          </Link>
+          <Link href="/shopify-developer" className="text-primary hover:underline">
+            Shopify developer
+          </Link>
+          <Link href="/full-stack-developer" className="text-primary hover:underline">
+            Full stack developer
+          </Link>
+          <Link href="/remote-web-developer" className="text-primary hover:underline">
+            Remote web developer
+          </Link>
           <Link href="/wordpress-developer-india" className="text-primary hover:underline">
             WordPress developer in India
           </Link>
           <Link href="/shopify-developer-india" className="text-primary hover:underline">
             Shopify developer in India
-          </Link>
-          <Link href="/full-stack-developer-india" className="text-primary hover:underline">
-            Full stack developer in India
           </Link>
           <Link href="/services" className="text-primary hover:underline">
             All services

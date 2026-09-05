@@ -66,6 +66,14 @@ export function Footer() {
                   ))}
                   <li>
                     <Link
+                      href="/#work"
+                      className="motion-link-underline cursor-pointer transition duration-200 hover:text-white"
+                    >
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/experience"
                       className="motion-link-underline cursor-pointer transition duration-200 hover:text-white"
                     >

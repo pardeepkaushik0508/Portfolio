@@ -4,6 +4,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import type { ServiceLanding } from "@/data/service-landings";
 import { getServiceLanding } from "@/data/service-landings";
+import { getCapabilitiesCopy } from "@/data/service-capabilities-copy";
 import { projects } from "@/data/projects";
 import { personal } from "@/data/personal";
 import {
@@ -16,6 +17,7 @@ import {
 } from "@/lib/schema";
 
 export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
+  const capabilitiesCopy = getCapabilitiesCopy(landing.slug, landing.title);
   const relatedServices = landing.relatedSlugs
     .map((slug) => getServiceLanding(slug))
     .filter(Boolean) as ServiceLanding[];
@@ -68,13 +70,9 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
         <div className="container-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight">
-              What I deliver
+              {capabilitiesCopy.heading}
             </h2>
-            <p className="mt-3 text-muted">
-              Practical {landing.title.toLowerCase()} capabilities delivered by{" "}
-              {personal.name}—scoped to your brief, staging-first, with clear
-              handoff.
-            </p>
+            <p className="mt-3 text-muted">{capabilitiesCopy.description}</p>
             <ul className="mt-6 space-y-3">
               {landing.capabilities.map((item) => (
                 <li
@@ -158,7 +156,7 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
                     <div className="relative aspect-[16/10] bg-slate-100">
                       <Image
                         src={project.image}
-                        alt={`${project.title} website preview`}
+                        alt={`${project.title} ${project.type ?? project.category} project by ${personal.name}`}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"

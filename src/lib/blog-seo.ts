@@ -10,7 +10,7 @@ export function blogListingMetadata(page = 1): Metadata {
     ? "Web Development Blog"
     : `Web Development Blog — Page ${page}`;
   const description =
-    "Practical guides on full-stack development, WordPress, Shopify, WooCommerce, website performance, technical SEO and hiring web developers.";
+    "Practical web development, WordPress, Shopify, ecommerce and full-stack guides for business owners, founders and agencies worldwide.";
   const path = isFirst ? "/blog" : `/blog/page/${page}`;
 
   return {

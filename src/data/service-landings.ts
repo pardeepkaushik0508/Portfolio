@@ -423,7 +423,7 @@ export const serviceLandings: ServiceLanding[] = [
       "Hire a freelance full stack developer for React/Next.js frontends, Node.js APIs, databases and VPS deployment—remote delivery for businesses worldwide.",
     h1: "Full Stack Developer for Custom Web Apps and Product Sites",
     intro:
-      "As a freelance full stack developer, Pardeep Kaushik builds applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases and production hosting for clients worldwide. For India-focused hiring context, see Full Stack Developer in India.",
+      "I build full-stack applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases, integrations and production deployment. Based in India and available for remote projects worldwide. For India-focused hiring context, see Full Stack Developer in India.",
     capabilities: [
       "React and Next.js application development",
       "Node.js APIs and backend workflows",
@@ -763,7 +763,7 @@ export const serviceLandings: ServiceLanding[] = [
       "Hire a WordPress developer in India—Pardeep Kaushik builds Elementor sites, WooCommerce stores, redesigns, migrations and WordPress speed optimization with clear handoff.",
     h1: "WordPress Developer in India for Business Sites That Stay Editable",
     intro:
-      "Hire Pardeep Kaushik as a WordPress developer in India when you need a business website, Elementor layout, WooCommerce store, redesign or migration—with mobile-ready pages and an admin-friendly structure your team can update.",
+      "Hire Pardeep Kaushik as a WordPress developer in India when you need a business website, Elementor layout, WooCommerce store, redesign or migration—with mobile-ready pages and an admin-friendly structure. WordPress development services for businesses in India and international teams looking for direct freelance development support.",
     capabilities: [
       "WordPress website development from brief to launch",
       "Elementor website design and reusable templates",
@@ -837,7 +837,7 @@ export const serviceLandings: ServiceLanding[] = [
       "Hire a Shopify developer in India—Pardeep Kaushik builds Shopify 2.0 stores, Liquid sections, theme customization, redesigns and Shopify speed optimization.",
     h1: "Shopify Developer in India for Stores That Convert on Mobile",
     intro:
-      "Hire Pardeep Kaushik as a Shopify developer in India for Shopify 2.0 themes, custom Liquid sections, store setup, redesigns and performance work—focused on clear product discovery and mobile shopping.",
+      "Hire Pardeep Kaushik as a Shopify developer in India for Shopify 2.0 themes, custom Liquid sections, store setup, redesigns and performance work. Shopify development services for Indian businesses, ecommerce brands and international clients looking for direct freelance Shopify support.",
     capabilities: [
       "Shopify store setup and theme customization",
       "Shopify 2.0 sections and Liquid development",
@@ -975,19 +975,24 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "wordpress-speed-optimization",
     title: "WordPress Speed Optimization",
-    metaTitle: "WordPress Speed Optimization | Core Web Vitals & PageSpeed",
+    metaTitle:
+      "WordPress Speed Optimization Service | Core Web Vitals",
     metaDescription:
       "WordPress speed optimization service—Core Web Vitals, caching, image and database cleanup, plugin bloat reduction and PageSpeed diagnostics without redesigning your site.",
-    h1: "WordPress Speed Optimization for Faster Core Web Vitals",
+    h1: "WordPress Speed Optimization Service",
     intro:
-      "Slow WordPress sites lose leads. Pardeep Kaushik provides WordPress speed optimization focused on Core Web Vitals, caching, media, JavaScript/CSS weight, hosting factors and WooCommerce performance—keeping your visual design intact.",
+      "Slow WordPress sites lose leads. This WordPress speed optimization service focuses on Core Web Vitals, caching, media, CSS/JavaScript weight, plugin bloat, database hygiene, theme performance, hosting factors and WooCommerce speed—keeping your visual design intact.",
     capabilities: [
-      "PageSpeed Insights baselines and priority fixes",
-      "Caching, CDN and image optimization",
-      "Database cleanup and plugin bloat reduction",
-      "JavaScript/CSS delivery improvements",
+      "WordPress performance audit with PageSpeed baselines",
+      "Core Web Vitals improvements (LCP, INP, CLS)",
+      "Image optimization and priority loading for heroes",
+      "Caching and CDN strategy",
+      "CSS and JavaScript delivery cleanup",
+      "Plugin bloat reduction and conflict review",
+      "Database cleanup and autoload hygiene",
+      "Theme and Elementor performance fixes",
+      "WooCommerce catalogue, product and cart performance",
       "Hosting and server factor review",
-      "WooCommerce performance hygiene",
     ],
     technologies: [
       "WordPress",
@@ -1004,22 +1009,23 @@ export const serviceLandings: ServiceLanding[] = [
       "Unoptimized product or hero imagery",
       "Render-blocking scripts from plugins",
       "Slow WooCommerce catalogue or cart pages",
+      "Hosting or TTFB holding back otherwise clean templates",
     ],
     process: [
       {
-        title: "Diagnose",
+        title: "Performance audit",
         description:
-          "Capture before metrics on critical URLs and identify the highest-impact bottlenecks.",
+          "Capture before metrics on critical URLs and identify the highest-impact bottlenecks across theme, plugins, media and hosting.",
       },
       {
-        title: "Optimize",
+        title: "Prioritized optimization",
         description:
-          "Apply caching, media, template and plugin fixes in a controlled order on staging when possible.",
+          "Apply caching, media, template, CSS/JS and plugin fixes in a controlled order on staging when possible.",
       },
       {
         title: "Validate & handoff",
         description:
-          "Re-measure Core Web Vitals, document what changed and share maintenance recommendations.",
+          "Re-measure Core Web Vitals, document what changed and share maintenance recommendations—without promising a specific score.",
       },
     ],
     relatedSlugs: [
@@ -1028,13 +1034,15 @@ export const serviceLandings: ServiceLanding[] = [
       "woocommerce-developer",
       "elementor-developer",
       "wordpress-migration",
+      "figma-to-wordpress",
+      "remote-web-developer",
     ],
     relatedProjectIds: ["placid-technologies", "cactusjack-pc", "shur-tite"],
     faqs: [
       {
         question: "What is included in WordPress speed optimization?",
         answer:
-          "Typical work covers Core Web Vitals review, caching, image strategy, CSS/JS cleanup, plugin/theme weight and hosting-related factors that affect LCP, INP and CLS.",
+          "Typical work covers a performance audit, Core Web Vitals review, caching, image strategy, CSS/JS cleanup, plugin/theme weight, database hygiene and hosting-related factors that affect LCP, INP and CLS.",
       },
       {
         question: "Will you redesign my WordPress site?",
@@ -1047,28 +1055,37 @@ export const serviceLandings: ServiceLanding[] = [
           "Yes. WooCommerce-specific performance issues such as heavy product templates, scripts and media are included when relevant.",
       },
       {
+        question: "Do you guarantee a 100 PageSpeed score?",
+        answer:
+          "No. Scores depend on hosting, third-party scripts and content. Work focuses on measurable improvements and practical bottlenecks—not vanity guarantees.",
+      },
+      {
         question: "How do you measure improvement?",
         answer:
-          "Before/after PageSpeed Insights or similar diagnostics on agreed URLs, plus practical notes on what still depends on hosting or third-party scripts.",
+          "Before/after PageSpeed Insights or similar diagnostics on agreed URLs, plus notes on what still depends on hosting or third-party scripts.",
       },
     ],
   },
   {
     slug: "shopify-speed-optimization",
     title: "Shopify Speed Optimization",
-    metaTitle: "Shopify Speed Optimization | Faster Storefront Performance",
+    metaTitle:
+      "Shopify Speed Optimization Service | Faster Storefronts",
     metaDescription:
-      "Shopify speed optimization for theme and app weight, image strategy and Core Web Vitals—speed up your Shopify store without changing your brand design.",
-    h1: "Shopify Speed Optimization for Faster Storefronts",
+      "Shopify speed optimization service for theme and app weight, Liquid performance, image strategy and Core Web Vitals—speed up your Shopify store without changing your brand design.",
+    h1: "Shopify Speed Optimization Service",
     intro:
-      "Shopify stores slow down when themes, apps and media pile up. This service focuses on Shopify performance optimization—theme/app weight, Liquid and asset delivery, image strategy and Core Web Vitals—so product discovery stays fast on mobile.",
+      "Shopify stores slow down when themes, apps and media pile up. This Shopify speed optimization service focuses on performance audits, theme code, Liquid weight, third-party apps, product imagery, JavaScript delivery, Core Web Vitals, mobile templates and Shopify 2.0 theme hygiene—so product discovery stays fast.",
     capabilities: [
-      "Shopify theme performance audit",
-      "App and script weight reduction guidance",
-      "Image and media delivery improvements",
-      "Liquid/template cleanup where needed",
+      "Shopify performance audit on product and collection URLs",
+      "Theme code and asset delivery cleanup",
+      "Liquid and template performance improvements",
+      "Third-party app and script weight reduction guidance",
+      "Product and collection image optimization",
+      "JavaScript deferral and main-thread hygiene",
       "Core Web Vitals focused fixes",
-      "Before/after PageSpeed diagnostics",
+      "Mobile storefront performance checks",
+      "Shopify 2.0 section and theme optimization",
     ],
     technologies: [
       "Shopify",
@@ -1083,28 +1100,32 @@ export const serviceLandings: ServiceLanding[] = [
       "Too many apps injecting scripts",
       "Unoptimized product photography",
       "Theme customizations that hurt LCP",
+      "Heavy Liquid loops or global script includes",
     ],
     process: [
       {
-        title: "Measure",
-        description: "Baseline critical storefront URLs and identify heavy assets/apps.",
+        title: "Storefront audit",
+        description:
+          "Baseline critical storefront URLs and identify heavy assets, apps and theme bottlenecks.",
       },
       {
-        title: "Fix",
+        title: "Theme & media fixes",
         description:
-          "Prioritize theme, media and script changes that improve load without breaking checkout.",
+          "Prioritize theme, Liquid, media and script changes that improve load without breaking checkout.",
       },
       {
-        title: "Report",
+        title: "Report & next steps",
         description:
-          "Share after metrics and practical recommendations for apps you keep.",
+          "Share after metrics and practical recommendations for apps and theme habits you keep.",
       },
     ],
     relatedSlugs: [
       "shopify-developer",
-      "shopify-theme-development",
       "shopify-liquid-developer",
+      "shopify-theme-development",
+      "figma-to-shopify",
       "website-speed-optimization",
+      "remote-web-developer",
     ],
     relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
     faqs: [
@@ -1122,6 +1143,11 @@ export const serviceLandings: ServiceLanding[] = [
         question: "Is this the same as a Shopify redesign?",
         answer:
           "No. Speed work keeps brand and layout unless you also request theme redesign or new sections.",
+      },
+      {
+        question: "Do you guarantee a specific PageSpeed score?",
+        answer:
+          "No. Shopify apps, media and third-party scripts affect scores. Engagements target measurable storefront improvements, not guaranteed lab scores.",
       },
     ],
   },
@@ -1202,10 +1228,10 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "figma-to-wordpress",
     title: "Figma to WordPress",
-    metaTitle: "Figma to WordPress | Pixel-Perfect Elementor Development",
+    metaTitle: "Figma to WordPress | Elementor & Custom Development",
     metaDescription:
-      "Convert Figma to WordPress with Elementor or custom templates—pixel-aware, responsive WordPress development from your design files.",
-    h1: "Figma to WordPress Development That Stays Editable",
+      "Convert Figma to WordPress with Elementor or custom templates—responsive, editable WordPress development from your design files.",
+    h1: "Figma to WordPress Development",
     intro:
       "Convert Figma designs into WordPress websites that look intentional and remain editable. Delivery can use Elementor or theme templates—focused on spacing, typography, mobile breakpoints and practical editor handoff.",
     capabilities: [
@@ -1251,6 +1277,7 @@ export const serviceLandings: ServiceLanding[] = [
       "wordpress-developer",
       "elementor-developer",
       "wordpress-website-design",
+      "wordpress-speed-optimization",
       "figma-to-shopify",
     ],
     relatedProjectIds: ["placid-technologies", "cactusjack-pc", "cannyheads"],
@@ -1275,10 +1302,10 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "figma-to-shopify",
     title: "Figma to Shopify",
-    metaTitle: "Figma to Shopify | Custom Liquid Theme Implementation",
+    metaTitle: "Figma to Shopify | Liquid & Shopify 2.0 Implementation",
     metaDescription:
       "Convert Figma to Shopify with custom Liquid sections and Shopify 2.0 templates—hire a Figma Shopify developer for brand-accurate storefronts.",
-    h1: "Figma to Shopify Theme Implementation",
+    h1: "Figma to Shopify Development",
     intro:
       "Turn Figma storefront designs into Shopify sections and templates. Delivery focuses on Liquid, Shopify 2.0 architecture and responsive merchandising so collection and product pages match the brand story.",
     capabilities: [
@@ -1323,8 +1350,9 @@ export const serviceLandings: ServiceLanding[] = [
     ],
     relatedSlugs: [
       "shopify-developer",
-      "shopify-theme-development",
       "shopify-liquid-developer",
+      "shopify-theme-development",
+      "shopify-speed-optimization",
       "figma-to-wordpress",
     ],
     relatedProjectIds: ["talwarsons", "getboldify"],
@@ -1340,7 +1368,7 @@ export const serviceLandings: ServiceLanding[] = [
           "Yes. Theme edit access (or a duplicate development theme) is required for safe implementation.",
       },
       {
-        question: "Can you match pixel-perfect designs?",
+        question: "Can you match designs closely from Figma?",
         answer:
           "Delivery aims for faithful visual and spacing fidelity within Shopify constraints, with responsive adjustments agreed during review.",
       },
