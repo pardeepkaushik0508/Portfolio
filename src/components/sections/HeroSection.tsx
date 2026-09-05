@@ -159,7 +159,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.12, ease: EASE.out }}
             className="mt-2 font-mono text-[12px] uppercase tracking-[0.16em] text-accent"
           >
-            {personal.title} · {personal.location}
+            {personal.brandLine}
           </motion.p>
 
           <div className="mt-6 max-w-[36rem]">
@@ -187,6 +187,23 @@ export function HeroSection() {
             {personal.supportingCopy}
           </motion.p>
 
+          <motion.ul
+            initial={reduced ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.62, ease: EASE.out }}
+            className="mt-5 flex max-w-xl flex-wrap gap-2"
+            aria-label="Primary services"
+          >
+            {personal.heroServices.map((service) => (
+              <li
+                key={service}
+                className="rounded-md border border-white/12 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-on-dark-muted"
+              >
+                {service}
+              </li>
+            ))}
+          </motion.ul>
+
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -197,9 +214,9 @@ export function HeroSection() {
               href="#contact"
               magnetic
               className="w-full justify-center sm:w-auto"
-              onClick={() => trackEvent("hero_cta_click", { cta: "discuss" })}
+              onClick={() => trackEvent("hero_cta_click", { cta: "estimate" })}
             >
-              Discuss Your Project
+              Get a Free Project Estimate
             </Button>
             <Button
               href="#work"
@@ -208,7 +225,7 @@ export function HeroSection() {
               className="w-full justify-center sm:w-auto"
               onClick={() => trackEvent("hero_cta_click", { cta: "view_work" })}
             >
-              View Selected Work
+              View My Work
             </Button>
           </motion.div>
 

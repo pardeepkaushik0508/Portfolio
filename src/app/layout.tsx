@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   authors: [{ name: personal.name, url: siteUrl }],
   creator: personal.name,
   publisher: personal.name,
-  applicationName: `${personal.name} — Full Stack Developer in India`,
+  applicationName: `${personal.name} — Full Stack, WordPress & Shopify Developer`,
   referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
@@ -62,7 +62,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_IN",
+    locale: "en_US",
+    alternateLocale: ["en_GB", "en_AU", "en_CA", "en_IN"],
     url: siteUrl,
     title: seo.ogTitle,
     description: seo.ogDescription,
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
         url: absoluteUrl(personal.profileImage),
         width: 900,
         height: 900,
-        alt: `${personal.name}, Full Stack Developer in India`,
+        alt: `${personal.name}, Full Stack, WordPress and Shopify developer`,
       },
     ],
   },
@@ -95,6 +96,18 @@ export const metadata: Metadata = {
   },
   category: "technology",
   classification: "Portfolio, Web Development, Freelance Services",
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? {
+          other: {
+            "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+          },
+        }
+      : {}),
+  },
   other: {
     "geo.region": "IN-CH",
     "geo.placename": "Chandigarh",

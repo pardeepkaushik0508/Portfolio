@@ -11,13 +11,10 @@ export function AuthorBlock() {
         <p className="blog-kicker">Author</p>
         <p className="blog-author__name">{personal.name}</p>
         <p className="blog-author__role">
-          Full Stack Developer in India
+          Full Stack, WordPress & Shopify Developer
         </p>
         <p className="blog-author__bio">
-          Based in {personal.location}. Builds business websites and web
-          applications with WordPress, Elementor, WooCommerce, Shopify Liquid,
-          React, Next.js and Node.js—from planning and development through
-          deployment and support.
+          {personal.expertBio}
         </p>
         <div className="blog-author__links">
           <a

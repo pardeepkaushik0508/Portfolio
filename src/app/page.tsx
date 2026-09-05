@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { PillarsSection } from "@/components/sections/PillarsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { WhyHireSection } from "@/components/sections/WhyHireSection";
+import { GlobalTrustSection } from "@/components/sections/GlobalTrustSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
 import { MoreProjectsSection } from "@/components/sections/MoreProjectsSection";
@@ -27,6 +29,23 @@ import {
 } from "@/lib/schema";
 import { absoluteUrl, getSiteUrl } from "@/lib/utils";
 
+export const metadata: Metadata = {
+  title: { absolute: seo.title },
+  description: seo.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: seo.ogTitle,
+    description: seo.ogDescription,
+    url: absoluteUrl("/"),
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seo.ogTitle,
+    description: seo.ogDescription,
+  },
+};
+
 export default function HomePage() {
   const siteUrl = getSiteUrl();
   const featured = projects.filter((p) => p.featured);
@@ -43,9 +62,9 @@ export default function HomePage() {
     email: personal.email,
     priceRange: "$$",
     areaServed: [
-      { "@type": "City", name: "Chandigarh" },
-      { "@type": "Country", name: "India" },
       { "@type": "Place", name: "Worldwide" },
+      { "@type": "Country", name: "India" },
+      { "@type": "City", name: "Chandigarh" },
     ],
     address: {
       "@type": "PostalAddress",
@@ -112,6 +131,7 @@ export default function HomePage() {
       <PillarsSection />
       <ServicesSection />
       <WhyHireSection />
+      <GlobalTrustSection />
       <ProcessSection />
       <FeaturedWorkSection />
       <MoreProjectsSection />

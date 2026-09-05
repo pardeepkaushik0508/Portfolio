@@ -3,7 +3,13 @@ import type { Project } from "@/types";
 const platformLabel: Record<Project["category"], string> = {
   wordpress: "WordPress",
   shopify: "Shopify",
-  "full-stack": "Custom full-stack web application",
+  "full-stack": "custom full-stack web application",
+};
+
+const seoTitleSuffix: Record<Project["category"], string> = {
+  wordpress: "WordPress Website Development",
+  shopify: "Shopify Ecommerce Development",
+  "full-stack": "Full Stack Next.js Application Development",
 };
 
 const relatedByCategory: Record<
@@ -15,20 +21,22 @@ const relatedByCategory: Record<
     { href: "/wordpress-website-design", label: "WordPress Website Design" },
     { href: "/elementor-developer", label: "Elementor Developer" },
     { href: "/woocommerce-developer", label: "WooCommerce Developer" },
+    { href: "/figma-to-wordpress", label: "Figma to WordPress" },
     { href: "/wordpress-migration", label: "WordPress Migration" },
-    { href: "/website-speed-optimization", label: "Website Speed Optimization" },
+    { href: "/wordpress-speed-optimization", label: "WordPress Speed Optimization" },
   ],
   shopify: [
     { href: "/shopify-developer", label: "Shopify Developer" },
     { href: "/shopify-liquid-developer", label: "Shopify Liquid Developer" },
-    { href: "/website-speed-optimization", label: "Website Speed Optimization" },
-    { href: "/api-integration", label: "API Integration" },
+    { href: "/shopify-theme-development", label: "Shopify Theme Development" },
+    { href: "/figma-to-shopify", label: "Figma to Shopify" },
+    { href: "/shopify-speed-optimization", label: "Shopify Speed Optimization" },
   ],
   "full-stack": [
     { href: "/full-stack-developer", label: "Full Stack Developer" },
+    { href: "/saas-mvp-development", label: "SaaS MVP Development" },
     { href: "/api-integration", label: "API Integration" },
-    { href: "/website-speed-optimization", label: "Website Speed Optimization" },
-    { href: "/wordpress-developer", label: "WordPress Developer" },
+    { href: "/remote-web-developer", label: "Remote Web Developer" },
   ],
 };
 
@@ -105,6 +113,7 @@ export function getCaseStudyExtras(project: Project) {
 
   return {
     platform,
+    seoTitle: `${project.title} — ${seoTitleSuffix[project.category]}`,
     overview,
     requirements,
     challenge,

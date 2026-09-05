@@ -275,7 +275,7 @@ export function FeaturedWorkSection() {
         <Reveal variant="fade-up">
           <p className="eyebrow">Selected Work</p>
           <TypedHeading
-            text="Featured website development case studies."
+            text="Featured Web Development Projects"
             className="section-heading mt-4"
           />
           <p className="section-lead">

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
+const helpfulLinks = [
+  { href: "/wordpress-developer", label: "WordPress Developer" },
+  { href: "/shopify-developer", label: "Shopify Developer" },
+  { href: "/full-stack-developer", label: "Full Stack Developer" },
+  { href: "/#work", label: "Portfolio" },
+  { href: "/about", label: "About" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function NotFound() {
   return (
     <main
@@ -31,7 +42,7 @@ export default function NotFound() {
           This page isn&apos;t here.
         </h1>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-          The link may be outdated, or the page moved. Head home, browse
+          The link may be outdated, or the page moved. Head home, browse core
           services, or send a project note.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -50,13 +61,7 @@ export default function NotFound() {
           </Button>
         </div>
         <ul className="mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[12px] uppercase tracking-[0.1em] text-white/55">
-          {[
-            { href: "/about", label: "About" },
-            { href: "/experience", label: "Experience" },
-            { href: "/process", label: "Process" },
-            { href: "/reviews", label: "Reviews" },
-            { href: "/blog", label: "Blog" },
-          ].map((item) => (
+          {helpfulLinks.map((item) => (
             <li key={item.href}>
               <Link href={item.href} className="transition hover:text-white">
                 {item.label}

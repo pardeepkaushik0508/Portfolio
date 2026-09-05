@@ -39,7 +39,10 @@ export function Footer() {
                   <span className="text-accent">.</span>
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-on-dark-muted">
-                  Full-Stack Developer · {personal.location}
+                  Full Stack, WordPress & Shopify Developer
+                </p>
+                <p className="mt-1 text-sm text-on-dark-muted">
+                  {personal.brandLine}
                 </p>
                 <p className="mt-3 text-sm text-on-dark-muted">
                   {personal.availability}
@@ -63,10 +66,58 @@ export function Footer() {
                   ))}
                   <li>
                     <Link
-                      href="/blog"
+                      href="/experience"
                       className="motion-link-underline cursor-pointer transition duration-200 hover:text-white"
                     >
-                      Blog
+                      Experience
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/reviews"
+                      className="motion-link-underline cursor-pointer transition duration-200 hover:text-white"
+                    >
+                      Reviews
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+
+              <nav aria-label="Main services">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.12em] text-on-dark-muted">
+                  Services
+                </p>
+                <ul className="flex flex-col gap-2 text-sm text-on-dark-muted">
+                  <li>
+                    <Link
+                      href="/wordpress-developer"
+                      className="motion-link-underline transition hover:text-white"
+                    >
+                      WordPress
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/shopify-developer"
+                      className="motion-link-underline transition hover:text-white"
+                    >
+                      Shopify
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/full-stack-developer"
+                      className="motion-link-underline transition hover:text-white"
+                    >
+                      Full Stack
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/remote-web-developer"
+                      className="motion-link-underline transition hover:text-white"
+                    >
+                      Remote / Worldwide
                     </Link>
                   </li>
                 </ul>

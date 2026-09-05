@@ -36,9 +36,14 @@ export function WhyHireSection() {
         <Reveal variant="blur">
           <p className="eyebrow">Why Clients Hire Me</p>
           <TypedHeading
-            text="Practical advantages for remote project delivery."
+            text="Why Businesses Work With Me"
             className="section-heading mt-4"
           />
+          <p className="section-lead mt-4 max-w-2xl text-muted">
+            Direct developer communication, clear milestones, staging before
+            launch and source-code ownership—built for remote collaboration
+            worldwide.
+          </p>
         </Reveal>
 
         <Stagger

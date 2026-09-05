@@ -47,7 +47,7 @@ export function AboutSection({
               <ImageReveal direction="up" className="relative overflow-hidden rounded-[1.15rem] border border-border bg-surface shadow-[var(--shadow-md)]">
                 <Image
                   src={personal.profileImage}
-                  alt="Pardeep Kaushik, Full Stack Developer in India"
+                  alt="Pardeep Kaushik, Full Stack, WordPress and Shopify developer"
                   width={800}
                   height={1000}
                   sizes="(max-width: 1024px) 80vw, 400px"
@@ -65,7 +65,7 @@ export function AboutSection({
             <Reveal variant="blur" delay={0.05}>
               <p className="eyebrow">About</p>
               <TypedHeading
-                text="Full Stack Developer in India — WordPress, Shopify and custom apps."
+                text="Full Stack, WordPress & Shopify Developer for businesses worldwide."
                 className="section-heading mt-4"
               />
             </Reveal>

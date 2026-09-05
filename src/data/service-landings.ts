@@ -18,18 +18,19 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "wordpress-developer",
     title: "WordPress Developer",
-    metaTitle: "WordPress Developer | Elementor, WooCommerce & Custom Builds",
+    metaTitle: "WordPress Developer | Freelance WordPress Expert for Hire",
     metaDescription:
-      "Hire Pardeep Kaushik — WordPress developer for business sites, Elementor layouts, WooCommerce stores, redesigns, migrations and WordPress speed optimization.",
+      "Hire a freelance WordPress developer for business sites, Elementor layouts, WooCommerce stores, redesigns, migrations and WordPress speed optimization—available worldwide.",
     h1: "WordPress Developer for Business Websites That Stay Easy to Manage",
     intro:
-      "Pardeep Kaushik is a WordPress developer who builds and improves business websites with clear structure, mobile-ready layouts and admin-friendly editing. Work covers custom builds, Elementor website design, WooCommerce stores, redesigns and performance fixes.",
+      "Pardeep Kaushik is a freelance WordPress developer who builds and improves business websites with clear structure, mobile-ready layouts and admin-friendly editing. Work covers custom builds, Elementor website design, WooCommerce stores, redesigns and performance fixes for clients worldwide. For India-specific hiring, see WordPress Developer in India.",
     capabilities: [
       "Build a WordPress website from brief to launch",
       "Elementor layouts and reusable page templates",
       "WooCommerce catalogue, cart and checkout refinements",
       "WordPress redesign without losing brand clarity",
       "Plugin/theme troubleshooting and maintainable handoff",
+      "Figma to WordPress implementation when designs are provided",
     ],
     technologies: [
       "WordPress",
@@ -69,8 +70,10 @@ export const serviceLandings: ServiceLanding[] = [
       "elementor-developer",
       "woocommerce-developer",
       "wordpress-website-design",
-      "website-speed-optimization",
+      "wordpress-speed-optimization",
       "wordpress-migration",
+      "figma-to-wordpress",
+      "wordpress-developer-india",
     ],
     relatedProjectIds: ["placid-technologies", "cactusjack-pc", "shur-tite"],
     faqs: [
@@ -78,6 +81,11 @@ export const serviceLandings: ServiceLanding[] = [
         question: "What does a WordPress developer do?",
         answer:
           "A WordPress developer plans, builds and maintains WordPress websites—themes or builders, plugins, WooCommerce, content structure, performance and secure deployment—so the site works for visitors and is manageable for the business.",
+      },
+      {
+        question: "How much does a WordPress developer charge?",
+        answer:
+          "Pricing depends on scope—page count, WooCommerce needs, redesign vs build-from-scratch and integrations. Project-based estimates are available after a short brief; see the pricing page for package starting points.",
       },
       {
         question: "Can you build a custom Elementor website?",
@@ -95,9 +103,24 @@ export const serviceLandings: ServiceLanding[] = [
           "Yes. Redesigns keep your brand and content direction while improving layout, mobile UX and maintainability—without unnecessary plugin bloat.",
       },
       {
-        question: "Do you optimize WordPress website speed?",
+        question: "Can you optimize WordPress speed?",
         answer:
           "Yes. Caching, image delivery, CSS/JS cleanup and Core Web Vitals improvements are available as focused speed projects or as part of a build.",
+      },
+      {
+        question: "Do you work with international clients?",
+        answer:
+          "Yes. WordPress projects are delivered remotely for clients worldwide, with clear milestones, staging and handoff.",
+      },
+      {
+        question: "Will I be able to edit the website myself?",
+        answer:
+          "Yes. Builds are structured so your team can update content safely—especially with Elementor templates and clear editor guidance.",
+      },
+      {
+        question: "Do you provide post-launch support?",
+        answer:
+          "Yes. Post-launch fixes, updates and practical improvements are available after the site goes live.",
       },
     ],
   },
@@ -260,18 +283,19 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "shopify-developer",
     title: "Shopify Developer",
-    metaTitle: "Shopify Developer | Store Design, Themes & Shopify 2.0",
+    metaTitle: "Shopify Developer | Freelance Shopify Expert for Hire",
     metaDescription:
-      "Shopify developer for store setup, Shopify 2.0 themes, Liquid customization, redesigns and Shopify speed optimization.",
+      "Hire a freelance Shopify developer for store setup, Shopify 2.0 themes, Liquid customization, redesigns and Shopify speed optimization—available for brands worldwide.",
     h1: "Shopify Developer for Stores That Look Premium and Convert",
     intro:
-      "Pardeep Kaushik builds and customizes Shopify stores for product brands—theme work, Shopify 2.0 sections, product presentation and speed-minded delivery.",
+      "Pardeep Kaushik is a freelance Shopify developer who builds and customizes Shopify stores for product brands—theme work, Shopify 2.0 sections, product presentation and speed-minded delivery for clients worldwide. For India-specific hiring, see Shopify Developer in India.",
     capabilities: [
       "Shopify store setup and theme customization",
       "Shopify 2.0 sections and templates",
       "Collection, product and landing pages",
       "Shopify redesign and UX cleanup",
       "Shopify speed optimization",
+      "Figma to Shopify theme implementation",
     ],
     technologies: ["Shopify", "Liquid", "Shopify 2.0", "HTML", "CSS", "JavaScript"],
     problems: [
@@ -294,23 +318,49 @@ export const serviceLandings: ServiceLanding[] = [
         description: "QA shopping flows, apps impact and basic performance hygiene.",
       },
     ],
-    relatedSlugs: ["shopify-liquid-developer", "website-speed-optimization", "full-stack-developer"],
+    relatedSlugs: [
+      "shopify-liquid-developer",
+      "shopify-theme-development",
+      "shopify-speed-optimization",
+      "figma-to-shopify",
+      "shopify-developer-india",
+    ],
     relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
     faqs: [
       {
-        question: "Do you create Shopify 2.0 stores?",
+        question: "Do you develop custom Shopify themes?",
         answer:
-          "Yes. Shopify 2.0 themes and Online Store 2.0 section patterns are part of current Shopify work.",
+          "Yes. Custom Shopify theme development and Online Store 2.0 section patterns are part of current Shopify work.",
       },
       {
-        question: "Can you redesign an existing Shopify store?",
+        question: "Can you customize Shopify Liquid?",
+        answer:
+          "Yes. Custom Liquid sections for hero, collection and product storytelling are available when the theme needs more than presets.",
+      },
+      {
+        question: "Can you build from Figma?",
+        answer:
+          "Yes. Figma layouts can be implemented as Shopify sections and templates with responsive behavior.",
+      },
+      {
+        question: "Can you improve Shopify speed?",
+        answer:
+          "Yes. Theme/app weight reduction, image strategy and Core Web Vitals work are available as focused Shopify speed projects.",
+      },
+      {
+        question: "Can you redesign an existing store?",
         answer:
           "Yes. Redesigns can keep your catalogue and apps while improving layout, mobile UX and conversion clarity.",
       },
       {
-        question: "Do you create custom Shopify sections?",
+        question: "Do you work with Shopify 2.0?",
         answer:
-          "Yes. Custom Liquid sections for hero, collection and product storytelling are available when the theme needs more than presets.",
+          "Yes. Shopify 2.0 / Online Store 2.0 themes and section architecture are part of regular Shopify delivery.",
+      },
+      {
+        question: "Do you work with international clients?",
+        answer:
+          "Yes. Shopify projects are delivered remotely for brands and agencies worldwide.",
       },
     ],
   },
@@ -350,7 +400,7 @@ export const serviceLandings: ServiceLanding[] = [
         description: "Test on multiple products/collections and devices.",
       },
     ],
-    relatedSlugs: ["shopify-developer", "website-speed-optimization"],
+    relatedSlugs: ["shopify-developer", "shopify-theme-development", "shopify-speed-optimization", "figma-to-shopify"],
     relatedProjectIds: ["talwarsons", "getboldify"],
     faqs: [
       {
@@ -368,17 +418,18 @@ export const serviceLandings: ServiceLanding[] = [
   {
     slug: "full-stack-developer",
     title: "Full Stack Developer",
-    metaTitle: "Full Stack Developer | React, Next.js, Node.js & APIs",
+    metaTitle: "Full Stack Developer | React, Next.js & Node.js Freelance Expert",
     metaDescription:
-      "Full stack developer for React/Next.js frontends, Node.js APIs, databases and VPS deployment—when a CMS alone is not enough. Hire Pardeep Kaushik in India.",
+      "Hire a freelance full stack developer for React/Next.js frontends, Node.js APIs, databases and VPS deployment—remote delivery for businesses worldwide.",
     h1: "Full Stack Developer for Custom Web Apps and Product Sites",
     intro:
-      "As a full stack developer in India, I build applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases and production hosting. For India-focused hiring context, see the Full Stack Developer in India page.",
+      "As a freelance full stack developer, Pardeep Kaushik builds applications that need more than a marketing CMS—React and Next.js interfaces, Node.js APIs, databases and production hosting for clients worldwide. For India-focused hiring context, see Full Stack Developer in India.",
     capabilities: [
       "React and Next.js application development",
       "Node.js APIs and backend workflows",
       "MongoDB / PostgreSQL data models",
       "Auth, dashboards and admin tools",
+      "SaaS MVP foundations and API integrations",
       "VPS deployment with Nginx and SSL",
     ],
     technologies: [
@@ -411,7 +462,14 @@ export const serviceLandings: ServiceLanding[] = [
         description: "Production hosting, monitoring basics and iteration.",
       },
     ],
-    relatedSlugs: ["api-integration", "wordpress-developer", "shopify-developer", "full-stack-developer-india"],
+    relatedSlugs: [
+      "api-integration",
+      "saas-mvp-development",
+      "remote-web-developer",
+      "wordpress-developer",
+      "shopify-developer",
+      "full-stack-developer-india",
+    ],
     relatedProjectIds: ["utilitytools", "aivoxa-labs", "yogispeaks"],
     faqs: [
       {
@@ -420,14 +478,39 @@ export const serviceLandings: ServiceLanding[] = [
           "Primarily React, Next.js, Node.js, TypeScript and databases such as MongoDB or PostgreSQL, with VPS/Nginx deployment when needed.",
       },
       {
-        question: "Do you build custom dashboards and web applications?",
+        question: "Can you build SaaS MVPs?",
         answer:
-          "Yes. Dashboards, multi-tool platforms and content admin systems are within full-stack scope.",
+          "Yes. MVP-scoped products with auth, dashboards and API-backed workflows are within full-stack scope when requirements are clear.",
       },
       {
         question: "Do you work with React and Next.js?",
         answer:
           "Yes. React and Next.js are core tools for marketing sites that need app-like behavior and for SaaS-style products.",
+      },
+      {
+        question: "Can you build APIs?",
+        answer:
+          "Yes. Node.js APIs, third-party integrations and frontend consumption in React/Next.js are part of full-stack engagements.",
+      },
+      {
+        question: "Which databases do you use?",
+        answer:
+          "MongoDB and PostgreSQL are used most often, selected to match the product’s data model and hosting plan.",
+      },
+      {
+        question: "Can you deploy to VPS/cloud?",
+        answer:
+          "Yes. Production VPS deployment with Nginx and SSL is available when the project needs it.",
+      },
+      {
+        question: "Can you work with an existing codebase?",
+        answer:
+          "Yes. Existing React/Next.js/Node codebases can be audited, extended or stabilized when access and scope are clear.",
+      },
+      {
+        question: "Do you work with international clients?",
+        answer:
+          "Yes. Full stack projects are delivered remotely for clients worldwide with staging before production.",
       },
     ],
   },
@@ -475,7 +558,7 @@ export const serviceLandings: ServiceLanding[] = [
         description: "Share after metrics and maintenance recommendations.",
       },
     ],
-    relatedSlugs: ["wordpress-developer", "shopify-developer", "elementor-developer"],
+    relatedSlugs: ["wordpress-developer", "shopify-developer", "wordpress-speed-optimization", "shopify-speed-optimization", "elementor-developer"],
     relatedProjectIds: ["utilitytools", "aivoxa-labs", "talwarsons"],
     faqs: [
       {
@@ -486,7 +569,7 @@ export const serviceLandings: ServiceLanding[] = [
       {
         question: "Do you optimize both WordPress and Shopify?",
         answer:
-          "Yes. WordPress speed optimization and Shopify speed optimization are both part of the service.",
+          "Yes. Dedicated WordPress speed optimization and Shopify speed optimization services are available, plus combined website speed projects.",
       },
     ],
   },
@@ -723,6 +806,7 @@ export const serviceLandings: ServiceLanding[] = [
       "elementor-developer",
       "woocommerce-developer",
       "wordpress-migration",
+      "wordpress-speed-optimization",
       "full-stack-developer-india",
     ],
     relatedProjectIds: ["placid-technologies", "cactusjack-pc", "shur-tite"],
@@ -792,7 +876,8 @@ export const serviceLandings: ServiceLanding[] = [
     relatedSlugs: [
       "shopify-developer",
       "shopify-liquid-developer",
-      "website-speed-optimization",
+      "shopify-theme-development",
+      "shopify-speed-optimization",
       "full-stack-developer-india",
     ],
     relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
@@ -865,6 +950,7 @@ export const serviceLandings: ServiceLanding[] = [
       "full-stack-developer-india",
       "wordpress-developer-india",
       "shopify-developer-india",
+      "remote-web-developer",
       "website-speed-optimization",
     ],
     relatedProjectIds: ["placid-technologies", "talwarsons", "utilitytools"],
@@ -883,6 +969,539 @@ export const serviceLandings: ServiceLanding[] = [
         question: "Can I hire you for ongoing website maintenance?",
         answer:
           "Yes. Freelance projects and longer retainers are both available after launch.",
+      },
+    ],
+  },
+  {
+    slug: "wordpress-speed-optimization",
+    title: "WordPress Speed Optimization",
+    metaTitle: "WordPress Speed Optimization | Core Web Vitals & PageSpeed",
+    metaDescription:
+      "WordPress speed optimization service—Core Web Vitals, caching, image and database cleanup, plugin bloat reduction and PageSpeed diagnostics without redesigning your site.",
+    h1: "WordPress Speed Optimization for Faster Core Web Vitals",
+    intro:
+      "Slow WordPress sites lose leads. Pardeep Kaushik provides WordPress speed optimization focused on Core Web Vitals, caching, media, JavaScript/CSS weight, hosting factors and WooCommerce performance—keeping your visual design intact.",
+    capabilities: [
+      "PageSpeed Insights baselines and priority fixes",
+      "Caching, CDN and image optimization",
+      "Database cleanup and plugin bloat reduction",
+      "JavaScript/CSS delivery improvements",
+      "Hosting and server factor review",
+      "WooCommerce performance hygiene",
+    ],
+    technologies: [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "Caching",
+      "CDN",
+      "Core Web Vitals",
+      "Image optimization",
+    ],
+    problems: [
+      "Poor mobile PageSpeed scores",
+      "Heavy Elementor or theme CSS",
+      "Unoptimized product or hero imagery",
+      "Render-blocking scripts from plugins",
+      "Slow WooCommerce catalogue or cart pages",
+    ],
+    process: [
+      {
+        title: "Diagnose",
+        description:
+          "Capture before metrics on critical URLs and identify the highest-impact bottlenecks.",
+      },
+      {
+        title: "Optimize",
+        description:
+          "Apply caching, media, template and plugin fixes in a controlled order on staging when possible.",
+      },
+      {
+        title: "Validate & handoff",
+        description:
+          "Re-measure Core Web Vitals, document what changed and share maintenance recommendations.",
+      },
+    ],
+    relatedSlugs: [
+      "website-speed-optimization",
+      "wordpress-developer",
+      "woocommerce-developer",
+      "elementor-developer",
+      "wordpress-migration",
+    ],
+    relatedProjectIds: ["placid-technologies", "cactusjack-pc", "shur-tite"],
+    faqs: [
+      {
+        question: "What is included in WordPress speed optimization?",
+        answer:
+          "Typical work covers Core Web Vitals review, caching, image strategy, CSS/JS cleanup, plugin/theme weight and hosting-related factors that affect LCP, INP and CLS.",
+      },
+      {
+        question: "Will you redesign my WordPress site?",
+        answer:
+          "No—speed projects keep your layout and brand unless you request design changes as a separate scope.",
+      },
+      {
+        question: "Do you optimize WooCommerce stores?",
+        answer:
+          "Yes. WooCommerce-specific performance issues such as heavy product templates, scripts and media are included when relevant.",
+      },
+      {
+        question: "How do you measure improvement?",
+        answer:
+          "Before/after PageSpeed Insights or similar diagnostics on agreed URLs, plus practical notes on what still depends on hosting or third-party scripts.",
+      },
+    ],
+  },
+  {
+    slug: "shopify-speed-optimization",
+    title: "Shopify Speed Optimization",
+    metaTitle: "Shopify Speed Optimization | Faster Storefront Performance",
+    metaDescription:
+      "Shopify speed optimization for theme and app weight, image strategy and Core Web Vitals—speed up your Shopify store without changing your brand design.",
+    h1: "Shopify Speed Optimization for Faster Storefronts",
+    intro:
+      "Shopify stores slow down when themes, apps and media pile up. This service focuses on Shopify performance optimization—theme/app weight, Liquid and asset delivery, image strategy and Core Web Vitals—so product discovery stays fast on mobile.",
+    capabilities: [
+      "Shopify theme performance audit",
+      "App and script weight reduction guidance",
+      "Image and media delivery improvements",
+      "Liquid/template cleanup where needed",
+      "Core Web Vitals focused fixes",
+      "Before/after PageSpeed diagnostics",
+    ],
+    technologies: [
+      "Shopify",
+      "Liquid",
+      "Shopify 2.0",
+      "CDN",
+      "Core Web Vitals",
+      "Image optimization",
+    ],
+    problems: [
+      "Slow collection and product pages on mobile",
+      "Too many apps injecting scripts",
+      "Unoptimized product photography",
+      "Theme customizations that hurt LCP",
+    ],
+    process: [
+      {
+        title: "Measure",
+        description: "Baseline critical storefront URLs and identify heavy assets/apps.",
+      },
+      {
+        title: "Fix",
+        description:
+          "Prioritize theme, media and script changes that improve load without breaking checkout.",
+      },
+      {
+        title: "Report",
+        description:
+          "Share after metrics and practical recommendations for apps you keep.",
+      },
+    ],
+    relatedSlugs: [
+      "shopify-developer",
+      "shopify-theme-development",
+      "shopify-liquid-developer",
+      "website-speed-optimization",
+    ],
+    relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
+    faqs: [
+      {
+        question: "Can you speed up an existing Shopify store?",
+        answer:
+          "Yes. Existing themes and catalogues can be optimized without a full redesign when the goal is performance.",
+      },
+      {
+        question: "Do you remove Shopify apps?",
+        answer:
+          "Only with your approval. App impact is reviewed; removals or replacements are discussed before changes.",
+      },
+      {
+        question: "Is this the same as a Shopify redesign?",
+        answer:
+          "No. Speed work keeps brand and layout unless you also request theme redesign or new sections.",
+      },
+    ],
+  },
+  {
+    slug: "shopify-theme-development",
+    title: "Shopify Theme Development",
+    metaTitle: "Shopify Theme Developer | Custom Shopify 2.0 Themes",
+    metaDescription:
+      "Custom Shopify theme development with Shopify 2.0 architecture, Liquid sections and brand-ready storefronts—hire a Shopify theme developer for stores that convert.",
+    h1: "Custom Shopify Theme Development for Brand-Led Stores",
+    intro:
+      "When stock themes are not enough, custom Shopify theme development delivers Online Store 2.0 sections, Liquid templates and merchandising layouts that match your brand. Built for product brands that need flexible, maintainable storefronts.",
+    capabilities: [
+      "Custom Shopify 2.0 theme architecture",
+      "Liquid sections, blocks and templates",
+      "Product, collection and landing page systems",
+      "Theme customization beyond settings",
+      "Responsive QA across devices",
+      "Handoff for merchants and editors",
+    ],
+    technologies: [
+      "Shopify",
+      "Liquid",
+      "Shopify 2.0",
+      "JSON templates",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    problems: [
+      "Theme limits blocking custom layouts",
+      "Designs that cannot be built with stock sections",
+      "Inflexible product templates",
+      "Hard-to-maintain theme customizations",
+    ],
+    process: [
+      {
+        title: "Theme scope",
+        description:
+          "Map templates, sections and merchant editing needs before writing Liquid.",
+      },
+      {
+        title: "Build sections",
+        description:
+          "Implement Shopify 2.0 sections with editor controls your team can reuse.",
+      },
+      {
+        title: "QA & launch",
+        description:
+          "Test shopping flows, responsive layouts and handoff documentation.",
+      },
+    ],
+    relatedSlugs: [
+      "shopify-developer",
+      "shopify-liquid-developer",
+      "figma-to-shopify",
+      "shopify-speed-optimization",
+    ],
+    relatedProjectIds: ["talwarsons", "getboldify", "resourceportal-shop"],
+    faqs: [
+      {
+        question: "Do you build custom Shopify 2.0 themes?",
+        answer:
+          "Yes. Online Store 2.0 section-based themes and templates are a core Shopify service.",
+      },
+      {
+        question: "Can you customize an existing theme instead?",
+        answer:
+          "Yes. Theme customization is often enough when the base theme is solid and only specific sections need work.",
+      },
+      {
+        question: "Can you implement Figma into a Shopify theme?",
+        answer:
+          "Yes. Figma-to-Shopify theme builds are scoped from provided design files when available.",
+      },
+    ],
+  },
+  {
+    slug: "figma-to-wordpress",
+    title: "Figma to WordPress",
+    metaTitle: "Figma to WordPress | Pixel-Perfect Elementor Development",
+    metaDescription:
+      "Convert Figma to WordPress with Elementor or custom templates—pixel-aware, responsive WordPress development from your design files.",
+    h1: "Figma to WordPress Development That Stays Editable",
+    intro:
+      "Convert Figma designs into WordPress websites that look intentional and remain editable. Delivery can use Elementor or theme templates—focused on spacing, typography, mobile breakpoints and practical editor handoff.",
+    capabilities: [
+      "Figma to WordPress page builds",
+      "Figma to Elementor section systems",
+      "Responsive breakpoint matching",
+      "Reusable templates for editors",
+      "Forms, CTAs and conversion structure",
+      "QA against design intent",
+    ],
+    technologies: [
+      "Figma",
+      "WordPress",
+      "Elementor",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    problems: [
+      "Designs that look good in Figma but break in builders",
+      "Desktop-only implementations",
+      "Editors who cannot safely update pages",
+      "Inconsistent spacing after handoff",
+    ],
+    process: [
+      {
+        title: "Design review",
+        description:
+          "Confirm components, breakpoints and which pages are in scope.",
+      },
+      {
+        title: "Build in WordPress",
+        description:
+          "Implement layouts in Elementor or templates with reusable patterns.",
+      },
+      {
+        title: "Compare & handoff",
+        description:
+          "Responsive QA against Figma and editor guidance for your team.",
+      },
+    ],
+    relatedSlugs: [
+      "wordpress-developer",
+      "elementor-developer",
+      "wordpress-website-design",
+      "figma-to-shopify",
+    ],
+    relatedProjectIds: ["placid-technologies", "cactusjack-pc", "cannyheads"],
+    faqs: [
+      {
+        question: "Can you convert Figma to Elementor?",
+        answer:
+          "Yes. Figma-to-Elementor builds are a common WordPress delivery path when the client wants editable page-builder layouts.",
+      },
+      {
+        question: "Do you need developer access to Figma?",
+        answer:
+          "View or inspect access to the Figma file (or exported specs) is required to match spacing, type and components accurately.",
+      },
+      {
+        question: "Will the site be editable after launch?",
+        answer:
+          "Yes. The goal is a WordPress site your team can update—not a locked visual clone.",
+      },
+    ],
+  },
+  {
+    slug: "figma-to-shopify",
+    title: "Figma to Shopify",
+    metaTitle: "Figma to Shopify | Custom Liquid Theme Implementation",
+    metaDescription:
+      "Convert Figma to Shopify with custom Liquid sections and Shopify 2.0 templates—hire a Figma Shopify developer for brand-accurate storefronts.",
+    h1: "Figma to Shopify Theme Implementation",
+    intro:
+      "Turn Figma storefront designs into Shopify sections and templates. Delivery focuses on Liquid, Shopify 2.0 architecture and responsive merchandising so collection and product pages match the brand story.",
+    capabilities: [
+      "Figma to Shopify section builds",
+      "Custom Liquid theme templates",
+      "Product and collection layout systems",
+      "Shopify 2.0 editor-friendly blocks",
+      "Responsive storefront QA",
+      "Handoff for merchants",
+    ],
+    technologies: [
+      "Figma",
+      "Shopify",
+      "Liquid",
+      "Shopify 2.0",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    problems: [
+      "Beautiful Figma files that stock themes cannot express",
+      "Broken spacing on mobile after rushed builds",
+      "Sections that merchants cannot reuse",
+      "Product pages that ignore design hierarchy",
+    ],
+    process: [
+      {
+        title: "Map designs to templates",
+        description:
+          "Identify home, collection, product and landing modules from Figma.",
+      },
+      {
+        title: "Build Liquid sections",
+        description:
+          "Implement sections and templates with merchant-editable settings.",
+      },
+      {
+        title: "QA shopping flows",
+        description:
+          "Verify cart/checkout paths and responsive fidelity before launch.",
+      },
+    ],
+    relatedSlugs: [
+      "shopify-developer",
+      "shopify-theme-development",
+      "shopify-liquid-developer",
+      "figma-to-wordpress",
+    ],
+    relatedProjectIds: ["talwarsons", "getboldify"],
+    faqs: [
+      {
+        question: "Can you convert Figma to Liquid?",
+        answer:
+          "Yes. Figma layouts are implemented as Liquid sections and Shopify 2.0 templates.",
+      },
+      {
+        question: "Do you need Shopify theme access?",
+        answer:
+          "Yes. Theme edit access (or a duplicate development theme) is required for safe implementation.",
+      },
+      {
+        question: "Can you match pixel-perfect designs?",
+        answer:
+          "Delivery aims for faithful visual and spacing fidelity within Shopify constraints, with responsive adjustments agreed during review.",
+      },
+    ],
+  },
+  {
+    slug: "saas-mvp-development",
+    title: "SaaS MVP Development",
+    metaTitle: "SaaS MVP Developer | React & Next.js Application Development",
+    metaDescription:
+      "SaaS MVP development with React, Next.js and Node.js—hire a SaaS developer to ship a focused MVP with auth, dashboards and production deployment.",
+    h1: "SaaS MVP Development for Focused Product Launches",
+    intro:
+      "Build a usable SaaS MVP without boiling the ocean. Pardeep Kaushik develops React/Next.js frontends, Node.js APIs and database-backed workflows so founders can validate product ideas with staging, deployment and clear ownership.",
+    capabilities: [
+      "MVP scoping and feature prioritization",
+      "React / Next.js product UI",
+      "Node.js APIs and data models",
+      "Auth, dashboards and admin tools",
+      "Staging and VPS deployment",
+      "Iteration after first users",
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "MongoDB",
+      "PostgreSQL",
+      "REST APIs",
+      "VPS",
+    ],
+    problems: [
+      "Ideas stuck without a build path",
+      "Over-scoped MVPs that never ship",
+      "Frontends without a reliable backend",
+      "No staging or production plan",
+    ],
+    process: [
+      {
+        title: "Define the MVP",
+        description:
+          "Agree users, must-have features and what can wait for version two.",
+      },
+      {
+        title: "Build vertically",
+        description:
+          "Ship UI and API together with staging review on each milestone.",
+      },
+      {
+        title: "Launch & learn",
+        description:
+          "Deploy, hand over credentials/docs and plan the next iteration.",
+      },
+    ],
+    relatedSlugs: [
+      "full-stack-developer",
+      "api-integration",
+      "remote-web-developer",
+    ],
+    relatedProjectIds: ["utilitytools", "aivoxa-labs", "yogispeaks"],
+    faqs: [
+      {
+        question: "What counts as an MVP in this service?",
+        answer:
+          "A focused product slice—usually auth, core workflows and an admin or dashboard—scoped to validate demand without building every future feature.",
+      },
+      {
+        question: "Do you use React and Next.js for SaaS?",
+        answer:
+          "Yes. React and Next.js are primary frontend tools, typically paired with Node.js APIs.",
+      },
+      {
+        question: "Can you work from an existing product brief?",
+        answer:
+          "Yes. Clear briefs, wireframes or Figma files speed discovery; incomplete ideas are refined before build.",
+      },
+    ],
+  },
+  {
+    slug: "remote-web-developer",
+    title: "Remote Web Developer",
+    metaTitle: "Remote Web Developer | Freelance Developer Worldwide",
+    metaDescription:
+      "Hire a remote web developer for WordPress, Shopify and full stack projects worldwide—clear milestones, time-zone overlap, staging, deployment and post-launch support.",
+    h1: "Remote Web Developer for Businesses Worldwide",
+    intro:
+      "Pardeep Kaushik works as a freelance remote web developer for clients worldwide—WordPress, Shopify and full stack React/Next.js projects with direct communication, milestone delivery, staging before launch and clear project ownership. Based in India with overlap for common international working hours.",
+    capabilities: [
+      "Remote WordPress, Shopify and full stack delivery",
+      "Milestone-based project management",
+      "Time-zone overlap planning for key calls",
+      "Staging environments before production",
+      "Deployment and handoff documentation",
+      "Post-launch support windows",
+    ],
+    technologies: [
+      "WordPress",
+      "Shopify",
+      "React",
+      "Next.js",
+      "Node.js",
+      "APIs",
+      "VPS deployment",
+    ],
+    problems: [
+      "Agencies or founders who need a reliable remote builder",
+      "Projects stuck between multiple freelancers",
+      "Unclear communication across time zones",
+      "Launches without staging or ownership clarity",
+    ],
+    process: [
+      {
+        title: "Align remotely",
+        description:
+          "Confirm scope, tools (email/WhatsApp/calls), milestones and review cadence.",
+      },
+      {
+        title: "Build on staging",
+        description:
+          "Share progress in reviewable environments—not surprise production changes.",
+      },
+      {
+        title: "Launch & support",
+        description:
+          "Deploy, transfer ownership details and provide agreed post-launch support.",
+      },
+    ],
+    relatedSlugs: [
+      "full-stack-developer",
+      "wordpress-developer",
+      "shopify-developer",
+      "saas-mvp-development",
+      "web-developer-india",
+    ],
+    relatedProjectIds: ["utilitytools", "talwarsons", "placid-technologies"],
+    faqs: [
+      {
+        question: "Do you work with clients outside India?",
+        answer:
+          "Yes. Remote engagements are available for clients worldwide via email, WhatsApp, LinkedIn and Upwork.",
+      },
+      {
+        question: "How do time zones work?",
+        answer:
+          "Async updates are the default, with scheduled overlap calls when decisions need real-time discussion.",
+      },
+      {
+        question: "How are milestones managed?",
+        answer:
+          "Projects are broken into reviewable milestones with staging demos before production releases.",
+      },
+      {
+        question: "Who owns the project after delivery?",
+        answer:
+          "Clients receive the agreed deliverables and source/access handoff. Ownership of handed-over project files sits with the client unless otherwise agreed.",
+      },
+      {
+        question: "Do you provide ongoing support?",
+        answer:
+          "Yes. Post-launch fixes and practical updates can be included for an agreed window or retainer.",
       },
     ],
   },

@@ -1,5 +1,7 @@
 # AI Search Optimization Implementation
 
+> **Superseded for the 2026 global SEO pass.** See `SEO_IMPLEMENTATION_REPORT.md` and `SEO_KEYWORD_MAP.md` for the current audit, changes, and keyword-to-URL map.
+
 ## Changes Implemented
 
 - Centralized entity schema helpers in `src/lib/schema.ts` (`Person`, `WebSite`, `WebPage`, `BreadcrumbList`, `Service`, `FAQPage`, `CreativeWork`) with stable `@id` values (`/#person`, `/#website`).

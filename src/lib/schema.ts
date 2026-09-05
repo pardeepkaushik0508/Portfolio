@@ -21,7 +21,7 @@ export function personJsonLd(extra: Record<string, unknown> = {}) {
     name: personal.name,
     givenName: "Pardeep",
     familyName: "Kaushik",
-    jobTitle: "Full Stack Developer",
+    jobTitle: "Full Stack, WordPress & Shopify Developer",
     description: seo.entityStatement,
     email: personal.email,
     telephone: personal.phone,
@@ -66,7 +66,7 @@ export function websiteJsonLd() {
     name: `${personal.name} Portfolio`,
     url: siteUrl,
     description: seo.description,
-    inLanguage: "en-IN",
+    inLanguage: "en",
     publisher: { "@id": PERSON_ID() },
     author: { "@id": PERSON_ID() },
     potentialAction: {
@@ -94,7 +94,7 @@ export function webPageJsonLd(opts: {
     isPartOf: { "@id": WEBSITE_ID() },
     about: { "@id": PERSON_ID() },
     author: { "@id": PERSON_ID() },
-    inLanguage: "en-IN",
+    inLanguage: "en",
   };
 }
 
@@ -115,7 +115,7 @@ export function profilePageJsonLd(opts: {
     isPartOf: { "@id": WEBSITE_ID() },
     about: { "@id": PERSON_ID() },
     mainEntity: { "@id": PERSON_ID() },
-    inLanguage: "en-IN",
+    inLanguage: "en",
   };
 }
 

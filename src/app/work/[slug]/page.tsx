@@ -34,14 +34,14 @@ export async function generateMetadata({
   if (!project) return {};
 
   const extras = getCaseStudyExtras(project);
-  const title = `${project.title} Case Study | ${extras.platform} Project`;
+  const title = extras.seoTitle;
 
   return {
     title,
     description: extras.metaDescription,
     alternates: { canonical: `/work/${project.id}` },
     openGraph: {
-      title: `${project.title} Case Study | ${personal.name}`,
+      title: `${extras.seoTitle} | ${personal.name}`,
       description: extras.metaDescription,
       url: absoluteUrl(`/work/${project.id}`),
       type: "article",
@@ -54,7 +54,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} Case Study`,
+      title: extras.seoTitle,
       description: extras.metaDescription,
       images: [absoluteUrl(project.image)],
     },

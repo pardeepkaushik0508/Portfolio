@@ -62,7 +62,7 @@ export function ArticleCTA({
           className="blog-cta__primary"
           onClick={() => trackEvent("blog_cta_click", { location, action: "discuss" })}
         >
-          Discuss Your Project
+          Get a Free Project Estimate
         </Link>
         <a
           href={wa}

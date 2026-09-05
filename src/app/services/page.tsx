@@ -65,8 +65,8 @@ export default function ServicesPage() {
 
       <PageHero
         eyebrow="Services"
-        title="WordPress, Shopify, web apps and speed optimization."
-        description={`${personal.name} helps businesses create websites and stores with WordPress, Elementor, WooCommerce, Shopify Liquid, React/Next.js, migrations and API integrations.`}
+        title="WordPress, Shopify & Full Stack Development Services"
+        description={`${personal.name} helps businesses worldwide create websites and stores with WordPress, Elementor, WooCommerce, Shopify Liquid, React/Next.js, migrations and API integrations.`}
       />
 
       <section className="section-shell-tight border-b border-border bg-surface">

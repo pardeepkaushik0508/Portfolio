@@ -57,6 +57,11 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
         eyebrow={landing.title}
         title={landing.h1}
         description={landing.intro}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: landing.title },
+        ]}
       />
 
       <section className="section-shell border-b border-border bg-surface">
@@ -66,8 +71,9 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
               What I deliver
             </h2>
             <p className="mt-3 text-muted">
-              Practical capabilities for {landing.title.toLowerCase()} work with{" "}
-              {personal.name}.
+              Practical {landing.title.toLowerCase()} capabilities delivered by{" "}
+              {personal.name}—scoped to your brief, staging-first, with clear
+              handoff.
             </p>
             <ul className="mt-6 space-y-3">
               {landing.capabilities.map((item) => (
@@ -181,13 +187,23 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
           </h2>
           <p className="mt-4 max-w-3xl text-[0.95rem] leading-relaxed text-muted">
             You work directly with {personal.name}—a Full Stack, WordPress and
-            Shopify developer based in {personal.location}. Communication stays
-            clear, delivery stays owned end to end, and handoff includes the
-            practical details your team needs to keep moving.
+            Shopify developer based in India and available for remote projects
+            worldwide. Communication stays clear, delivery stays owned end to
+            end, and handoff includes the practical details your team needs to
+            keep moving. After delivery, you own the project files and source
+            code handed over unless otherwise agreed.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/contact" magnetic>
-              Discuss Your Project
+              Get a Free Project Estimate
+            </Button>
+            <Button
+              href="/#work"
+              variant="dark"
+              magnetic
+              className="border border-border bg-white text-foreground shadow-sm hover:border-primary hover:bg-white hover:text-primary"
+            >
+              View Related Projects
             </Button>
             <Button
               href="/services"
@@ -250,15 +266,15 @@ export function ServiceLandingView({ landing }: { landing: ServiceLanding }) {
         <div className="container-shell flex flex-col items-start justify-between gap-6 rounded-[1.35rem] border border-border-dark bg-dark px-6 py-8 text-white sm:flex-row sm:items-center sm:px-8">
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight">
-              Ready to start?
+              Start Your Project
             </h2>
             <p className="mt-2 max-w-xl text-sm text-on-dark-muted">
-              Share your requirement for a free estimate, sample design
-              direction or demo path when the brief fits.
+              Share your requirement for a free project estimate. Staging review
+              and clear handoff are part of how engagements are delivered.
             </p>
           </div>
           <Button href="/contact" magnetic>
-            Request a Quote
+            Get a Free Project Estimate
           </Button>
         </div>
       </section>

@@ -77,21 +77,21 @@ export function ContactSection() {
               </p>
               {reduced ? (
                 <TypedHeading
-                  text="Get a free project estimate — no fluff."
+                  text="Start Your Project"
                   className="mt-3 max-w-[22ch] font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.045em]"
                 />
               ) : (
                 <TextReveal
-                  text="Get a free project estimate — no fluff."
+                  text="Start Your Project"
                   as="h2"
                   mode="words"
                   className="mt-3 max-w-[22ch] font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.045em]"
                 />
               )}
               <p className="mt-3 max-w-md text-sm leading-relaxed text-on-dark-muted md:text-[0.9375rem]">
-                Share your requirement and I&apos;ll reply with a practical plan —
-                plus free estimation, sample design direction and a demo path when
-                the brief fits.
+                Get a free project estimate. Share your requirement and I&apos;ll
+                reply with a practical plan—plus sample design direction and a
+                demo path when the brief fits.
               </p>
 
               <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-on-dark-muted">
@@ -155,7 +155,10 @@ export function ContactSection() {
                   <span className="text-accent">.</span>
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-on-dark-muted">
-                  Full-Stack Developer · {personal.location}
+                  Full Stack, WordPress & Shopify Developer
+                </p>
+                <p className="mt-1 text-sm text-on-dark-muted">
+                  {personal.brandLine}
                 </p>
                 <p className="mt-3 text-sm text-on-dark-muted">
                   {personal.availability}

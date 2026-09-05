@@ -56,12 +56,13 @@ export function PillarsSection() {
         <Reveal variant="fade-up">
           <p className="eyebrow">What I build</p>
           <TypedHeading
-            text="Four ways I help businesses create websites."
+            text="WordPress, Shopify & Full Stack Development Services"
             className="section-heading mt-4"
           />
           <p className="section-lead">
             WordPress website development, Shopify store design, website speed
-            optimization, or a custom web app—so you know what to hire me for.
+            optimization, or a custom web app—clear options for businesses
+            worldwide.
           </p>
         </Reveal>
 

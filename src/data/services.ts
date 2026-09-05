@@ -69,6 +69,6 @@ export const services: ServiceItem[] = [
       "Shopify bugs that hurt load time",
     ],
     relevantProject: "Upwork speed projects",
-    relevantProjectHref: "/website-speed-optimization",
+    relevantProjectHref: "/wordpress-speed-optimization",
   },
 ];

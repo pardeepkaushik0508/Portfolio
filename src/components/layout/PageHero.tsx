@@ -6,6 +6,7 @@ type PageHeroProps = {
   title: string;
   description: string;
   className?: string;
+  breadcrumbs?: { name: string; href?: string }[];
 };
 
 export function PageHero({
@@ -13,7 +14,13 @@ export function PageHero({
   title,
   description,
   className,
+  breadcrumbs,
 }: PageHeroProps) {
+  const crumbs = breadcrumbs ?? [
+    { name: "Home", href: "/" },
+    { name: eyebrow },
+  ];
+
   return (
     <header
       className={cn(
@@ -24,16 +31,21 @@ export function PageHero({
       <div className="container-shell">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-            <li>
-              <Link
-                href="/"
-                className="transition hover:text-foreground"
-              >
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li className="text-foreground">{eyebrow}</li>
+            {crumbs.map((crumb, index) => (
+              <li key={`${crumb.name}-${index}`} className="flex items-center gap-2">
+                {index > 0 ? <span aria-hidden>/</span> : null}
+                {crumb.href ? (
+                  <Link
+                    href={crumb.href}
+                    className="transition hover:text-foreground"
+                  >
+                    {crumb.name}
+                  </Link>
+                ) : (
+                  <span className="text-foreground">{crumb.name}</span>
+                )}
+              </li>
+            ))}
           </ol>
         </nav>
         <p className="eyebrow">{eyebrow}</p>

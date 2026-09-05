@@ -66,12 +66,12 @@ export function FaqSection({ showHeading = true }: { showHeading?: boolean }) {
           <Reveal variant="fade-up">
             <p className="eyebrow">FAQ</p>
             <TypedHeading
-              text="Answers before you start a project."
+              text="Frequently Asked Questions"
               className="section-heading mt-4"
             />
             <p className="section-lead">
-              Common questions about WordPress website development, Shopify store
-              design, speed optimization, timelines and working together.
+              Common questions about WordPress, Shopify, full stack development,
+              remote collaboration and working with clients worldwide.
             </p>
           </Reveal>
         ) : null}

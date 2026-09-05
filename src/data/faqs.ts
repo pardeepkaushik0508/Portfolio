@@ -5,13 +5,25 @@ export const faqs: FaqItem[] = [
     id: "who",
     question: "Who is Pardeep Kaushik?",
     answer:
-      "Pardeep Kaushik is a Full Stack Developer in India based in Chandigarh, with 5+ years of experience building WordPress, Shopify and custom web applications for clients across India and worldwide.",
+      "Pardeep Kaushik is a Full Stack, WordPress and Shopify developer based in India, with 5+ years of experience building business websites, ecommerce stores and custom web applications for clients worldwide.",
   },
   {
     id: "specialize",
     question: "What does Pardeep Kaushik specialize in?",
     answer:
       "Full stack web development, WordPress (including Elementor and WooCommerce), Shopify and Liquid, React and Next.js frontends, Node.js backends, API integrations, website migrations and Core Web Vitals / speed optimization.",
+  },
+  {
+    id: "where",
+    question: "Where is Pardeep Kaushik based?",
+    answer:
+      "Pardeep is based in Chandigarh, India, and works remotely with clients worldwide.",
+  },
+  {
+    id: "international",
+    question: "Does Pardeep work with international clients?",
+    answer:
+      "Yes. He works with businesses and agencies worldwide via email, WhatsApp, LinkedIn and Upwork, using clear milestones, staging before launch and post-launch support.",
   },
   {
     id: "fullstack",
@@ -41,7 +53,13 @@ export const faqs: FaqItem[] = [
     id: "hire",
     question: "Can I hire Pardeep Kaushik for freelance development?",
     answer:
-      "Yes. He is available for freelance and long-term projects from Chandigarh, India, working with clients across India and internationally via the contact form, email, WhatsApp, LinkedIn and Upwork.",
+      "Yes. He is available for freelance and long-term projects, working with clients in India and internationally via the contact form, email, WhatsApp, LinkedIn and Upwork.",
+  },
+  {
+    id: "ownership",
+    question: "Who owns the code after delivery?",
+    answer:
+      "Clients retain ownership of the project deliverables and source code handed over at the end of the engagement, unless a different arrangement is agreed in writing.",
   },
   {
     id: "tech",

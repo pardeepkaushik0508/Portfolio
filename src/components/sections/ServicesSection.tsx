@@ -41,7 +41,7 @@ export function ServicesSection({
           <Reveal variant="fade-up">
             <p className="eyebrow">Services</p>
             <TypedHeading
-              text="WordPress, Shopify, web apps and website speed optimization."
+              text="WordPress, Shopify & Full Stack Capabilities"
               className="section-heading mt-4"
             />
             <p className="section-lead">

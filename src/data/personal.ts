@@ -6,7 +6,8 @@ export const RESUME_HREF = "/resume/pardeep-kaushik-full-stack.pdf";
 export const personal = {
   name: "Pardeep Kaushik",
   firstName: "Pardeep Kaushik",
-  title: "Full Stack Developer | WordPress & Shopify Developer",
+  title: "Full Stack, WordPress & Shopify Developer",
+  brandLine: "Based in India · Working Worldwide",
   location: "Chandigarh, India",
   email: "pardeepkaushik0508@gmail.com",
   phone: "+91 9671830977",
@@ -24,28 +25,40 @@ export const personal = {
   resume: RESUME_HREF,
   availability: "Available for freelance and long-term projects",
   experienceYears: "5+",
-  headline:
-    "Pardeep Kaushik — Full Stack Developer in India",
+  headline: "Full Stack, WordPress & Shopify Developer",
   supportingCopy:
-    "Freelance full stack developer in India with 5+ years of experience building WordPress, Elementor, WooCommerce, Shopify Liquid, React, Next.js and Node.js websites—plus speed optimization, migrations and API integrations for clients across India and worldwide.",
+    "Freelance web developer with 5+ years of experience building WordPress websites, Shopify stores and custom React, Next.js and Node.js applications for businesses worldwide.",
   aboutIntro:
-    "Pardeep Kaushik is a Full Stack Developer in India based in Chandigarh, with 5+ years of experience across WordPress, Shopify and custom web applications. I help businesses hire one accountable developer for clear communication and end-to-end delivery—from marketing sites and ecommerce stores to React/Next.js products, deployments and Core Web Vitals work.",
+    "Pardeep Kaushik is a freelance Full Stack, WordPress and Shopify developer with 5+ years of experience building business websites, ecommerce stores and custom web applications. Based in India and available for remote projects worldwide—from marketing sites and Shopify stores to React/Next.js products, deployments and Core Web Vitals work.",
   aboutPoints: [
-    "5+ years as a full stack / web developer building business sites, ecommerce and web apps",
+    "5+ years building business sites, ecommerce stores and custom web apps",
     "WordPress developer for Elementor website design, WooCommerce and custom WordPress builds",
     "Shopify developer for store setup, Liquid sections, redesigns and Shopify speed work",
     "React, Next.js and Node.js for SaaS-style products, dashboards and API-backed apps",
     "Website speed optimization, WordPress migration and production VPS deployment",
-    "Based in Chandigarh, India — available for freelance clients across India and worldwide",
+    "Based in India — available for freelance clients worldwide",
   ],
+  heroServices: [
+    "WordPress",
+    "Shopify",
+    "WooCommerce",
+    "Elementor",
+    "React",
+    "Next.js",
+    "Node.js",
+    "APIs",
+    "Full Stack Development",
+  ] as const,
   portfolioNote:
     "Selected WordPress, Shopify, WooCommerce and full-stack website development work. Responsibilities varied by engagement.",
   trustItems: [
     "5+ Years Experience",
-    "Full Stack · India",
+    "Based in India · Worldwide",
     "WordPress · Shopify",
     "Next.js · React · Node.js",
   ],
+  expertBio:
+    "Pardeep Kaushik is a freelance Full Stack, WordPress and Shopify developer with 5+ years of experience building business websites, ecommerce stores and custom web applications. His work includes WordPress, WooCommerce, Elementor, Shopify, Liquid, React, Next.js, Node.js, APIs and production deployment.",
 } as const;
 
 export const navItems: NavItem[] = [
@@ -53,9 +66,7 @@ export const navItems: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
-  { label: "Process", href: "/process" },
-  { label: "Reviews", href: "/reviews" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -106,39 +117,35 @@ export const whyHire: WhyHireItem[] = [
 
 export const seo = {
   title:
-    "Pardeep Kaushik | Full Stack Developer in India | WordPress & Shopify Expert",
+    "Full Stack Developer | WordPress & Shopify Expert | Pardeep Kaushik",
   description:
-    "Hire Pardeep Kaushik — full stack developer in India with 5+ years of experience in WordPress, Shopify, React, Next.js, Node.js, custom web development, speed optimization and API integrations.",
+    "Freelance Full Stack, WordPress and Shopify developer building fast websites, ecommerce stores and custom web applications for businesses worldwide.",
   keywords: [
     "Pardeep Kaushik",
-    "Full Stack Developer in India",
-    "Full Stack Developer India",
-    "Freelance Full Stack Developer India",
-    "Hire Full Stack Developer India",
-    "WordPress Developer India",
-    "Shopify Developer India",
-    "Website Developer India",
     "Full Stack Developer",
+    "Freelance Full Stack Developer",
+    "Full Stack Web Developer",
+    "Remote Full Stack Developer",
     "WordPress Developer",
+    "Freelance WordPress Developer",
     "Shopify Developer",
+    "Freelance Shopify Developer",
+    "Web Developer",
+    "Remote Web Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Node.js Developer",
+    "Ecommerce Developer",
     "Elementor Developer",
     "WooCommerce Developer",
     "Shopify Liquid Developer",
-    "React Developer India",
-    "Next.js Developer India",
-    "Node.js Developer India",
     "Website Speed Optimization",
     "WordPress Migration",
     "API Integration",
-    "Ecommerce Developer India",
-    "Full Stack Developer Chandigarh",
-    "WordPress Developer Chandigarh",
-    "Shopify Developer Chandigarh",
   ],
-  ogTitle:
-    "Pardeep Kaushik — Full Stack Developer in India",
+  ogTitle: "Pardeep Kaushik — Full Stack, WordPress & Shopify Developer",
   ogDescription:
-    "Freelance full stack developer in India specializing in WordPress, Shopify, React, Next.js, Node.js, migrations and website speed optimization.",
+    "Freelance Full Stack, WordPress and Shopify developer building fast websites, ecommerce stores and custom web applications for businesses worldwide.",
   entityStatement:
-    "Pardeep Kaushik is a Full Stack Developer in India with 5+ years of experience across WordPress, Elementor, WooCommerce, Shopify Liquid, React, Next.js, Node.js, custom web development, website performance optimization, migrations and API integrations.",
+    "Pardeep Kaushik is a Full Stack, WordPress and Shopify developer with 5+ years of experience across WordPress, Elementor, WooCommerce, Shopify Liquid, React, Next.js, Node.js, custom web development, website performance optimization, migrations and API integrations. Based in India and available for projects worldwide.",
 };
