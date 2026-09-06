@@ -137,14 +137,11 @@ export function Header() {
     setOpen(false);
   }
 
-  const items = [
-    ...navItems.map((item) => ({
-      label: item.label,
-      href: item.href,
-      key: item.href,
-    })),
-    { label: "Blog", href: "/blog", key: "/blog" },
-  ];
+  const items = navItems.map((item) => ({
+    label: item.label,
+    href: item.href,
+    key: item.href,
+  }));
 
   return (
     <>
